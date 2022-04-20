@@ -7,21 +7,19 @@ import '../models/failure_model.dart';
 
 part 'spellsFetch_state.dart';
 
-class PostfetchcubitCubit extends Cubit<PostfetchcubitState> {
+class SpellsfetchCubit extends Cubit<SpellsfetchcubitState> {
   final ApiRepository apiRepository;
 
-  PostfetchcubitCubit({required this.apiRepository})
-      : super(PostfetchcubitInitial());
+  SpellsfetchCubit({required this.apiRepository})
+      : super(SpellsfetchcubitInitial());
 
   Future<void> fetchSpellsApi() async {
-    emit(PostfetchcubitLoading());
+    emit(SpellsfetchcubitLoading());
     try {
-      print('aaa');
       final List<dynamic>? postList = await apiRepository.getPostList();
-      print('bbb');
-      emit(PostfetchcubitLoaded(postList: postList ?? []));
+      emit(SpellsfetchcubitLoaded(postList: postList ?? []));
     } on Failure catch (e) {
-      emit(PostfetchcubitError(e));
+      emit(SpellsfetchcubitError(e));
     } catch (e) {
       print('Error: $e');
     }
