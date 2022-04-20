@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<PostfetchcubitCubit>(
-          create: (context) => PostfetchcubitCubit(
+        BlocProvider<SpellsfetchCubit>(
+          create: (context) => SpellsfetchCubit(
             apiRepository: ApiRepository(
               apiService,
             ),

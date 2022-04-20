@@ -1,29 +1,29 @@
 part of 'spellsFetch_cubit.dart';
 
-abstract class PostfetchcubitState extends Equatable {
-  const PostfetchcubitState();
+abstract class SpellsfetchcubitState extends Equatable {
+  const SpellsfetchcubitState();
 
   @override
   List<Object> get props => [];
 }
 
-class PostfetchcubitInitial extends PostfetchcubitState {}
+class SpellsfetchcubitInitial extends SpellsfetchcubitState {}
 
-class PostfetchcubitLoading extends PostfetchcubitState {}
+class SpellsfetchcubitLoading extends SpellsfetchcubitState {}
 
-class PostfetchcubitLoaded extends PostfetchcubitState {
+class SpellsfetchcubitLoaded extends SpellsfetchcubitState {
   final List<dynamic> postList;
 
-  PostfetchcubitLoaded({required this.postList});
+  const SpellsfetchcubitLoaded({required this.postList});
 
   @override
   List<Object> get props => [postList];
 }
 
-class PostfetchcubitError extends PostfetchcubitState {
+class SpellsfetchcubitError extends SpellsfetchcubitState {
   final Failure failure;
 
-  PostfetchcubitError(this.failure);
+  SpellsfetchcubitError(this.failure);
 
   @override
   // TODO: implement props
