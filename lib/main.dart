@@ -1,7 +1,6 @@
 import 'package:dnd_helper/cubit/spellsFetch_cubit.dart';
-import 'package:dnd_helper/repository/api_repository.dart';
+import 'package:dnd_helper/api/api_repository.dart';
 import 'package:dnd_helper/screens/home_page.dart';
-import 'package:dnd_helper/service/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

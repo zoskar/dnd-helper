@@ -17,9 +17,6 @@ class Spells {
   //   );
   // }
   factory Spells.fromJson(Map<String, dynamic> json) {
-    return Spells(
-        index: json['index'],
-        name: json['name'],
-        url: json['url']);
+    return Spells(index: json['index'], name: json['name'], url: json['url']);
   }
 }
