@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             apiRepository: ApiRepository(
               apiService,
             ),
-          )..fetchSpellsApi(),
+          ),
         ),
       ],
       child: MaterialApp(
