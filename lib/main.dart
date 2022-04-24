@@ -4,6 +4,8 @@ import 'package:dnd_helper/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubit/spellFetch_cubit.dart';
+
 void main() {
   runApp(MyApp(
     apiService: ApiService(),
@@ -21,6 +23,13 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<SpellsfetchCubit>(
           create: (context) => SpellsfetchCubit(
+            apiRepository: ApiRepository(
+              apiService,
+            ),
+          ),
+        ),
+        BlocProvider<SpellfetchCubit>(
+          create: (context) => SpellfetchCubit(
             apiRepository: ApiRepository(
               apiService,
             ),

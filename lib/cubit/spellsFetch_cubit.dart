@@ -8,11 +8,12 @@ class SpellsfetchCubit extends Cubit<SpellsfetchcubitState> {
   SpellsfetchCubit({required this.apiRepository})
       : super(SpellsfetchcubitInitial());
 
-  Future<void> fetchSpellsApi() async {
+  Future<void> fetchSpellsApi(String params) async {
     emit(SpellsfetchcubitLoading());
     try {
-      final List<dynamic>? postList = await apiRepository.getSpellsList();
-      emit(SpellsfetchcubitLoaded(postList: postList ?? []));
+      final List<dynamic>? spellList =
+          await apiRepository.getSpellsList(params);
+      emit(SpellsfetchcubitLoaded(spellsList: spellList ?? []));
     } on Failure catch (e) {
       emit(SpellsfetchcubitError(e));
     } catch (e) {
@@ -33,12 +34,12 @@ class SpellsfetchcubitInitial extends SpellsfetchcubitState {}
 class SpellsfetchcubitLoading extends SpellsfetchcubitState {}
 
 class SpellsfetchcubitLoaded extends SpellsfetchcubitState {
-  final List<dynamic> postList;
+  final List<dynamic> spellsList;
 
-  const SpellsfetchcubitLoaded({required this.postList});
+  const SpellsfetchcubitLoaded({required this.spellsList});
 
   @override
-  List<Object> get props => [postList];
+  List<Object> get props => [spellsList];
 }
 
 class SpellsfetchcubitError extends SpellsfetchcubitState {

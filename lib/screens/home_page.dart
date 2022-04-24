@@ -1,7 +1,7 @@
-import 'package:dnd_helper/screens/character.dart';
-import 'package:dnd_helper/screens/combat.dart';
-import 'package:dnd_helper/screens/rules.dart';
-import 'package:dnd_helper/screens/spells.dart';
+import 'package:dnd_helper/screens/character/character.dart';
+import 'package:dnd_helper/screens/combat/combat.dart';
+import 'package:dnd_helper/screens/rules/rules.dart';
+import 'package:dnd_helper/screens/spells/spells.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int current_index = 0;
+  int current_index = 2;
   var screens = [
     CharacterPage(),
     CombatPage(),
