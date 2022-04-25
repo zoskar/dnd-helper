@@ -1,11 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:dnd_helper/cubit/spells_model.dart';
-import 'package:dnd_helper/repository/api_repository.dart';
+import 'package:dnd_helper/api/api_repository.dart';
 import 'package:equatable/equatable.dart';
-
-import '../models/failure_model.dart';
-
-part 'spellsFetch_state.dart';
 
 class SpellsfetchCubit extends Cubit<SpellsfetchcubitState> {
   final ApiRepository apiRepository;
@@ -16,7 +11,7 @@ class SpellsfetchCubit extends Cubit<SpellsfetchcubitState> {
   Future<void> fetchSpellsApi() async {
     emit(SpellsfetchcubitLoading());
     try {
-      final List<dynamic>? postList = await apiRepository.getPostList();
+      final List<dynamic>? postList = await apiRepository.getSpellsList();
       emit(SpellsfetchcubitLoaded(postList: postList ?? []));
     } on Failure catch (e) {
       emit(SpellsfetchcubitError(e));
@@ -24,4 +19,44 @@ class SpellsfetchCubit extends Cubit<SpellsfetchcubitState> {
       print('Error: $e');
     }
   }
+}
+
+abstract class SpellsfetchcubitState extends Equatable {
+  const SpellsfetchcubitState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class SpellsfetchcubitInitial extends SpellsfetchcubitState {}
+
+class SpellsfetchcubitLoading extends SpellsfetchcubitState {}
+
+class SpellsfetchcubitLoaded extends SpellsfetchcubitState {
+  final List<dynamic> postList;
+
+  const SpellsfetchcubitLoaded({required this.postList});
+
+  @override
+  List<Object> get props => [postList];
+}
+
+class SpellsfetchcubitError extends SpellsfetchcubitState {
+  final Failure failure;
+
+  SpellsfetchcubitError(this.failure);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [failure];
+}
+
+class Failure {
+  final String message;
+  final String code;
+
+  const Failure({
+    this.message = '',
+    this.code = '',
+  });
 }

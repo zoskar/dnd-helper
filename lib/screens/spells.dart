@@ -1,5 +1,5 @@
 import 'package:dnd_helper/cubit/spellsFetch_cubit.dart';
-import 'package:dnd_helper/cubit/spells_model.dart';
+import 'package:dnd_helper/api/spells_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +7,7 @@ class SpellsPage extends StatelessWidget {
   SpellsPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    context.read<SpellsfetchCubit>().fetchSpellsApi();
     return Scaffold(
       body: Center(
         child: BlocBuilder<SpellsfetchCubit, SpellsfetchcubitState>(
