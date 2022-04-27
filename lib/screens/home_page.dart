@@ -2,6 +2,8 @@ import 'package:dnd_helper/screens/character/character.dart';
 import 'package:dnd_helper/screens/combat/combat.dart';
 import 'package:dnd_helper/screens/rules/rules.dart';
 import 'package:dnd_helper/screens/spells/spells.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
+import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,8 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int current_index = 2;
-  var screens = [
+  int currentIndex = 1;
+
+  var screens = const [
     CharacterPage(),
     CombatPage(),
     SpellsPage(),
@@ -22,31 +25,39 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(),
-        body: screens[current_index],
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          title: const Text(
+            'Dnd Helper',
+            style: AppTextStyles.h,
+          ),
+        ),
+        body: screens[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-            currentIndex: current_index,
-            onTap: (index) => setState(() => current_index = index),
+            selectedItemColor: Colors.white,
+            currentIndex: currentIndex,
+
+            onTap: (index) => setState(() => currentIndex = index),
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'character',
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.primary,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'combat',
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.primary,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'spells',
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.primary,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'rules',
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.primary,
               ),
             ]),
       );
