@@ -9,47 +9,30 @@ class ApiRepository {
 
   ApiRepository(this.apiService);
 
-  Future<dynamic> getSpellsList(params) async {
+  Future<List<Spells>?> getSpellsList(params) async {
     final response = await apiService.getSpellsData(params);
     if (response != null) {
       final data = response as Map<String, dynamic>;
-      var result = [];
+      var spells = <Spells>[];
 
       for (var el in data['results']) {
-        result
-            .add(Spells(index: el['index'], name: el['name'], url: el['url']));
+        spells.add(Spells.fromJson(el));
       }
 
-      return result;
+      return spells;
     }
+    return null;
   }
 
-  Future<dynamic> getSpellList(spellName) async {
+  Future<Spell?> getSpell(spellName) async {
     final response = await apiService.getSpellData(spellName);
     if (response != null) {
-      final data = response as Map<String, dynamic>;
-      var result = Spell(
-        id: data['_id'],
-        desc: data['desc'][0],
-        components: data['components'],
-        higer_level: data['higher_level'],
-        range: data['range'],
-        ritual: data['ritual'],
-        duration: data['duration'],
-        concentration: data['concentration'],
-        casting_time: data['casting_time'],
-        level: data['level'],
-        // heal_at_slot_level: data['heal_at_slot_level'],
-        school: data['school'],
-        classes: data['classes'],
-        subclasses: data['subclasses'],
-        // index: data['index'],
-        name: data['name'],
-        // url: data['url']);
-      );
-      
-      return result;
+      final json = response as Map<String, dynamic>;
+      final spell = Spell.fromJson(json);
+      return spell;
     }
+
+    return null;
   }
 }
 

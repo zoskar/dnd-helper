@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'models.g.dart';
+
+@JsonSerializable()
 class Spells {
   final String index;
   final String name;
@@ -8,17 +13,19 @@ class Spells {
     required this.name,
     required this.url,
   });
-  factory Spells.fromJson(Map<String, dynamic> json) {
-    return Spells(index: json['index'], name: json['name'], url: json['url']);
-  }
+  factory Spells.fromJson(Map<String, dynamic> json) => _$SpellsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SpellsToJson(this);
 }
 
+@JsonSerializable()
 class Spell {
+  @JsonKey(name: '_id')
   final String id;
   // final String index;
   final String name;
-  final String desc;
-  final List higer_level;
+  final List<String> desc;
+  final List higher_level;
   final String range;
   final List components;
   final bool ritual;
@@ -32,10 +39,12 @@ class Spell {
   final List subclasses;
   // final String url;
 
+  String get description => desc.first;
+
   const Spell({
     required this.id,
     required this.desc,
-    required this.higer_level,
+    required this.higher_level,
     required this.range,
     required this.components,
     required this.ritual,
@@ -51,25 +60,8 @@ class Spell {
     required this.name,
     // required this.url,
   });
-  factory Spell.fromJson(Map<String, dynamic> json) {
-    return Spell(
-      // index: json['index'],
-      name: json['name'],
-      // url: json['url'],
-      casting_time: json['casting_time'],
-      classes: json['classes'],
-      components: json['components'],
-      concentration: json['concentration'],
-      desc: json['desc'],
-      duration: json['duration'],
-      // heal_at_slot_level: json['heal_at_slot_level'],
-      higer_level: json['higher_level'],
-      id: json['id'],
-      level: json['level'],
-      range: json['range'],
-      ritual: json['ritual'],
-      school: json['school'],
-      subclasses: json['subclasses'],
-    );
-  }
+
+  factory Spell.fromJson(Map<String, dynamic> json) => _$SpellFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SpellToJson(this);
 }
