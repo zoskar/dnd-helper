@@ -1,7 +1,7 @@
 import 'package:dnd_helper/screens/character/character.dart';
 import 'package:dnd_helper/screens/combat/combat.dart';
 import 'package:dnd_helper/screens/rules/rules.dart';
-import 'package:dnd_helper/screens/spells/spells.dart';
+import 'package:dnd_helper/screens/spells/spellList.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +14,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 1;
+  int currentIndex = 2;
 
   var screens = const [
     CharacterPage(),
     CombatPage(),
-    SpellsPage(),
+    SpellsPage(params: '',),
     RulesPage(),
   ];
 
