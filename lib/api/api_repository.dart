@@ -50,8 +50,11 @@ class ApiService {
   Future<dynamic> getSpellData(spellIndex) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl$spells/$spellIndex'));
-      var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
-      return decodedResponse;
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
+        return decodedResponse;
+      } else
+        return null;
     } catch (e) {
       print('Error: $e');
     }
