@@ -43,11 +43,22 @@ class ApiRepository {
         final json = response as Map<String, dynamic>;
         final ruleSection = Rules.fromJson(json);
         rules.add(ruleSection);
+      } else {
+        return null;
       }
-      // } else
-      //   return null;
     }
     return rules;
+  }
+
+  Future<Rule?> getRule(ruleURL) async {
+    final response = await apiService.getRule(ruleURL);
+    if (response != null) {
+      final json = response as Map<String, dynamic>;
+      final rule = Rule.fromJson(json);
+      return rule;
+    } else {
+      return null;
+    }
   }
 }
 
@@ -68,8 +79,9 @@ class ApiService {
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
         return decodedResponse;
-      } else
+      } else {
         return null;
+      }
     } catch (e) {
       print('Error: $e');
     }
@@ -81,8 +93,23 @@ class ApiService {
       if (response.statusCode == 200) {
         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
         return decodedResponse;
-      } else
+      } else {
         return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  Future<dynamic> getRule(ruleURL) async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl$ruleURL'));
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
+        return decodedResponse;
+      } else {
+        return null;
+      }
     } catch (e) {
       print('Error: $e');
     }

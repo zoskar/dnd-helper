@@ -21,6 +21,8 @@ class RulesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<RulesCubit>().fetch(rulesList);
     return Scaffold(
+      //TODO
+      backgroundColor: Colors.grey.shade100,
       body: Center(
         child: BlocBuilder<RulesCubit, RulesState>(
           builder: (context, state) {
@@ -38,6 +40,12 @@ class RulesPage extends StatelessWidget {
                     final Rules rule = rules[index];
 
                     return ExpansionTile(
+                      collapsedBackgroundColor: Colors.white,
+                      collapsedIconColor: AppColors.secondary,
+                      //collapsedTextColor: Colors.amber,
+                      iconColor: AppColors.primary,
+                      textColor: AppColors.primary,
+                      backgroundColor: Colors.grey.shade100,
                       title: Text(
                         rule.name,
                         style: const TextStyle(fontSize: 20),
@@ -49,8 +57,10 @@ class RulesPage extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            SingleRulePage(ruleURL: r['url']!)));
+                                      builder: (context) => SingleRulePage(
+                                        ruleURL: r['url']!,
+                                      ),
+                                    ));
                               },
                               child: ListTile(
                                 title: Text(
