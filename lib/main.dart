@@ -1,3 +1,4 @@
+import 'package:dnd_helper/cubits/rules_cubit.dart';
 import 'package:dnd_helper/cubits/spells_cubit.dart';
 import 'package:dnd_helper/api/api_repository.dart';
 import 'package:dnd_helper/screens/home_page.dart';
@@ -27,6 +28,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<SpellCubit>(
           create: (context) => SpellCubit(
+            apiRepository: _apiRepository,
+          ),
+        ),
+        BlocProvider<RulesCubit>(
+          create: (context) => RulesCubit(
             apiRepository: _apiRepository,
           ),
         ),

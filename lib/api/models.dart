@@ -33,11 +33,9 @@ class Spell {
   final bool concentration;
   final String casting_time;
   final int level;
-  // final Map heal_at_slot_level;
   final Map school;
   final List classes;
   final List subclasses;
-  // final String url;
 
   String get description => desc.first;
 
@@ -52,16 +50,30 @@ class Spell {
     required this.concentration,
     required this.casting_time,
     required this.level,
-    // required this.heal_at_slot_level,
     required this.school,
     required this.classes,
     required this.subclasses,
-    // required this.index,
     required this.name,
-    // required this.url,
   });
 
   factory Spell.fromJson(Map<String, dynamic> json) => _$SpellFromJson(json);
 
   Map<String, dynamic> toJson() => _$SpellToJson(this);
+}
+
+@JsonSerializable()
+class Rules {
+  final String name;
+  final String desc;
+  final List<Map<String, String>> subsections;
+
+  const Rules({
+    required this.name,
+    required this.desc,
+    required this.subsections,
+  });
+  factory Rules.fromJson(Map<String, dynamic> json) =>
+      _$RulesFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RulesToJson(this);
 }

@@ -28,7 +28,9 @@ class SpellView extends StatelessWidget {
         child: BlocBuilder<SpellCubit, SpellState>(
           builder: (context, state) {
             if (state is SpellLoading) {
-              return const CircularProgressIndicator();
+              return const CircularProgressIndicator(
+                color: AppColors.primary,
+              );
             } else if (state is SpellError) {
               return Text(state.failure.message);
             } else if (state is SpellLoaded) {

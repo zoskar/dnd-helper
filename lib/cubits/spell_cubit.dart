@@ -15,7 +15,7 @@ class SpellCubit extends Cubit<SpellState> {
       if (spell != null) {
         emit(SpellLoaded(spell: spell));
       } else {
-        emit(SpellError(Failure(message: 'got null from getSpell')));
+        emit(SpellError(const Failure(message: 'Spell not found!')));
       }
     } catch (err) {
       emit(SpellError(Failure(message: err.toString())));

@@ -34,6 +34,21 @@ class ApiRepository {
 
     return null;
   }
+
+  Future<List<Rules>?> getRules(List<String> rulesList) async {
+    List<Rules> rules = [];
+    for (var r in rulesList) {
+      final response = await apiService.getRulesData(r);
+      if (response != null) {
+        final json = response as Map<String, dynamic>;
+        final ruleSection = Rules.fromJson(json);
+        rules.add(ruleSection);
+      }
+      // } else
+      //   return null;
+    }
+    return rules;
+  }
 }
 
 class ApiService {
@@ -50,8 +65,24 @@ class ApiService {
   Future<dynamic> getSpellData(spellIndex) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl$spells/$spellIndex'));
-      var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
-      return decodedResponse;
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
+        return decodedResponse;
+      } else
+        return null;
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  Future<dynamic> getRulesData(String ruleName) async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl$rules/$ruleName'));
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
+        return decodedResponse;
+      } else
+        return null;
     } catch (e) {
       print('Error: $e');
     }
