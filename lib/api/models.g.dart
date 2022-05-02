@@ -65,3 +65,13 @@ Map<String, dynamic> _$RulesToJson(Rules instance) => <String, dynamic>{
       'desc': instance.desc,
       'subsections': instance.subsections,
     };
+
+Rule _$RuleFromJson(Map<String, dynamic> json) => Rule(
+      name: json['name'] as String,
+      desc: json['desc'] as String,
+    );
+
+Map<String, dynamic> _$RuleToJson(Rule instance) => <String, dynamic>{
+      'name': instance.name,
+      'desc': instance.desc,
+    };

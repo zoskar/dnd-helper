@@ -12,7 +12,6 @@ class RulesCubit extends Cubit<RulesState> {
     emit(RulesLoading());
     try {
       final rules = await apiRepository.getRules(rulesList);
-      //print('fetch:$rules');
       if (rules != null) {
         emit(RulesLoaded(rules: rules));
       } else {

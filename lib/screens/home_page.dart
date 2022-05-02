@@ -19,14 +19,20 @@ class _HomePageState extends State<HomePage> {
   var screens = const [
     CharacterPage(),
     CombatPage(),
-    SpellsPage(params: '',),
+    SpellsPage(
+      params: '',
+    ),
     RulesPage(),
   ];
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.primary,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: AppColors.myGradient,
+            ),
+          ),
           title: const Text(
             'Dnd Helper',
             style: AppTextStyles.h,
@@ -36,7 +42,6 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: Colors.white,
             currentIndex: currentIndex,
-
             onTap: (index) => setState(() => currentIndex = index),
             items: const [
               BottomNavigationBarItem(

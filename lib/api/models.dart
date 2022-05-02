@@ -72,8 +72,19 @@ class Rules {
     required this.desc,
     required this.subsections,
   });
-  factory Rules.fromJson(Map<String, dynamic> json) =>
-      _$RulesFromJson(json);
+  factory Rules.fromJson(Map<String, dynamic> json) => _$RulesFromJson(json);
 
   Map<String, dynamic> toJson() => _$RulesToJson(this);
+}
+
+@JsonSerializable()
+class Rule {
+  final String name;
+  final String desc;
+
+  const Rule({required this.name, required this.desc});
+
+  factory Rule.fromJson(Map<String, dynamic> json) => _$RuleFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RuleToJson(this);
 }

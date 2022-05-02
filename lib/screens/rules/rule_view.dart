@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubits/rule_cubit.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/fonts.dart';
 
@@ -10,18 +12,42 @@ class SingleRulePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<RuleCubit>().fetch(ruleURL);
+
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: AppColors.primary,
-          title: const Text(
-            'Dnd Helper',
-            style: AppTextStyles.h,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: AppColors.myGradient,
           ),
         ),
-      body: Column(
-        children: [
-          Text(ruleURL)
-        ],
+        backgroundColor: AppColors.primary,
+        title: const Text(
+          'Dnd Helper',
+          style: AppTextStyles.h,
+        ),
+      ),
+      body: BlocBuilder<RuleCubit, RuleState>(
+        builder: (context, state) {
+          if (state is RuleLoading) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primary,
+              ),
+            );
+          } else if (state is RuleError) {
+            return Text(state.failure.message);
+          } else if (state is RuleLoaded) {
+            final rule = state.rule;
+            return SingleChildScrollView(
+              child: Text(
+                rule.desc,
+                style: AppTextStyles.p,
+              ),
+            );
+          }
+          return const SizedBox.shrink();
+        },
       ),
     );
   }

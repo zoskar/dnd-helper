@@ -5,6 +5,7 @@ import 'package:dnd_helper/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubits/rule_cubit.dart';
 import 'cubits/spell_cubit.dart';
 
 void main() {
@@ -33,6 +34,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<RulesCubit>(
           create: (context) => RulesCubit(
+            apiRepository: _apiRepository,
+          ),
+        ),
+        BlocProvider<RuleCubit>(
+          create: (context) => RuleCubit(
             apiRepository: _apiRepository,
           ),
         ),

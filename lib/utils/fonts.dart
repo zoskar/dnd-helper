@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class AppTextStyles {
-  static const medium = TextStyle(
-    fontFamily: 'Montserrat',
-    color: AppColors.PrimaryAccent,
-    fontSize: 20,
-  );
 
   static const p = TextStyle(
     fontFamily: 'Montserrat',
