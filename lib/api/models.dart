@@ -62,18 +62,18 @@ class Spell {
 }
 
 @JsonSerializable()
-class RuleSection {
+class Rules {
   final String name;
   final String desc;
   final List<Map<String, String>> subsections;
 
-  const RuleSection({
+  const Rules({
     required this.name,
     required this.desc,
     required this.subsections,
   });
-  factory RuleSection.fromJson(Map<String, dynamic> json) =>
-      _$RuleSectionFromJson(json);
+  factory Rules.fromJson(Map<String, dynamic> json) =>
+      _$RulesFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RuleSectionToJson(this);
+  Map<String, dynamic> toJson() => _$RulesToJson(this);
 }

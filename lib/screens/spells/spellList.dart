@@ -19,7 +19,6 @@ class SpellsPage extends StatefulWidget {
 }
 
 class _SpellsPageState extends State<SpellsPage> {
-
   @override
   Widget build(BuildContext context) {
     context.read<SpellsCubit>().fetchSpellsApi(params);
@@ -121,7 +120,9 @@ class _SpellsPageState extends State<SpellsPage> {
         BlocBuilder<SpellsCubit, SpellsState>(
           builder: (context, state) {
             if (state is SpellsLoading) {
-              return const CircularProgressIndicator();
+              return const CircularProgressIndicator(
+                color: AppColors.primary,
+              );
             } else if (state is SpellsError) {
               return Text(state.failure.message);
             } else if (state is SpellsLoaded) {
@@ -147,4 +148,3 @@ class _SpellsPageState extends State<SpellsPage> {
     );
   }
 }
-

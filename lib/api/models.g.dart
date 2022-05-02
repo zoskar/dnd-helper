@@ -52,7 +52,7 @@ Map<String, dynamic> _$SpellToJson(Spell instance) => <String, dynamic>{
       'subclasses': instance.subclasses,
     };
 
-RuleSection _$RuleSectionFromJson(Map<String, dynamic> json) => RuleSection(
+Rules _$RulesFromJson(Map<String, dynamic> json) => Rules(
       name: json['name'] as String,
       desc: json['desc'] as String,
       subsections: (json['subsections'] as List<dynamic>)
@@ -60,8 +60,7 @@ RuleSection _$RuleSectionFromJson(Map<String, dynamic> json) => RuleSection(
           .toList(),
     );
 
-Map<String, dynamic> _$RuleSectionToJson(RuleSection instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RulesToJson(Rules instance) => <String, dynamic>{
       'name': instance.name,
       'desc': instance.desc,
       'subsections': instance.subsections,
