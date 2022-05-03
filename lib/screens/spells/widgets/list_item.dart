@@ -16,11 +16,13 @@ class SpellItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => SpellView(
-                      spellName: singleSpell.index,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => SpellView(
+              spellName: singleSpell.index,
+            ),
+          ),
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
