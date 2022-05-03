@@ -1,3 +1,4 @@
+import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../spell.dart';
@@ -16,30 +17,36 @@ class SearchField extends StatelessWidget {
         child: TextField(
           onSubmitted: (input) {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => SpellView(
-                          spellName: input.replaceAll(' ', '-'),
-                        )));
+              context,
+              MaterialPageRoute(
+                builder: (context) => SpellView(
+                  spellName: input.replaceAll(' ', '-'),
+                ),
+              ),
+            );
           },
           textInputAction: TextInputAction.go,
           maxLength: 30,
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.left,
           decoration: InputDecoration(
-              counterText: '',
-              suffixIcon: const Padding(
-                padding: EdgeInsetsDirectional.only(end: 5),
-                child: Icon(Icons.search),
+            counterText: '',
+            prefixIcon: const Padding(
+              padding: EdgeInsetsDirectional.only(
+                start: 10,
+                end: 50,
               ),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30)),
-              filled: true,
-              hintStyle: const TextStyle(color: Colors.grey),
-              hintText: 'Search spell',
-              fillColor: Colors.white70),
+              child: Icon(Icons.search),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            filled: true,
+            hintStyle: const TextStyle(color: Colors.grey),
+            hintText: 'Search spell',
+            fillColor: Colors.white70,
+          ),
         ),
       ),
     );
   }
 }
-

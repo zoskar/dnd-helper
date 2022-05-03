@@ -51,7 +51,7 @@ class ApiRepository {
   }
 
   Future<Rule?> getRule(ruleURL) async {
-    final response = await apiService.getRule(ruleURL);
+    final response = await apiService.getRuleData(ruleURL);
     if (response != null) {
       final json = response as Map<String, dynamic>;
       final rule = Rule.fromJson(json);
@@ -66,8 +66,12 @@ class ApiService {
   Future<dynamic> getSpellsData(params) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl$spells$params'));
-      var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
-      return decodedResponse;
+      if (response.statusCode == 200) {
+        var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes));
+        return decodedResponse;
+      } else {
+        return null;
+      }
     } catch (e) {
       print('Error: $e');
     }
@@ -101,7 +105,7 @@ class ApiService {
     }
   }
 
-  Future<dynamic> getRule(ruleURL) async {
+  Future<dynamic> getRuleData(ruleURL) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl$ruleURL'));
       if (response.statusCode == 200) {
