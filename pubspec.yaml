@@ -21,6 +21,7 @@ dependencies:
   hydrated_bloc: ^8.1.0
   json_annotation: ^4.4.0
   json_serializable: ^6.1.6
+  path_provider: ^2.0.9
   
 
 dev_dependencies:
