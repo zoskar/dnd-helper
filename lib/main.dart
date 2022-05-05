@@ -43,11 +43,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         title: 'Dnd Helper',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
         home: HomePage(),
       ),
     );

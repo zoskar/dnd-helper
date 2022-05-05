@@ -40,9 +40,12 @@ class SingleRulePage extends StatelessWidget {
           } else if (state is RuleLoaded) {
             final rule = state.rule;
             return SingleChildScrollView(
-              child: Text(
-                rule.desc,
-                style: AppTextStyles.p,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  rule.desc,
+                  style: AppTextStyles.p,
+                ),
               ),
             );
           }

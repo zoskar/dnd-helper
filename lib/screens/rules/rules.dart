@@ -55,12 +55,13 @@ class RulesPage extends StatelessWidget {
                             (r) => InkWell(
                               onTap: () {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => SingleRulePage(
-                                        ruleURL: r['url']!,
-                                      ),
-                                    ));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SingleRulePage(
+                                      ruleURL: r['url']!,
+                                    ),
+                                  ),
+                                );
                               },
                               child: ListTile(
                                 title: Text(

@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 2;
+  int currentIndex = 0;
 
   var screens = const [
     CharacterPage(),
@@ -41,27 +41,28 @@ class _HomePageState extends State<HomePage> {
         body: screens[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white38,
             currentIndex: currentIndex,
             onTap: (index) => setState(() => currentIndex = index),
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: 'character',
+                label: 'Character',
                 backgroundColor: AppColors.primary,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: 'combat',
+                label: 'Combat',
                 backgroundColor: AppColors.primary,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: 'spells',
+                label: 'Spells',
                 backgroundColor: AppColors.primary,
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                label: 'rules',
+                label: 'Rules',
                 backgroundColor: AppColors.primary,
               ),
             ]),
