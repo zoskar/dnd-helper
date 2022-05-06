@@ -11,9 +11,8 @@ class FileHandler {
 
   static File? _file;
 
-  static const _fileName = 'user_file.txt';
+  static const _fileName = 'character_file.txt';
 
-  // Get the data file
   Future<File> get file async {
     if (_file != null) return _file!;
 
@@ -21,7 +20,6 @@ class FileHandler {
     return _file!;
   }
 
-  // Inititalize file
   Future<File> _initFile() async {
     final directory = await getApplicationDocumentsDirectory();
     final path = directory.path;
@@ -34,14 +32,13 @@ class FileHandler {
     final File fl = await file;
     _charSet.add(character);
 
-    // Now convert the set to a list as the jsonEncoder cannot encode
-    // a set but a list.
     final charListMap = _charSet.map((e) => e.toJson()).toList();
 
     await fl.writeAsString(jsonEncode(charListMap));
   }
 
   Future<List<Character>> readChars() async {
+    
     final File fl = await file;
     final content = await fl.readAsString();
 

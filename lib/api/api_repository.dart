@@ -9,14 +9,14 @@ class ApiRepository {
 
   ApiRepository(this.apiService);
 
-  Future<List<Spells>?> getSpellsList(params) async {
-    final response = await apiService.getSpellsData(params);
+  Future<List<SpellListItem>?> getSpellListItems(params) async {
+    final response = await apiService.getSpellListItemData(params);
     if (response != null) {
       final data = response as Map<String, dynamic>;
-      var spells = <Spells>[];
+      var spells = <SpellListItem>[];
 
       for (var el in data['results']) {
-        spells.add(Spells.fromJson(el));
+        spells.add(SpellListItem.fromJson(el));
       }
 
       return spells;
@@ -35,19 +35,15 @@ class ApiRepository {
     return null;
   }
 
-  Future<List<Rules>?> getRules(List<String> rulesList) async {
-    List<Rules> rules = [];
-    for (var r in rulesList) {
-      final response = await apiService.getRulesData(r);
-      if (response != null) {
-        final json = response as Map<String, dynamic>;
-        final ruleSection = Rules.fromJson(json);
-        rules.add(ruleSection);
-      } else {
-        return null;
-      }
+  Future<RuleSection?> getRuleSection(String ruleSectionName) async {
+    final response = await apiService.getRuleSectionData(ruleSectionName);
+    if (response != null) {
+      final json = response as Map<String, dynamic>;
+      final ruleSection = RuleSection.fromJson(json);
+      return ruleSection;
+    } else {
+      return null;
     }
-    return rules;
   }
 
   Future<Rule?> getRule(ruleURL) async {
@@ -63,7 +59,7 @@ class ApiRepository {
 }
 
 class ApiService {
-  Future<dynamic> getSpellsData(params) async {
+  Future<dynamic> getSpellListItemData(params) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl$spells$params'));
       if (response.statusCode == 200) {
@@ -91,7 +87,7 @@ class ApiService {
     }
   }
 
-  Future<dynamic> getRulesData(String ruleName) async {
+  Future<dynamic> getRuleSectionData(String ruleName) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl$rules/$ruleName'));
       if (response.statusCode == 200) {

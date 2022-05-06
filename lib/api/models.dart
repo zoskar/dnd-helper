@@ -3,19 +3,20 @@ import 'package:json_annotation/json_annotation.dart';
 part 'models.g.dart';
 
 @JsonSerializable()
-class Spells {
+class SpellListItem {
   final String index;
   final String name;
   final String url;
 
-  const Spells({
+  const SpellListItem({
     required this.index,
     required this.name,
     required this.url,
   });
-  factory Spells.fromJson(Map<String, dynamic> json) => _$SpellsFromJson(json);
+  factory SpellListItem.fromJson(Map<String, dynamic> json) =>
+      _$SpellListItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SpellsToJson(this);
+  Map<String, dynamic> toJson() => _$SpellListItemToJson(this);
 }
 
 @JsonSerializable()
@@ -37,7 +38,7 @@ class Spell {
   final List classes;
   final List subclasses;
 
-  String get description => desc.first;
+  //String get description => desc.first;
 
   const Spell({
     required this.id,
@@ -62,19 +63,19 @@ class Spell {
 }
 
 @JsonSerializable()
-class Rules {
+class RuleSection {
   final String name;
   final String desc;
   final List<Map<String, String>> subsections;
 
-  const Rules({
+  const RuleSection({
     required this.name,
     required this.desc,
     required this.subsections,
   });
-  factory Rules.fromJson(Map<String, dynamic> json) => _$RulesFromJson(json);
+  factory RuleSection.fromJson(Map<String, dynamic> json) => _$RuleSectionFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RulesToJson(this);
+  Map<String, dynamic> toJson() => _$RuleSectionToJson(this);
 }
 
 @JsonSerializable()

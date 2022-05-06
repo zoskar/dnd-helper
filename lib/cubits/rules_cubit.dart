@@ -3,41 +3,46 @@ import 'package:dnd_helper/api/models.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dnd_helper/api/api_repository.dart';
 
-class RulesCubit extends Cubit<RulesState> {
-  RulesCubit({required this.apiRepository}) : super(RulesInitial());
+class RuleSectionCubit extends Cubit<RuleSectionState> {
+  RuleSectionCubit({required this.apiRepository}) : super(RuleSectionInitial());
 
   final ApiRepository apiRepository;
 
   Future<void> fetch(List<String> rulesList) async {
     emit(RulesLoading());
     try {
-      final rules = await apiRepository.getRules(rulesList);
-      if (rules != null) {
-        emit(RulesLoaded(rules: rules));
-      } else {
-        emit(RulesError(const Failure(message: 'Rule not found!')));
-      }
+      final rules = await Future.wait([
+        apiRepository.getRuleSection(rulesList[0]),
+        apiRepository.getRuleSection(rulesList[1]),
+        apiRepository.getRuleSection(rulesList[2]),
+        apiRepository.getRuleSection(rulesList[3]),
+        apiRepository.getRuleSection(rulesList[4]),
+        apiRepository.getRuleSection(rulesList[5]),
+      ]);
+
+      emit(RuleSectionLoaded(rules: rules));
+
     } catch (err) {
-      emit(RulesError(Failure(message: err.toString())));
+      emit(RuleSectionError(Failure(message: err.toString())));
       print('Error: $err');
     }
   }
 }
 
-abstract class RulesState {}
+abstract class RuleSectionState {}
 
-class RulesInitial extends RulesState {}
+class RuleSectionInitial extends RuleSectionState {}
 
-class RulesLoading extends RulesState {}
+class RulesLoading extends RuleSectionState {}
 
-class RulesLoaded extends RulesState {
-  RulesLoaded({required this.rules});
+class RuleSectionLoaded extends RuleSectionState {
+  RuleSectionLoaded({required this.rules});
 
-  final List<Rules> rules;
+  final List<RuleSection?> rules;
 }
 
-class RulesError extends RulesState {
-  RulesError(this.failure);
+class RuleSectionError extends RuleSectionState {
+  RuleSectionError(this.failure);
 
   final Failure failure;
 }

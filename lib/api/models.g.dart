@@ -6,13 +6,15 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Spells _$SpellsFromJson(Map<String, dynamic> json) => Spells(
+SpellListItem _$SpellListItemFromJson(Map<String, dynamic> json) =>
+    SpellListItem(
       index: json['index'] as String,
       name: json['name'] as String,
       url: json['url'] as String,
     );
 
-Map<String, dynamic> _$SpellsToJson(Spells instance) => <String, dynamic>{
+Map<String, dynamic> _$SpellListItemToJson(SpellListItem instance) =>
+    <String, dynamic>{
       'index': instance.index,
       'name': instance.name,
       'url': instance.url,
@@ -52,7 +54,7 @@ Map<String, dynamic> _$SpellToJson(Spell instance) => <String, dynamic>{
       'subclasses': instance.subclasses,
     };
 
-Rules _$RulesFromJson(Map<String, dynamic> json) => Rules(
+RuleSection _$RuleSectionFromJson(Map<String, dynamic> json) => RuleSection(
       name: json['name'] as String,
       desc: json['desc'] as String,
       subsections: (json['subsections'] as List<dynamic>)
@@ -60,7 +62,8 @@ Rules _$RulesFromJson(Map<String, dynamic> json) => Rules(
           .toList(),
     );
 
-Map<String, dynamic> _$RulesToJson(Rules instance) => <String, dynamic>{
+Map<String, dynamic> _$RuleSectionToJson(RuleSection instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'desc': instance.desc,
       'subsections': instance.subsections,

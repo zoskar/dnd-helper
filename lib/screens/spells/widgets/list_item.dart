@@ -9,7 +9,7 @@ class SpellItem extends StatelessWidget {
     required this.singleSpell,
   }) : super(key: key);
 
-  final Spells singleSpell;
+  final SpellListItem singleSpell;
 
   @override
   Widget build(BuildContext context) {

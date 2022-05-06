@@ -1,5 +1,5 @@
-import 'package:dnd_helper/cubits/spells_cubit.dart';
 import 'package:dnd_helper/api/models.dart';
+import 'package:dnd_helper/cubits/spell_list_cubit.dart';
 import 'package:dnd_helper/screens/spells/widgets/list_item.dart';
 import 'package:dnd_helper/screens/spells/widgets/search_field.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../utils/fonts.dart';
 
-String params = '?';
+String searchParams = '?';
 int currentLevel = -1;
 List<int> levels = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -23,7 +23,7 @@ class SpellsPage extends StatefulWidget {
 class _SpellsPageState extends State<SpellsPage> {
   @override
   Widget build(BuildContext context) {
-    context.read<SpellsCubit>().fetchSpellsApi(params);
+    context.read<SpellListCubit>().fetchSpellListApi(searchParams);
     return Scaffold(
       body: Column(
         children: [
@@ -85,9 +85,9 @@ class _SpellsPageState extends State<SpellsPage> {
                                                           currentLevel = value!;
                                                           if (currentLevel ==
                                                               -1) {
-                                                            params = '';
+                                                            searchParams = '';
                                                           } else {
-                                                            params =
+                                                            searchParams =
                                                                 '?level=$currentLevel';
                                                           }
                                                         },
@@ -138,15 +138,19 @@ class _SpellsPageState extends State<SpellsPage> {
               ],
             ),
           ),
-          BlocBuilder<SpellsCubit, SpellsState>(
+          BlocBuilder<SpellListCubit, SpellListState>(
             builder: (context, state) {
-              if (state is SpellsLoading) {
-                return const CircularProgressIndicator(
-                  color: AppColors.primary,
+              if (state is SpellListLoading) {
+                return const Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.primary,
+                    ),
+                  ),
                 );
-              } else if (state is SpellsError) {
+              } else if (state is SpellListError) {
                 return Text(state.failure.message);
-              } else if (state is SpellsLoaded) {
+              } else if (state is SpellListLoaded) {
                 final spellList = state.spells;
                 return spellList.isEmpty
                     ? const Text('No spells found')
@@ -155,7 +159,7 @@ class _SpellsPageState extends State<SpellsPage> {
                           child: ListView.builder(
                             itemCount: spellList.length,
                             itemBuilder: ((context, index) {
-                              final Spells singleSpell = spellList[index];
+                              final SpellListItem singleSpell = spellList[index];
 
                               return SpellItem(singleSpell: singleSpell);
                             }),

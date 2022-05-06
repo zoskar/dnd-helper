@@ -40,7 +40,6 @@ class _CharacterPageState extends State<CharacterPage> {
                 const Spacer(),
                 ElevatedButton(
                   onPressed: () async {
-                    // final _users = await db.getUsers();
                     final _users = await fileHandler.readChars();
                     setState(() {
                       charList = _users;
@@ -51,8 +50,6 @@ class _CharacterPageState extends State<CharacterPage> {
                 const Spacer(),
                 ElevatedButton(
                   onPressed: () async {
-                    // await db.insert(user1);
-                    // await db.insert(user2);
                     await fileHandler.writeChar(char1);
                   },
                   child: Text('Insert Users'),
@@ -65,14 +62,14 @@ class _CharacterPageState extends State<CharacterPage> {
                 const Spacer(),
                 ElevatedButton(
                   onPressed: () async {
-                    Character _charUpdate = Character(
+                    Character _charUpdate = const Character(
                       characterClass: 'barbarian',
                       hp: 10,
-                      level: 1,
-                      name: 'Bebok',
+                      level: 2,
+                      name: 'Bruneor',
                       race: 'human',
-                      resources: [],
-                      savingThrows: {},
+                      resources: ['resource'],
+                      savingThrows: {'STR': 1},
                       skills: {},
                       stats: {},
                       subclass: '',
@@ -86,7 +83,6 @@ class _CharacterPageState extends State<CharacterPage> {
                 const Spacer(),
                 ElevatedButton(
                   onPressed: () async {
-                    // await db.delete(whereColName: colId, argument: user1.id);
                     await fileHandler.deleteChar(char1);
                   },
                   child: Text('Delete User'),
