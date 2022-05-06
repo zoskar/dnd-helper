@@ -1,6 +1,6 @@
 import 'package:dnd_helper/cubits/rules_cubit.dart';
-import 'package:dnd_helper/cubits/spells_cubit.dart';
 import 'package:dnd_helper/api/api_repository.dart';
+import 'package:dnd_helper/cubits/spell_list_cubit.dart';
 import 'package:dnd_helper/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<SpellsCubit>(
-          create: (context) => SpellsCubit(
+        BlocProvider<SpellListCubit>(
+          create: (context) => SpellListCubit(
             apiRepository: _apiRepository,
           ),
         ),
@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
             apiRepository: _apiRepository,
           ),
         ),
-        BlocProvider<RulesCubit>(
-          create: (context) => RulesCubit(
+        BlocProvider<RuleSectionCubit>(
+          create: (context) => RuleSectionCubit(
             apiRepository: _apiRepository,
           ),
         ),

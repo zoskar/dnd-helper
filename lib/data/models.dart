@@ -22,16 +22,16 @@ class Character extends Equatable {
   final String race;
   final int level;
   final String subclass;
-  final Map<String, int> stats;
-  final Map<String, int> savingThrows;
-  final Map<String, int> skills;
+  final dynamic stats;
+  final dynamic savingThrows;
+  final dynamic skills;
   final List resources;
   final int hp;
   final int temporaryHp;
 
   Character.fromJson(Map<String, dynamic> map)
       : name = map['name'] as String,
-        characterClass = map['charavter_class'] as String,
+        characterClass = map['character_class'] as String,
         race = map['race'] as String,
         level = (map['level'] as num).toInt(),
         subclass = map['subclass'] as String,

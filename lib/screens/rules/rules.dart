@@ -19,25 +19,25 @@ class RulesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<RulesCubit>().fetch(rulesList);
+    context.read<RuleSectionCubit>().fetch(rulesList);
     return Scaffold(
       //TODO
       backgroundColor: Colors.grey.shade100,
       body: Center(
-        child: BlocBuilder<RulesCubit, RulesState>(
+        child: BlocBuilder<RuleSectionCubit, RuleSectionState>(
           builder: (context, state) {
             if (state is RulesLoading) {
               return const CircularProgressIndicator(
                 color: AppColors.primary,
               );
-            } else if (state is RulesError) {
+            } else if (state is RuleSectionError) {
               return Text(state.failure.message);
-            } else if (state is RulesLoaded) {
+            } else if (state is RuleSectionLoaded) {
               final rules = state.rules;
               return ListView.builder(
                   itemCount: rules.length,
                   itemBuilder: ((context, index) {
-                    final Rules rule = rules[index];
+                    final RuleSection rule = rules[index]!;
 
                     return ExpansionTile(
                       collapsedBackgroundColor: Colors.white,
