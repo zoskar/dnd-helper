@@ -1,3 +1,4 @@
+import 'package:dnd_helper/utils/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/models.dart';
@@ -43,13 +44,13 @@ class SpellContent extends StatelessWidget {
                   children: [
                     if (spell.ritual)
                       const Icon(
-                        Icons.r_mobiledata_sharp,
-                        size: 50,
+                        CustomIcons.registered,
+                        size: 28,
                       ),
                     if (spell.concentration)
                       const Icon(
-                        Icons.garage,
-                        size: 50,
+                        CustomIcons.copyright,
+                        size: 28,
                       )
                   ],
                 ),
