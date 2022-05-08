@@ -1,4 +1,5 @@
-import 'package:dnd_helper/cubits/rules_cubit.dart';
+import 'package:dnd_helper/cubits/character_cubit.dart';
+import 'package:dnd_helper/cubits/rule_section_cubit.dart';
 import 'package:dnd_helper/api/api_repository.dart';
 import 'package:dnd_helper/cubits/spell_list_cubit.dart';
 import 'package:dnd_helper/screens/home_page.dart';
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => CharacterCubit(),
+        ),
         BlocProvider<SpellListCubit>(
           create: (context) => SpellListCubit(
             apiRepository: _apiRepository,

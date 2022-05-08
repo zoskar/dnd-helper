@@ -16,6 +16,7 @@ class SingleRulePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppColors.myGradient,
@@ -24,7 +25,7 @@ class SingleRulePage extends StatelessWidget {
         backgroundColor: AppColors.primary,
         title: const Text(
           'Dnd Helper',
-          style: AppTextStyles.h,
+          style: AppTextStyles.title,
         ),
       ),
       body: BlocBuilder<RuleCubit, RuleState>(

@@ -56,7 +56,8 @@ class _SpellsPageState extends State<SpellsPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   GridView.count(
-                                    childAspectRatio: (2),
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    childAspectRatio: 2,
                                     crossAxisCount: 3,
                                     shrinkWrap: true,
                                     children: levels

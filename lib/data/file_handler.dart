@@ -23,6 +23,8 @@ class FileHandler {
   Future<File> _initFile() async {
     final directory = await getApplicationDocumentsDirectory();
     final path = directory.path;
+    //print('$path/$_fileName');
+
     return File('$path/$_fileName');
   }
 
@@ -38,8 +40,8 @@ class FileHandler {
   }
 
   Future<List<Character>> readChars() async {
-    
     final File fl = await file;
+    if (!fl.existsSync()) return [];
     final content = await fl.readAsString();
 
     final List<dynamic> jsonData = jsonDecode(content);
@@ -51,12 +53,10 @@ class FileHandler {
     return chars;
   }
 
-  Future<void> deleteChar(Character character) async {
+  Future<void> deleteChar(Character char) async {
     final File fl = await file;
-
-    _charSet.removeWhere((e) => e == character);
+    _charSet.removeWhere((e) => e.name == char.name);
     final charListMap = _charSet.map((e) => e.toJson()).toList();
-
     await fl.writeAsString(jsonEncode(charListMap));
   }
 

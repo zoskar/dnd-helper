@@ -1,5 +1,10 @@
+import 'package:dnd_helper/screens/character/edit_char.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
+import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubits/character_cubit.dart';
 import '../../data/file_handler.dart';
 import '../../data/models.dart';
 
@@ -12,96 +17,114 @@ class CharacterPage extends StatefulWidget {
 
 class _CharacterPageState extends State<CharacterPage> {
   final FileHandler fileHandler = FileHandler.instance;
-  List<Character> charList = [];
-
-  final Character char1 = const Character(
-    characterClass: 'barbarian',
-    hp: 10,
-    level: 1,
-    name: 'Bruneor',
-    race: 'human',
-    resources: [],
-    savingThrows: {},
-    skills: {},
-    stats: {},
-    subclass: '',
-    temporaryHp: 1,
-  );
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            const Spacer(),
-            Row(
-              children: [
-                const Spacer(),
-                ElevatedButton(
-                  onPressed: () async {
-                    final _users = await fileHandler.readChars();
-                    setState(() {
-                      charList = _users;
-                    });
-                  },
-                  child: Text('Get Users'),
-                ),
-                const Spacer(),
-                ElevatedButton(
-                  onPressed: () async {
-                    await fileHandler.writeChar(char1);
-                  },
-                  child: Text('Insert Users'),
-                ),
-                const Spacer(),
-              ],
-            ),
-            Row(
-              children: [
-                const Spacer(),
-                ElevatedButton(
-                  onPressed: () async {
-                    Character _charUpdate = const Character(
-                      characterClass: 'barbarian',
-                      hp: 10,
-                      level: 2,
-                      name: 'Bruneor',
-                      race: 'human',
-                      resources: ['resource'],
-                      savingThrows: {'STR': 1},
-                      skills: {},
-                      stats: {},
-                      subclass: '',
-                      temporaryHp: 1,
-                    );
+    context.read<CharacterCubit>().init(fileHandler);
 
-                    await fileHandler.updateChar(updatedChar: _charUpdate);
-                  },
-                  child: Text('Update User'),
-                ),
-                const Spacer(),
-                ElevatedButton(
+    return BlocBuilder<CharacterCubit, CharacterState>(
+      builder: (context, state) {
+        if (state is CharacterNotPicked) {
+          List<Character> charList = context.read<CharacterCubit>().charList;
+          return Scaffold(
+            body: Column(
+              children: [
+                TextButton(
                   onPressed: () async {
-                    await fileHandler.deleteChar(char1);
+                    await fileHandler.writeChar(
+                      const Character(
+                        characterClass: 'Barbarian',
+                        hp: 10,
+                        ac: 10,
+                        level: 1,
+                        name: 'Bebok',
+                        race: 'human',
+                        resources: [],
+                        savingThrows: {},
+                        skills: {},
+                        stats: {},
+                        subclass: 'Path of the totem warrior',
+                      ),
+                    );
+                    setState(() {});
                   },
-                  child: Text('Delete User'),
+                  child: const Text('Add Bebok'),
                 ),
-                const Spacer(),
+                const Text(
+                  'Pick character',
+                  style: AppTextStyles.header,
+                ),
+                Flexible(
+                  child: ListView.builder(
+                    itemCount: charList.length,
+                    itemBuilder: ((context, index) {
+                      return ListTile(
+                        trailing: SizedBox(
+                          height: 40,
+                          child: InkWell(
+                            child: const Icon(
+                              Icons.edit,
+                              size: 30,
+                              color: AppColors.secondary,
+                            ),
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditChar(
+                                    character: charList[index],
+                                    fileHandler: fileHandler,
+                                  ),
+                                ),
+                              );
+                              setState(() {});
+                            },
+                          ),
+                        ),
+                        title: SizedBox(
+                          height: 40,
+                          child: InkWell(
+                            onTap: () {
+                              context
+                                  .read<CharacterCubit>()
+                                  .pickCharacter(charList[index], fileHandler);
+                            },
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    charList[index].name,
+                                    style: const TextStyle(fontSize: 20),
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
               ],
             ),
-            const Spacer(),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: charList.map((e) => Text(e.toString())).toList(),
-              ),
+          );
+        } else if (state is CharacterPicked) {
+          return Center(
+            child: Column(
+              children: [
+                Text(
+                    'Current character: ${context.read<CharacterCubit>().pickedChar.toString()}'),
+                TextButton(
+                  child: const Text('Switch character'),
+                  onPressed: () {
+                    context.read<CharacterCubit>().switchCharacter(fileHandler);
+                  },
+                ),
+              ],
             ),
-            const Spacer(),
-          ],
-        ),
-      ),
+          );
+        }
+        return const SizedBox.shrink();
+      },
     );
   }
 }
