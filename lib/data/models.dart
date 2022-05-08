@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-
 @JsonSerializable()
 class Character extends Equatable {
   const Character({
@@ -15,7 +14,7 @@ class Character extends Equatable {
     required this.skills,
     required this.resources,
     required this.hp,
-    required this.temporaryHp,
+    required this.ac,
   });
   final String name;
   final String characterClass;
@@ -27,7 +26,7 @@ class Character extends Equatable {
   final dynamic skills;
   final List resources;
   final int hp;
-  final int temporaryHp;
+  final int ac;
 
   Character.fromJson(Map<String, dynamic> map)
       : name = map['name'] as String,
@@ -40,7 +39,7 @@ class Character extends Equatable {
         skills = map['skills'],
         resources = [],
         hp = (map['hp'] as num).toInt(),
-        temporaryHp = (map['temporary_hp'] as num).toInt();
+        ac = (map['ac'] as num).toInt();
 
   Map<String, dynamic> toJson() {
     return {
@@ -54,7 +53,7 @@ class Character extends Equatable {
       'skills': skills,
       'resources': resources,
       'hp': hp,
-      'temporary_hp': temporaryHp,
+      'ac': ac,
     };
   }
 
@@ -70,6 +69,6 @@ class Character extends Equatable {
         skills,
         resources,
         hp,
-        temporaryHp
+        ac,
       ];
 }

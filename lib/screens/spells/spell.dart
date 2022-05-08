@@ -18,6 +18,7 @@ class SpellView extends StatelessWidget {
     context.read<SpellCubit>().fetch(spellName);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppColors.myGradient,
@@ -44,22 +45,6 @@ class SpellView extends StatelessWidget {
           },
         ),
       ),
-    );
-  }
-}
-
-class MyDivider extends StatelessWidget {
-  const MyDivider({
-    Key? key,
-  }) : super(key: key);
-
-  static const divider_thickness = 2.0;
-
-  @override
-  Widget build(BuildContext context) {
-    return const Divider(
-      color: AppColors.primary,
-      thickness: divider_thickness,
     );
   }
 }

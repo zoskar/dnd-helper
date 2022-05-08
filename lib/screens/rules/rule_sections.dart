@@ -2,7 +2,7 @@ import 'package:dnd_helper/screens/rules/rule_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../api/models.dart';
-import '../../cubits/rules_cubit.dart';
+import '../../cubits/rule_section_cubit.dart';
 import '../../utils/app_colors.dart';
 
 class RulesPage extends StatelessWidget {

@@ -11,17 +11,10 @@ class RuleSectionCubit extends Cubit<RuleSectionState> {
   Future<void> fetch(List<String> rulesList) async {
     emit(RulesLoading());
     try {
-      final rules = await Future.wait([
-        apiRepository.getRuleSection(rulesList[0]),
-        apiRepository.getRuleSection(rulesList[1]),
-        apiRepository.getRuleSection(rulesList[2]),
-        apiRepository.getRuleSection(rulesList[3]),
-        apiRepository.getRuleSection(rulesList[4]),
-        apiRepository.getRuleSection(rulesList[5]),
-      ]);
+      final rules = await Future.wait(
+          rulesList.map((rule) => apiRepository.getRuleSection(rule)));
 
       emit(RuleSectionLoaded(rules: rules));
-
     } catch (err) {
       emit(RuleSectionError(Failure(message: err.toString())));
       print('Error: $err');

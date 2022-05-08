@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../api/models.dart';
 import '../../../utils/fonts.dart';
-import '../spell.dart';
+import '../../../widgets/divider.dart';
 
 class SpellContent extends StatelessWidget {
   const SpellContent({

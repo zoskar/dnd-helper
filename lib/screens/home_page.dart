@@ -1,6 +1,6 @@
 import 'package:dnd_helper/screens/character/character.dart';
 import 'package:dnd_helper/screens/combat/combat.dart';
-import 'package:dnd_helper/screens/rules/rules.dart';
+import 'package:dnd_helper/screens/rules/rule_sections.dart';
 import 'package:dnd_helper/screens/spells/spellList.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/custom_icons_icons.dart';
@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: AppColors.myGradient,
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           ),
           title: const Text(
             'Dnd Helper',
-            style: AppTextStyles.h,
+            style: AppTextStyles.title,
           ),
         ),
         body: screens[currentIndex],
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: AppColors.primary,
               ),
               BottomNavigationBarItem(
-                icon: Icon(CustomIcons.book_2),
+                icon: Icon(CustomIcons.book_1),
                 label: 'Rules',
                 backgroundColor: AppColors.primary,
               ),
