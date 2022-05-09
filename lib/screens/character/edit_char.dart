@@ -19,7 +19,6 @@ class EditChar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -37,6 +36,7 @@ class EditChar extends StatelessWidget {
       body: FormBuilder(
         key: _formKey,
         child: ListView(
+          addAutomaticKeepAlives: true,
           padding: const EdgeInsets.all(8.0),
           children: [
             Row(
@@ -122,9 +122,14 @@ class EditChar extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: FormBuilderTextField(
+                maxLength: 30,
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(errorText: 'Enter name'),
+                ]),
                 initialValue: character.name,
                 name: 'namePicker',
                 decoration: const InputDecoration(
+                  counterText: '',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
@@ -162,9 +167,14 @@ class EditChar extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: FormBuilderTextField(
+                maxLength: 30,
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(errorText: 'Enter race'),
+                ]),
                 initialValue: character.race,
                 name: 'racePicker',
                 decoration: const InputDecoration(
+                  counterText: '',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
@@ -188,8 +198,17 @@ class EditChar extends StatelessWidget {
                   .map((stat) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: FormBuilderTextField(
-                          name: '{$stat}Picker',
+                          maxLength: 2,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                                errorText: 'Enter value'),
+                            FormBuilderValidators.integer(
+                                errorText: 'Enter a number'),
+                          ]),
+                          initialValue: character.stats[stat].toString(),
+                          name: '${stat.toLowerCase()}Picker',
                           decoration: InputDecoration(
+                            counterText: '',
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
@@ -213,6 +232,7 @@ class EditChar extends StatelessWidget {
                 ),
               ),
               child: FormBuilderCheckboxGroup(
+                initialValue: character.savingThrows,
                 wrapAlignment: WrapAlignment.center,
                 activeColor: AppColors.primary,
                 name: 'savingThrowPicker',
@@ -248,6 +268,7 @@ class EditChar extends StatelessWidget {
                 ),
               ),
               child: FormBuilderCheckboxGroup(
+                initialValue: character.skills,
                 wrapAlignment: WrapAlignment.center,
                 activeColor: AppColors.primary,
                 name: 'skillPicker',
@@ -269,7 +290,6 @@ class EditChar extends StatelessWidget {
                     .toList(),
               ),
             ),
-            //TODO
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(
@@ -283,6 +303,15 @@ class EditChar extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: FormBuilderTextField(
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.integer(
+                                  errorText: 'Must be a number'),
+                              FormBuilderValidators.min(1,
+                                  errorText: 'Must be positive'),
+                              FormBuilderValidators.required(
+                                  errorText: 'Enter HP'),
+                            ]),
+                            initialValue: character.hp.toString(),
                             name: 'hpPicker',
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(
@@ -304,8 +333,19 @@ class EditChar extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: FormBuilderTextField(
+                            maxLength: 2,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.integer(
+                                  errorText: 'Must be a number'),
+                              FormBuilderValidators.min(1,
+                                  errorText: 'Must be positive'),
+                              FormBuilderValidators.required(
+                                  errorText: 'Enter HP')
+                            ]),
+                            initialValue: character.ac.toString(),
                             name: 'acPicker',
                             decoration: const InputDecoration(
+                              counterText: '',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
@@ -346,14 +386,47 @@ class EditChar extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: const SizedBox(
+      floatingActionButton: SizedBox(
         width: 120.0,
         child: FloatingActionButton(
           backgroundColor: AppColors.secondary,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(30))),
-          onPressed: null,
-          child: Text(
+          onPressed: () {
+            if (_formKey.currentState!.saveAndValidate()) {
+              Map<String, dynamic>? data = _formKey.currentState?.value;
+
+              fileHandler.deleteChar(character);
+              fileHandler.writeChar(
+                Character(
+                  name: data?['namePicker'] ?? character.name,
+                  characterClass:
+                      data?['classPicker'] ?? character.characterClass,
+                  race: data?['racePicker'] ?? character.race,
+                  level: int.parse(data?['levelPicker']),
+                  subclass: data?['subclassPicker'] ?? character.subclass,
+                  stats: {
+                    'STR': data?['strPicker'],
+                    'DEX': data?['dexPicker'],
+                    'CON': data?['conPicker'],
+                    'WIS': data?['wisPicker'],
+                    'INT': data?['intPicker'],
+                    'CHA': data?['chaPicker']
+                  },
+                  savingThrows:
+                      data?['savingThrowPicker'] ?? character.savingThrows,
+                  skills: data?['skillPicker'] ?? character.skills,
+                  resources: character.resources,
+                  hp: int.parse(data?['hpPicker'] ?? character.hp.toString()),
+                  ac: int.parse(data?['acPicker'] ?? character.ac.toString()),
+                ),
+              );
+              Navigator.pop(context);
+              //_formKey.currentState!.reset();
+            }
+            _formKey.currentState!.validate();
+          },
+          child: const Text(
             'Confirm',
             style: AppTextStyles.headerW,
           ),

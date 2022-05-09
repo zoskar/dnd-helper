@@ -40,9 +40,16 @@ class _CharacterPageState extends State<CharacterPage> {
                         name: 'Bebok',
                         race: 'human',
                         resources: [],
-                        savingThrows: {},
-                        skills: {},
-                        stats: {},
+                        savingThrows: ['STR', 'CHA'],
+                        skills: ['Stealth', 'Deception'],
+                        stats: {
+                          'STR': 10,
+                          'DEX': 10,
+                          'CON': 11,
+                          'WIS': 12,
+                          'INT': 13,
+                          'CHA': 14
+                        },
                         subclass: 'Path of the totem warrior',
                       ),
                     );
