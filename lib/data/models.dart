@@ -22,8 +22,8 @@ class Character extends Equatable {
   final int level;
   final String subclass;
   final dynamic stats;
-  final dynamic savingThrows;
-  final dynamic skills;
+  final List savingThrows;
+  final List skills;
   final List resources;
   final int hp;
   final int ac;
