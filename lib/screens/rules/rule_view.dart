@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/rule_cubit.dart';
-import '../../utils/app_colors.dart';
-import '../../utils/fonts.dart';
+import 'package:dnd_helper/cubits/rule_cubit.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
+import 'package:dnd_helper/utils/fonts.dart';
 
 class SingleRulePage extends StatelessWidget {
-  const SingleRulePage({Key? key, required this.ruleURL}) : super(key: key);
+  const SingleRulePage({
+    required this.ruleURL,
+    Key? key,
+  }) : super(key: key);
 
   final String ruleURL;
 
@@ -17,6 +20,7 @@ class SingleRulePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        // ignore: use_decorated_box
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppColors.myGradient,

@@ -3,15 +3,14 @@ import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../cubits/spell_cubit.dart';
+import 'package:dnd_helper/cubits/spell_cubit.dart';
 
 class SpellView extends StatelessWidget {
-  final String spellName;
-
   const SpellView({
-    Key? key,
     required this.spellName,
+    Key? key,
   }) : super(key: key);
+  final String spellName;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +18,7 @@ class SpellView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        // ignore: use_decorated_box
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppColors.myGradient,

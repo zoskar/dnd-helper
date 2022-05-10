@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/CustomIcons.ttf
 ///
-/// 
+///
 /// * Entypo, Copyright (C) 2012 by Daniel Bruce
 ///         Author:    Daniel Bruce
 ///         License:   SIL (http://scripts.sil.org/OFL)
@@ -43,15 +43,14 @@ class CustomIcons {
   CustomIcons._();
 
   static const _kFontFam = 'CustomIcons';
-  static const String? _kFontPkg = null;
 
-  static const IconData book_open = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData book_1 = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData book_open_1 = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData broadsword = IconData(0xe946, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData magic = IconData(0xf0d0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData copyright = IconData(0xf1f9, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData registered = IconData(0xf25d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData book_2 = IconData(0xf314, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData person = IconData(0xf3c8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData book_open = IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData book_1 = IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData book_open_1 = IconData(0xe803, fontFamily: _kFontFam);
+  static const IconData broadsword = IconData(0xe946, fontFamily: _kFontFam);
+  static const IconData magic = IconData(0xf0d0, fontFamily: _kFontFam);
+  static const IconData copyright = IconData(0xf1f9, fontFamily: _kFontFam);
+  static const IconData registered = IconData(0xf25d, fontFamily: _kFontFam);
+  static const IconData book_2 = IconData(0xf314, fontFamily: _kFontFam);
+  static const IconData person = IconData(0xf3c8, fontFamily: _kFontFam);
 }

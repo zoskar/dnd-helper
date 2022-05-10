@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-
-import 'models.dart';
+import 'package:dnd_helper/data/models.dart';
 
 class FileHandler {
   FileHandler._privateConstructor();

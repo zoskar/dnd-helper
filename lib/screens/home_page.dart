@@ -1,7 +1,7 @@
 import 'package:dnd_helper/screens/character/character.dart';
 import 'package:dnd_helper/screens/combat/combat.dart';
 import 'package:dnd_helper/screens/rules/rule_sections.dart';
-import 'package:dnd_helper/screens/spells/spellList.dart';
+import 'package:dnd_helper/screens/spells/spell_list.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/custom_icons_icons.dart';
 import 'package:dnd_helper/utils/fonts.dart';
@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           centerTitle: true,
+          // ignore: use_decorated_box
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: AppColors.myGradient,
@@ -42,31 +43,32 @@ class _HomePageState extends State<HomePage> {
         ),
         body: screens[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white38,
-            currentIndex: currentIndex,
-            onTap: (index) => setState(() => currentIndex = index),
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(CustomIcons.person),
-                label: 'Character',
-                backgroundColor: AppColors.primary,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CustomIcons.broadsword),
-                label: 'Combat',
-                backgroundColor: AppColors.primary,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CustomIcons.magic),
-                label: 'Spells',
-                backgroundColor: AppColors.primary,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(CustomIcons.book_1),
-                label: 'Rules',
-                backgroundColor: AppColors.primary,
-              ),
-            ]),
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white38,
+          currentIndex: currentIndex,
+          onTap: (index) => setState(() => currentIndex = index),
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(CustomIcons.person),
+              label: 'Character',
+              backgroundColor: AppColors.primary,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CustomIcons.broadsword),
+              label: 'Combat',
+              backgroundColor: AppColors.primary,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CustomIcons.magic),
+              label: 'Spells',
+              backgroundColor: AppColors.primary,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CustomIcons.book_1),
+              label: 'Rules',
+              backgroundColor: AppColors.primary,
+            ),
+          ],
+        ),
       );
 }

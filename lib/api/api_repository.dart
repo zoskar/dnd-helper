@@ -5,9 +5,9 @@ import 'package:dnd_helper/api/api_constants.dart';
 import 'package:http/http.dart' as http;
 
 class ApiRepository {
-  final ApiService apiService;
 
   ApiRepository(this.apiService);
+  final ApiService apiService;
 
   Future<List<SpellListItem>?> getSpellListItems(params) async {
     final response = await apiService.getSpellListItemData(params);
@@ -15,7 +15,7 @@ class ApiRepository {
       final data = response as Map<String, dynamic>;
       var spells = <SpellListItem>[];
 
-      for (var el in data['results']) {
+      for (final el in data['results']) {
         spells.add(SpellListItem.fromJson(el));
       }
 

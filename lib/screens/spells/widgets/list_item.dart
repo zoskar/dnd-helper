@@ -1,45 +1,44 @@
 import 'package:flutter/material.dart';
-import '../../../api/models.dart';
-import '../../../utils/app_colors.dart';
-import '../spell.dart';
+
+import 'package:dnd_helper/api/models.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
+import 'package:dnd_helper/screens/spells/spell.dart';
 
 class SpellItem extends StatelessWidget {
   const SpellItem({
-    Key? key,
     required this.singleSpell,
+    Key? key,
   }) : super(key: key);
 
   final SpellListItem singleSpell;
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SpellView(
-              spellName: singleSpell.index,
+  Widget build(BuildContext context) => InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SpellView(
+                spellName: singleSpell.index,
+              ),
             ),
-          ),
-        );
-      },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            trailing: const Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.secondary,
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.secondary,
+              ),
+              title: Text(
+                singleSpell.name,
+                style: const TextStyle(fontSize: 20),
+              ),
             ),
-            title: Text(
-              singleSpell.name,
-              style: const TextStyle(fontSize: 20),
-            ),
-          ),
-          const Divider(),
-        ],
-      ),
-    );
-  }
+            const Divider(),
+          ],
+        ),
+      );
 }
