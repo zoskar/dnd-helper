@@ -57,7 +57,8 @@ class SpellContent extends StatelessWidget {
             ),
             const MyDivider(),
             Text(
-              '${spell.school['name']} ${spell.level == 0 ? 'Cantrip' : 'level ${spell.level}'}',
+              '${spell.school['name']} '
+              '${spell.level == 0 ? 'Cantrip' : 'level ${spell.level}'}',
               style: AppTextStyles.p,
             ),
             Text(
@@ -66,7 +67,8 @@ class SpellContent extends StatelessWidget {
             ),
             const MyDivider(),
             Text(
-              '${spell.desc.join(", ").toString()}\n\n${spell.higher_level.isEmpty ? '' : spell.higher_level[0].toString()}',
+              '${spell.desc.join(", ").toString()}\n\n'
+              '${spell.higher_level.isEmpty ? '' : spell.higher_level[0].toString()}',
               style: AppTextStyles.p,
             ),
           ],

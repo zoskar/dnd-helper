@@ -12,7 +12,8 @@ class RuleSectionCubit extends Cubit<RuleSectionState> {
     emit(RulesLoading());
     try {
       final rules = await Future.wait(
-          rulesList.map(apiRepository.getRuleSection));
+        rulesList.map(apiRepository.getRuleSection),
+      );
 
       emit(RuleSectionLoaded(rules: rules));
     } catch (err) {

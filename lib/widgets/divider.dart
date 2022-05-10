@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/app_colors.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
 
 class MyDivider extends StatelessWidget {
   const MyDivider({

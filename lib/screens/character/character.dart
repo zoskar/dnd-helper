@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:dnd_helper/screens/character/edit_char.dart';
+import 'package:dnd_helper/screens/character/char_form.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:dnd_helper/cubits/character_cubit.dart';
@@ -12,10 +12,10 @@ class CharacterPage extends StatefulWidget {
   const CharacterPage({Key? key}) : super(key: key);
 
   @override
-  _CharacterPageState createState() => _CharacterPageState();
+  CharacterPageState createState() => CharacterPageState();
 }
 
-class _CharacterPageState extends State<CharacterPage> {
+class CharacterPageState extends State<CharacterPage> {
   final FileHandler fileHandler = FileHandler.instance;
 
   @override
@@ -25,7 +25,12 @@ class _CharacterPageState extends State<CharacterPage> {
     return BlocBuilder<CharacterCubit, CharacterState>(
       builder: (context, state) {
         if (state is CharacterNotPicked) {
+          List<String> names = [];
+
           List<Character> charList = context.read<CharacterCubit>().charList;
+          for (final c in charList) {
+            names.add(c.name);
+          }
           return Scaffold(
             body: Column(
               children: [
@@ -37,25 +42,26 @@ class _CharacterPageState extends State<CharacterPage> {
                         hp: 10,
                         ac: 10,
                         level: 1,
-                        name: 'Bebok',
-                        race: 'human',
+                        name: 'New character',
+                        race: 'Human',
                         resources: [],
-                        savingThrows: ['STR', 'CHA'],
-                        skills: ['Stealth', 'Deception'],
+                        savingThrows: [],
+                        skills: [],
                         stats: {
                           'STR': 10,
                           'DEX': 10,
-                          'CON': 11,
-                          'WIS': 12,
-                          'INT': 13,
-                          'CHA': 14
+                          'CON': 10,
+                          'WIS': 10,
+                          'INT': 10,
+                          'CHA': 10
                         },
-                        subclass: 'Path of the totem warrior',
+                        subclass: '',
                       ),
                     );
+
                     setState(() {});
                   },
-                  child: const Text('Create character'),
+                  child: const Text('New character'),
                 ),
                 const Text(
                   'Pick character',
@@ -80,6 +86,7 @@ class _CharacterPageState extends State<CharacterPage> {
                                 builder: (context) => EditChar(
                                   character: charList[index],
                                   fileHandler: fileHandler,
+                                  names: names,
                                 ),
                               ),
                             );
@@ -117,7 +124,8 @@ class _CharacterPageState extends State<CharacterPage> {
             child: Column(
               children: [
                 Text(
-                  'Current character: ${context.read<CharacterCubit>().pickedChar.toString()}',
+                  'Current character: '
+                  '${context.read<CharacterCubit>().pickedChar.toString()}',
                 ),
                 TextButton(
                   child: const Text('Switch character'),
