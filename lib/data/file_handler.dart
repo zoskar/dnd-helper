@@ -27,7 +27,7 @@ class FileHandler {
     return File('$path/$_fileName');
   }
 
-  static Set<Character> _charSet = {};
+  final Set<Character> _charSet = {};
 
   Future<void> writeChar(Character character) async {
     final File fl = await file;

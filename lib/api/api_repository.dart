@@ -5,15 +5,14 @@ import 'package:dnd_helper/api/api_constants.dart';
 import 'package:http/http.dart' as http;
 
 class ApiRepository {
-
   ApiRepository(this.apiService);
   final ApiService apiService;
 
   Future<List<SpellListItem>?> getSpellListItems(params) async {
     final response = await apiService.getSpellListItemData(params);
     if (response != null) {
-      final data = response as Map<String, dynamic>;
-      var spells = <SpellListItem>[];
+      final Map<String, dynamic> data = response;
+      final List<SpellListItem> spells = <SpellListItem>[];
 
       for (final el in data['results']) {
         spells.add(SpellListItem.fromJson(el));
@@ -27,7 +26,7 @@ class ApiRepository {
   Future<Spell?> getSpell(spellName) async {
     final response = await apiService.getSpellData(spellName);
     if (response != null) {
-      final json = response as Map<String, dynamic>;
+      final Map<String, dynamic> json = response;
       final spell = Spell.fromJson(json);
       return spell;
     }
@@ -38,7 +37,7 @@ class ApiRepository {
   Future<RuleSection?> getRuleSection(String ruleSectionName) async {
     final response = await apiService.getRuleSectionData(ruleSectionName);
     if (response != null) {
-      final json = response as Map<String, dynamic>;
+      final Map<String, dynamic> json = response;
       final ruleSection = RuleSection.fromJson(json);
       return ruleSection;
     } else {
@@ -49,7 +48,7 @@ class ApiRepository {
   Future<Rule?> getRule(ruleURL) async {
     final response = await apiService.getRuleData(ruleURL);
     if (response != null) {
-      final json = response as Map<String, dynamic>;
+      final Map<String, dynamic> json = response;
       final rule = Rule.fromJson(json);
       return rule;
     } else {

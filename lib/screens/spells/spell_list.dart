@@ -45,89 +45,7 @@ class _SpellsPageState extends State<SpellsPage> {
                     ),
                   ),
                   onPressed: () {
-                    showModalBottomSheet<void>(
-                      backgroundColor: Colors.grey.shade200,
-                      context: context,
-                      builder: (BuildContext context) => StatefulBuilder(
-                        builder: (
-                          BuildContext context,
-                          StateSetter setModalState,
-                        ) =>
-                            SizedBox(
-                          height: 380,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              GridView.count(
-                                physics: const NeverScrollableScrollPhysics(),
-                                childAspectRatio: 2,
-                                crossAxisCount: 3,
-                                shrinkWrap: true,
-                                children: levels
-                                    .map(
-                                      (level) => Padding(
-                                        padding: const EdgeInsets.all(8),
-                                        child: GridTile(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                style: AppTextStyles.p,
-                                                level == -1
-                                                    ? 'Any '
-                                                    : 'Level $level',
-                                              ),
-                                              Radio<int>(
-                                                activeColor: AppColors.primary,
-                                                value: level,
-                                                groupValue: currentLevel,
-                                                onChanged: (int? value) {
-                                                  setModalState(
-                                                    () {
-                                                      currentLevel = value!;
-                                                      if (currentLevel == -1) {
-                                                        searchParams = '';
-                                                      } else {
-                                                        searchParams =
-                                                            '?level=$currentLevel';
-                                                      }
-                                                    },
-                                                  );
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                    .toList(),
-                              ),
-                              SizedBox(
-                                width: 120,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: AppColors.secondary,
-                                    fixedSize: const Size(100, 52),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    'Filter',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    setState(() {});
-                                  },
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
+                    showBottomSheet(context);
                   },
                   child: const Text(
                     'Filters',
@@ -174,4 +92,85 @@ class _SpellsPageState extends State<SpellsPage> {
       ),
     );
   }
+
+  Future<void> showBottomSheet(BuildContext context) =>
+      showModalBottomSheet<void>(
+        backgroundColor: Colors.grey.shade200,
+        context: context,
+        builder: (BuildContext context) => StatefulBuilder(
+          builder: (
+            BuildContext context,
+            StateSetter setModalState,
+          ) =>
+              SizedBox(
+            height: 380,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
+                  childAspectRatio: 2,
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  children: levels
+                      .map(
+                        (level) => Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: GridTile(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  style: AppTextStyles.p,
+                                  level == -1 ? 'Any ' : 'Level $level',
+                                ),
+                                Radio<int>(
+                                  activeColor: AppColors.primary,
+                                  value: level,
+                                  groupValue: currentLevel,
+                                  onChanged: (int? value) {
+                                    setModalState(
+                                      () {
+                                        currentLevel = value!;
+                                        if (currentLevel == -1) {
+                                          searchParams = '';
+                                        } else {
+                                          searchParams = '?level=$currentLevel';
+                                        }
+                                      },
+                                    );
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+                SizedBox(
+                  width: 120,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: AppColors.secondary,
+                      fixedSize: const Size(100, 52),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: const Text(
+                      'Filter',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      setState(() {});
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      );
 }

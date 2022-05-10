@@ -1,10 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'models.g.dart';
 
 @JsonSerializable()
 class SpellListItem {
-
   const SpellListItem({
     required this.index,
     required this.name,
@@ -21,9 +22,6 @@ class SpellListItem {
 
 @JsonSerializable()
 class Spell {
-
-  //String get description => desc.first;
-
   const Spell({
     required this.id,
     required this.desc,
@@ -44,7 +42,6 @@ class Spell {
   factory Spell.fromJson(Map<String, dynamic> json) => _$SpellFromJson(json);
   @JsonKey(name: '_id')
   final String id;
-  // final String index;
   final String name;
   final List<String> desc;
   final List higher_level;
@@ -64,13 +61,13 @@ class Spell {
 
 @JsonSerializable()
 class RuleSection {
-
   const RuleSection({
     required this.name,
     required this.desc,
     required this.subsections,
   });
-  factory RuleSection.fromJson(Map<String, dynamic> json) => _$RuleSectionFromJson(json);
+  factory RuleSection.fromJson(Map<String, dynamic> json) =>
+      _$RuleSectionFromJson(json);
   final String name;
   final String desc;
   final List<Map<String, String>> subsections;
@@ -80,7 +77,6 @@ class RuleSection {
 
 @JsonSerializable()
 class Rule {
-
   const Rule({required this.name, required this.desc});
 
   factory Rule.fromJson(Map<String, dynamic> json) => _$RuleFromJson(json);
