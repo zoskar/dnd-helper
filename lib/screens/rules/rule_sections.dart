@@ -1,9 +1,9 @@
-import 'package:dnd_helper/screens/rules/rule_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../api/models.dart';
-import '../../cubits/rule_section_cubit.dart';
-import '../../utils/app_colors.dart';
+import 'package:dnd_helper/api/models.dart';
+import 'package:dnd_helper/cubits/rule_section_cubit.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
+import 'package:dnd_helper/screens/rules/rule_view.dart';
 
 class RulesPage extends StatelessWidget {
   const RulesPage({Key? key}) : super(key: key);
@@ -21,7 +21,6 @@ class RulesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<RuleSectionCubit>().fetch(rulesList);
     return Scaffold(
-      //TODO
       backgroundColor: Colors.grey.shade100,
       body: Center(
         child: BlocBuilder<RuleSectionCubit, RuleSectionState>(
@@ -35,45 +34,46 @@ class RulesPage extends StatelessWidget {
             } else if (state is RuleSectionLoaded) {
               final rules = state.rules;
               return ListView.builder(
-                  itemCount: rules.length,
-                  itemBuilder: ((context, index) {
-                    final RuleSection rule = rules[index]!;
+                itemCount: rules.length,
+                itemBuilder: (context, index) {
+                  final RuleSection rule = rules[index]!;
 
-                    return ExpansionTile(
-                      collapsedBackgroundColor: Colors.white,
-                      collapsedIconColor: AppColors.secondary,
-                      //collapsedTextColor: Colors.amber,
-                      iconColor: AppColors.primary,
-                      textColor: AppColors.primary,
-                      backgroundColor: Colors.grey.shade100,
-                      title: Text(
-                        rule.name,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      children: rule.subsections
-                          .map(
-                            (r) => InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SingleRulePage(
-                                      ruleURL: r['url']!,
-                                    ),
+                  return ExpansionTile(
+                    collapsedBackgroundColor: Colors.white,
+                    collapsedIconColor: AppColors.secondary,
+                    //collapsedTextColor: Colors.amber,
+                    iconColor: AppColors.primary,
+                    textColor: AppColors.primary,
+                    backgroundColor: Colors.grey.shade100,
+                    title: Text(
+                      rule.name,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    children: rule.subsections
+                        .map(
+                          (r) => InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SingleRulePage(
+                                    ruleURL: r['url']!,
                                   ),
-                                );
-                              },
-                              child: ListTile(
-                                title: Text(
-                                  r['name']!,
-                                  style: const TextStyle(fontSize: 16),
                                 ),
+                              );
+                            },
+                            child: ListTile(
+                              title: Text(
+                                r['name']!,
+                                style: const TextStyle(fontSize: 16),
                               ),
                             ),
-                          )
-                          .toList(),
-                    );
-                  }));
+                          ),
+                        )
+                        .toList(),
+                  );
+                },
+              );
             }
             return const SizedBox.shrink();
           },

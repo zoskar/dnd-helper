@@ -1,12 +1,12 @@
-import 'package:dnd_helper/screens/character/edit_char.dart';
-import 'package:dnd_helper/utils/app_colors.dart';
-import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/character_cubit.dart';
-import '../../data/file_handler.dart';
-import '../../data/models.dart';
+import 'package:dnd_helper/screens/character/edit_char.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
+import 'package:dnd_helper/utils/fonts.dart';
+import 'package:dnd_helper/cubits/character_cubit.dart';
+import 'package:dnd_helper/data/file_handler.dart';
+import 'package:dnd_helper/data/models.dart';
 
 class CharacterPage extends StatefulWidget {
   const CharacterPage({Key? key}) : super(key: key);
@@ -55,7 +55,7 @@ class _CharacterPageState extends State<CharacterPage> {
                     );
                     setState(() {});
                   },
-                  child: const Text('Add Bebok'),
+                  child: const Text('Create character'),
                 ),
                 const Text(
                   'Pick character',
@@ -64,51 +64,49 @@ class _CharacterPageState extends State<CharacterPage> {
                 Flexible(
                   child: ListView.builder(
                     itemCount: charList.length,
-                    itemBuilder: ((context, index) {
-                      return ListTile(
-                        trailing: SizedBox(
-                          height: 40,
-                          child: InkWell(
-                            child: const Icon(
-                              Icons.edit,
-                              size: 30,
-                              color: AppColors.secondary,
-                            ),
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => EditChar(
-                                    character: charList[index],
-                                    fileHandler: fileHandler,
-                                  ),
+                    itemBuilder: (context, index) => ListTile(
+                      trailing: SizedBox(
+                        height: 40,
+                        child: InkWell(
+                          child: const Icon(
+                            Icons.edit,
+                            size: 30,
+                            color: AppColors.secondary,
+                          ),
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditChar(
+                                  character: charList[index],
+                                  fileHandler: fileHandler,
                                 ),
-                              );
-                              setState(() {});
-                            },
+                              ),
+                            );
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                      title: SizedBox(
+                        height: 40,
+                        child: InkWell(
+                          onTap: () {
+                            context
+                                .read<CharacterCubit>()
+                                .pickCharacter(charList[index], fileHandler);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                charList[index].name,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ],
                           ),
                         ),
-                        title: SizedBox(
-                          height: 40,
-                          child: InkWell(
-                            onTap: () {
-                              context
-                                  .read<CharacterCubit>()
-                                  .pickCharacter(charList[index], fileHandler);
-                            },
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    charList[index].name,
-                                    style: const TextStyle(fontSize: 20),
-                                  ),
-                                ]),
-                          ),
-                        ),
-                      );
-                    }),
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -119,7 +117,8 @@ class _CharacterPageState extends State<CharacterPage> {
             child: Column(
               children: [
                 Text(
-                    'Current character: ${context.read<CharacterCubit>().pickedChar.toString()}'),
+                  'Current character: ${context.read<CharacterCubit>().pickedChar.toString()}',
+                ),
                 TextButton(
                   child: const Text('Switch character'),
                   onPressed: () {

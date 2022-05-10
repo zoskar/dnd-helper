@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dnd_helper/api/api_repository.dart';
 
 class SpellListCubit extends Cubit<SpellListState> {
-  final ApiRepository apiRepository;
 
   SpellListCubit({required this.apiRepository})
       : super(SpellListInitial());
+  final ApiRepository apiRepository;
 
   Future<void> fetchSpellListApi(String params) async {
     emit(SpellListLoading());

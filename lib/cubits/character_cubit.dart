@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../data/file_handler.dart';
-import '../data/models.dart';
+import 'package:dnd_helper/data/file_handler.dart';
+import 'package:dnd_helper/data/models.dart';
 
 class CharacterCubit extends Cubit<CharacterState> {
   CharacterCubit() : super(CharacterInitial());
 
-  var pickedChar = null;
+  var pickedChar;
 
   List<Character> charList = [];
 

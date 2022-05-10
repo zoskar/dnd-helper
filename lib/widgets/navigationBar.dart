@@ -10,31 +10,29 @@ class Nav extends StatefulWidget {
 }
 
 class _NavState extends State<Nav> {
-
- 
-
   @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      
-      items: const [
-        BottomNavigationBarItem(
+  Widget build(BuildContext context) => BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Character',
-            backgroundColor: Colors.blue),
-        BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.design_services),
             label: 'Combat',
-            backgroundColor: Colors.blue),
-        BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.book),
             label: 'Spells',
-            backgroundColor: Colors.blue),
-        BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.edit),
             label: 'Rules',
-            backgroundColor: Colors.blue),
-      ],
-    );
-  }
+            backgroundColor: Colors.blue,
+          ),
+        ],
+      );
 }

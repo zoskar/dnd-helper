@@ -16,17 +16,6 @@ class Character extends Equatable {
     required this.hp,
     required this.ac,
   });
-  final String name;
-  final String characterClass;
-  final String race;
-  final int level;
-  final String subclass;
-  final dynamic stats;
-  final List savingThrows;
-  final List skills;
-  final List resources;
-  final int hp;
-  final int ac;
 
   Character.fromJson(Map<String, dynamic> map)
       : name = map['name'] as String,
@@ -40,9 +29,19 @@ class Character extends Equatable {
         resources = [],
         hp = (map['hp'] as num).toInt(),
         ac = (map['ac'] as num).toInt();
+  final String name;
+  final String characterClass;
+  final String race;
+  final int level;
+  final String subclass;
+  final dynamic stats;
+  final List savingThrows;
+  final List skills;
+  final List resources;
+  final int hp;
+  final int ac;
 
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toJson() => {
       'name': name,
       'character_class': characterClass,
       'race': race,
@@ -55,7 +54,6 @@ class Character extends Equatable {
       'hp': hp,
       'ac': ac,
     };
-  }
 
   @override
   List<Object?> get props => [

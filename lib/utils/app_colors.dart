@@ -9,18 +9,18 @@ class AppColors {
   static const f = Color(0xFF2F4858);
 
   static const myGradient = LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: <Color>[
-        AppColors.a,
-        AppColors.b,
-        AppColors.c,
-        AppColors.c,
-        AppColors.d,
-        AppColors.e,
-        AppColors.f
-      ]);
-
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: <Color>[
+      AppColors.a,
+      AppColors.b,
+      AppColors.c,
+      AppColors.c,
+      AppColors.d,
+      AppColors.e,
+      AppColors.f
+    ],
+  );
 
   //wisnia
   static const primary = Color.fromARGB(255, 129, 37, 45);

@@ -4,9 +4,6 @@ part 'models.g.dart';
 
 @JsonSerializable()
 class SpellListItem {
-  final String index;
-  final String name;
-  final String url;
 
   const SpellListItem({
     required this.index,
@@ -15,28 +12,15 @@ class SpellListItem {
   });
   factory SpellListItem.fromJson(Map<String, dynamic> json) =>
       _$SpellListItemFromJson(json);
+  final String index;
+  final String name;
+  final String url;
 
   Map<String, dynamic> toJson() => _$SpellListItemToJson(this);
 }
 
 @JsonSerializable()
 class Spell {
-  @JsonKey(name: '_id')
-  final String id;
-  // final String index;
-  final String name;
-  final List<String> desc;
-  final List higher_level;
-  final String range;
-  final List components;
-  final bool ritual;
-  final String duration;
-  final bool concentration;
-  final String casting_time;
-  final int level;
-  final Map school;
-  final List classes;
-  final List subclasses;
 
   //String get description => desc.first;
 
@@ -58,15 +42,28 @@ class Spell {
   });
 
   factory Spell.fromJson(Map<String, dynamic> json) => _$SpellFromJson(json);
+  @JsonKey(name: '_id')
+  final String id;
+  // final String index;
+  final String name;
+  final List<String> desc;
+  final List higher_level;
+  final String range;
+  final List components;
+  final bool ritual;
+  final String duration;
+  final bool concentration;
+  final String casting_time;
+  final int level;
+  final Map school;
+  final List classes;
+  final List subclasses;
 
   Map<String, dynamic> toJson() => _$SpellToJson(this);
 }
 
 @JsonSerializable()
 class RuleSection {
-  final String name;
-  final String desc;
-  final List<Map<String, String>> subsections;
 
   const RuleSection({
     required this.name,
@@ -74,18 +71,21 @@ class RuleSection {
     required this.subsections,
   });
   factory RuleSection.fromJson(Map<String, dynamic> json) => _$RuleSectionFromJson(json);
+  final String name;
+  final String desc;
+  final List<Map<String, String>> subsections;
 
   Map<String, dynamic> toJson() => _$RuleSectionToJson(this);
 }
 
 @JsonSerializable()
 class Rule {
-  final String name;
-  final String desc;
 
   const Rule({required this.name, required this.desc});
 
   factory Rule.fromJson(Map<String, dynamic> json) => _$RuleFromJson(json);
+  final String name;
+  final String desc;
 
   Map<String, dynamic> toJson() => _$RuleToJson(this);
 }

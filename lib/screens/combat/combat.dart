@@ -4,9 +4,7 @@ class CombatPage extends StatelessWidget {
   const CombatPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Combat')),
-    );
-  }
+  Widget build(BuildContext context) => const Scaffold(
+        body: Center(child: Text('Combat')),
+      );
 }

@@ -11,13 +11,11 @@ class MyDivider extends StatelessWidget {
   static const _paddingTB = 8.0;
 
   @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(bottom: _paddingTB, top: _paddingTB),
-      child: Divider(
-        color: AppColors.primary,
-        thickness: _dividerThickness,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => const Padding(
+        padding: EdgeInsets.only(bottom: _paddingTB, top: _paddingTB),
+        child: Divider(
+          color: AppColors.primary,
+          thickness: _dividerThickness,
+        ),
+      );
 }
