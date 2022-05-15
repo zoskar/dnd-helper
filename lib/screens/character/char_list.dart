@@ -1,3 +1,4 @@
+import 'package:dnd_helper/screens/character/char_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,7 +44,7 @@ class CharacterPageState extends State<CharacterPage> {
                         ac: 10,
                         level: 1,
                         name: 'New character',
-                        race: 'Human',
+                        race: '',
                         resources: [],
                         savingThrows: [],
                         skills: [],
@@ -65,7 +66,7 @@ class CharacterPageState extends State<CharacterPage> {
                 ),
                 const Text(
                   'Pick character',
-                  style: AppTextStyles.header,
+                  style: AppTextStyles.black18,
                 ),
                 Flexible(
                   child: ListView.builder(
@@ -120,21 +121,8 @@ class CharacterPageState extends State<CharacterPage> {
             ),
           );
         } else if (state is CharacterPicked) {
-          return Center(
-            child: Column(
-              children: [
-                Text(
-                  'Current character: '
-                  '${context.read<CharacterCubit>().pickedChar.toString()}',
-                ),
-                TextButton(
-                  child: const Text('Switch character'),
-                  onPressed: () {
-                    context.read<CharacterCubit>().switchCharacter(fileHandler);
-                  },
-                ),
-              ],
-            ),
+          return CharView(
+            fileHandler: fileHandler,
           );
         }
         return const SizedBox.shrink();

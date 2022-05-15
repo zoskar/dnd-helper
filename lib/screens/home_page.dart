@@ -1,4 +1,4 @@
-import 'package:dnd_helper/screens/character/character.dart';
+import 'package:dnd_helper/screens/character/char_list.dart';
 import 'package:dnd_helper/screens/combat/combat.dart';
 import 'package:dnd_helper/screens/rules/rule_sections.dart';
 import 'package:dnd_helper/screens/spells/spell_list.dart';
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
           ),
           title: const Text(
             'Dnd Helper',
-            style: AppTextStyles.title,
+            style: AppTextStyles.appbar,
           ),
         ),
         body: screens[currentIndex],

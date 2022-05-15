@@ -121,7 +121,7 @@ class _SpellsPageState extends State<SpellsPage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  style: AppTextStyles.p,
+                                  style: AppTextStyles.black16,
                                   level == -1 ? 'Any ' : 'Level $level',
                                 ),
                                 Radio<int>(

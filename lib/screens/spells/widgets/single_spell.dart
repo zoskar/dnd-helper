@@ -25,15 +25,15 @@ class SpellContent extends StatelessWidget {
                   children: [
                     Text(
                       'Casting time: ${spell.casting_time}',
-                      style: AppTextStyles.p,
+                      style: AppTextStyles.black16,
                     ),
                     Text(
                       'Range: ${spell.range}',
-                      style: AppTextStyles.p,
+                      style: AppTextStyles.black16,
                     ),
                     Text(
                       'Duration: ${spell.duration}',
-                      style: AppTextStyles.p,
+                      style: AppTextStyles.black16,
                     ),
                   ],
                 ),
@@ -59,17 +59,17 @@ class SpellContent extends StatelessWidget {
             Text(
               '${spell.school['name']} '
               '${spell.level == 0 ? 'Cantrip' : 'level ${spell.level}'}',
-              style: AppTextStyles.p,
+              style: AppTextStyles.black16,
             ),
             Text(
               'Components: ${spell.components.join(', ')}',
-              style: AppTextStyles.p,
+              style: AppTextStyles.black16,
             ),
             const MyDivider(),
             Text(
               '${spell.desc.join(", ").toString()}\n\n'
               '${spell.higher_level.isEmpty ? '' : spell.higher_level[0].toString()}',
-              style: AppTextStyles.p,
+              style: AppTextStyles.black16,
             ),
           ],
         ),

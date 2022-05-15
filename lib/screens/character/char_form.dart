@@ -1,13 +1,13 @@
-import 'package:dnd_helper/screens/character/widgets/ac_form.dart';
-import 'package:dnd_helper/screens/character/widgets/class_form.dart';
-import 'package:dnd_helper/screens/character/widgets/delete_button.dart';
-import 'package:dnd_helper/screens/character/widgets/hp_form.dart';
-import 'package:dnd_helper/screens/character/widgets/level_form.dart';
-import 'package:dnd_helper/screens/character/widgets/race_form.dart';
-import 'package:dnd_helper/screens/character/widgets/saves_form.dart';
-import 'package:dnd_helper/screens/character/widgets/skills_form.dart';
-import 'package:dnd_helper/screens/character/widgets/subclass_form.dart';
 import 'package:dnd_helper/data/models.dart';
+import 'package:dnd_helper/screens/character/widgets/form/ac_form.dart';
+import 'package:dnd_helper/screens/character/widgets/form/class_form.dart';
+import 'package:dnd_helper/screens/character/widgets/form/delete_button.dart';
+import 'package:dnd_helper/screens/character/widgets/form/hp_form.dart';
+import 'package:dnd_helper/screens/character/widgets/form/level_form.dart';
+import 'package:dnd_helper/screens/character/widgets/form/race_form.dart';
+import 'package:dnd_helper/screens/character/widgets/form/saves_form.dart';
+import 'package:dnd_helper/screens/character/widgets/form/skills_form.dart';
+import 'package:dnd_helper/screens/character/widgets/form/subclass_form.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:dnd_helper/utils/listings.dart';
@@ -44,7 +44,7 @@ class EditChar extends StatelessWidget {
           backgroundColor: AppColors.primary,
           title: Text(
             character.name,
-            style: AppTextStyles.title,
+            style: AppTextStyles.appbar,
           ),
         ),
         body: FormBuilder(
@@ -63,7 +63,7 @@ class EditChar extends StatelessWidget {
               const MyDivider(),
               const Text(
                 'Character Name',
-                style: AppTextStyles.header,
+                style: AppTextStyles.black18,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -95,19 +95,19 @@ class EditChar extends StatelessWidget {
               const MyDivider(),
               const Text(
                 'Character Subclass',
-                style: AppTextStyles.header,
+                style: AppTextStyles.black18,
               ),
               SubclassForm(character: character),
               const MyDivider(),
               const Text(
                 'Character Race',
-                style: AppTextStyles.header,
+                style: AppTextStyles.black18,
               ),
               RaceForm(character: character),
               const MyDivider(),
               const Text(
                 'Character Stats',
-                style: AppTextStyles.header,
+                style: AppTextStyles.black18,
               ),
               GridView.count(
                 physics: const NeverScrollableScrollPhysics(),
@@ -147,14 +147,14 @@ class EditChar extends StatelessWidget {
               const MyDivider(),
               const Text(
                 'Saving throw proficiency',
-                style: AppTextStyles.header,
+                style: AppTextStyles.black18,
               ),
               SavesForm(character: character),
               const Padding(
                 padding: EdgeInsets.only(top: 8),
                 child: Text(
                   'Skills',
-                  style: AppTextStyles.header,
+                  style: AppTextStyles.black18,
                 ),
               ),
               SkillsForm(character: character),
@@ -241,7 +241,7 @@ class ConfirmButton extends StatelessWidget {
           },
           child: const Text(
             'Confirm',
-            style: AppTextStyles.headerW,
+            style: AppTextStyles.white18,
           ),
         ),
       );
