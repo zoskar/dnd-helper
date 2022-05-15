@@ -22,6 +22,7 @@ class FileHandler {
   Future<File> _initFile() async {
     final directory = await getApplicationDocumentsDirectory();
     final path = directory.path;
+    
     //print('$path/$_fileName');
 
     return File('$path/$_fileName');

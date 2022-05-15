@@ -1,4 +1,13 @@
 final List<String> stats = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
+
+final Map<String, String> statistics = {
+  'STR': 'Strength',
+  'DEX': 'Dexterity',
+  'CON': 'Constitution',
+  'INT': 'Intelligence',
+  'WIS': 'Wisdom',
+  'CHA': 'Charisma',
+};
 final List<String> classes = [
   'Barbarian',
   'Druid',
@@ -57,3 +66,46 @@ final List<int> levels = [
   19,
   20
 ];
+final Map<int, int> proficiency = {
+  1: 2,
+  2: 2,
+  3: 2,
+  4: 2,
+  5: 3,
+  6: 3,
+  7: 3,
+  8: 3,
+  9: 4,
+  10: 4,
+  11: 4,
+  12: 4,
+  13: 5,
+  14: 5,
+  15: 5,
+  16: 5,
+  17: 6,
+  18: 6,
+  19: 6,
+  20: 6,
+};
+
+final Map<String, String> bonuses = {
+  'Athletics': 'STR',
+  'Acrobatics': 'DEX',
+  'Sleight of Hand': 'DEX',
+  'Stealth': 'DEX',
+  'Arcana': 'INT',
+  'History': 'INT',
+  'Investigation': 'INT',
+  'Nature': 'INT',
+  'Religion': 'WIS',
+  'Animal Handling': 'CHA',
+  'Insight': 'WIS',
+  'Medicine': 'WIS',
+  'Perception': 'WIS',
+  'Survival': 'WIS',
+  'Deception': 'CHA',
+  'Intimidation': 'CHA',
+  'Performance': 'CHA',
+  'Persuasion': 'CHA',
+};

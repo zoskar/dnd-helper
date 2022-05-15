@@ -15,7 +15,7 @@ class AcForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          const Text('AC', style: AppTextStyles.p),
+          const Text('AC', style: AppTextStyles.black16),
           SizedBox(
             width: MediaQuery.of(context).size.width / 3,
             child: Padding(

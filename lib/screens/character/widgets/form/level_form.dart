@@ -4,8 +4,8 @@ import 'package:dnd_helper/utils/listings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class ClassForm extends StatelessWidget {
-  const ClassForm({
+class LevelForm extends StatelessWidget {
+  const LevelForm({
     required this.character,
     Key? key,
   }) : super(key: key);
@@ -16,15 +16,15 @@ class ClassForm extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           const Text(
-            'Character class',
-            style: AppTextStyles.header,
+            'Level',
+            style: AppTextStyles.black18,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
+              width: MediaQuery.of(context).size.width / 3,
               child: FormBuilderDropdown(
-                initialValue: character.characterClass,
+                initialValue: character.level.toString(),
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -32,14 +32,14 @@ class ClassForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                hint: const Text('Pick class'),
+                hint: const Text('Level'),
                 isExpanded: false,
-                name: 'classPicker',
-                items: classes
+                name: 'levelPicker',
+                items: levels
                     .map(
-                      (String value) => DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
+                      (int value) => DropdownMenuItem<String>(
+                        value: value.toString(),
+                        child: Text(value.toString()),
                       ),
                     )
                     .toList(),

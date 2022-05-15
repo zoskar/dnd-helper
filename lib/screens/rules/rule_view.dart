@@ -29,7 +29,7 @@ class SingleRulePage extends StatelessWidget {
         backgroundColor: AppColors.primary,
         title: const Text(
           'Dnd Helper',
-          style: AppTextStyles.title,
+          style: AppTextStyles.appbar,
         ),
       ),
       body: BlocBuilder<RuleCubit, RuleState>(
@@ -49,7 +49,7 @@ class SingleRulePage extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: Text(
                   rule.desc,
-                  style: AppTextStyles.p,
+                  style: AppTextStyles.black16,
                 ),
               ),
             );
