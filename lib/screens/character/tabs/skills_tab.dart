@@ -35,7 +35,7 @@ class SkillsTab extends StatelessWidget {
                         children: stats.map((s) {
                           final bool prof = char.savingThrows.contains(s);
                           int value =
-                              ((int.parse(char.stats[s]) - 10) / 2).floor();
+                              ((int.parse(char.stats[s].toString()) - 10) / 2).floor();
                           if (prof) {
                             value += proficiency[char.level] as int;
                           }
@@ -101,7 +101,7 @@ class SkillsTab extends StatelessWidget {
                         final bool prof = char.skills.contains(s);
                         String stat = bonuses[s] as String;
                         int value =
-                            ((int.parse(char.stats[stat]) - 10) / 2).floor();
+                            ((int.parse(char.stats[stat].toString()) - 10) / 2).floor();
 
                         if (prof) value += proficiency[char.level] as int;
 

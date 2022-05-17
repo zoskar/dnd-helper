@@ -25,8 +25,8 @@ class DeleteButton extends StatelessWidget {
             ),
           );
         },
-        onLongPress: () {
-          fileHandler.deleteChar(character);
+        onLongPress: () async {
+          await fileHandler.deleteChar(character);
           ScaffoldMessenger.of(context).hideCurrentSnackBar();
           Navigator.pop(context);
         },

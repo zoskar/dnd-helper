@@ -7,17 +7,10 @@ class AppTextStyles {
     fontSize: 14,
   );
 
-    static const black16 = TextStyle(
+  static const black16 = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.black,
     fontSize: 16,
-  );
-
-  static const appbar = TextStyle(
-    fontFamily: 'Montserrat',
-    color: Colors.white,
-    fontWeight: FontWeight.w800,
-    fontSize: 24,
   );
 
   static const black18 = TextStyle(
@@ -32,9 +25,21 @@ class AppTextStyles {
     fontSize: 18,
   );
 
+  static const black24 = TextStyle(
+    fontFamily: 'Montserrat',
+    color: Colors.black,
+    fontSize: 24,
+  );
+ 
   static const black40 = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.black,
     fontSize: 40,
+  );
+  static const appbar = TextStyle(
+    fontFamily: 'Montserrat',
+    color: Colors.white,
+    fontWeight: FontWeight.w800,
+    fontSize: 24,
   );
 }
