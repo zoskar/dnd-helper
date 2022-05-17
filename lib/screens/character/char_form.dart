@@ -205,12 +205,10 @@ class ConfirmButton extends StatelessWidget {
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
-          onPressed: () {
+          onPressed: () async {
             if (_formKey.currentState!.saveAndValidate()) {
               Map<String, dynamic>? data = _formKey.currentState?.value;
-
-              fileHandler.deleteChar(character);
-              fileHandler.writeChar(
+              await fileHandler.writeChar(
                 Character(
                   name: data?['namePicker'] ?? character.name,
                   characterClass:
@@ -234,6 +232,7 @@ class ConfirmButton extends StatelessWidget {
                   ac: int.parse(data?['acPicker'] ?? character.ac.toString()),
                 ),
               );
+              await fileHandler.deleteChar(character);
               Navigator.pop(context);
               //_formKey.currentState!.reset();
             }

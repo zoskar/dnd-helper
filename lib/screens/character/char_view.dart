@@ -49,7 +49,7 @@ class _CharViewState extends State<CharView> {
               Expanded(
                 child: TabBarView(
                   children: [
-                    CharTab(char: char),
+                    CharTab(char: char, fileHandler: widget.fileHandler),
                     SkillsTab(char: char),
                     Icon(Icons.directions_bike),
                   ],
@@ -62,4 +62,3 @@ class _CharViewState extends State<CharView> {
     );
   }
 }
-

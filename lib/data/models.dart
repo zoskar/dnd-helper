@@ -21,14 +21,14 @@ class Character extends Equatable {
       : name = map['name'],
         characterClass = map['character_class'],
         race = map['race'],
-        level = (map['level'] as num).toInt(),
+        level = (map['level']).toInt(),
         subclass = map['subclass'],
         stats = map['stats'],
         savingThrows = map['saving_throws'],
         skills = map['skills'],
         resources = [],
-        hp = (map['hp'] as num).toInt(),
-        ac = (map['ac'] as num).toInt();
+        hp = (map['hp']).toInt(),
+        ac = (map['ac']).toInt();
   final String name;
   final String characterClass;
   final String race;

@@ -1,22 +1,36 @@
+import 'package:dnd_helper/cubits/character_cubit.dart';
+import 'package:dnd_helper/data/file_handler.dart';
 import 'package:dnd_helper/data/models.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:dnd_helper/utils/listings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CharTab extends StatelessWidget {
   const CharTab({
     required this.char,
+    required this.fileHandler,
     Key? key,
   }) : super(key: key);
 
   final Character char;
+  final FileHandler fileHandler;
 
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: InkWell(
+                onTap: () {
+                  context.read<CharacterCubit>().switchCharacter(fileHandler);
+                },
+                child: const Icon(Icons.arrow_back_ios, size: 30,),
+              ),
+            ),
             Text(
               char.name,
               style: AppTextStyles.black40,
@@ -65,7 +79,7 @@ class CharTab extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            char.stats[stat],
+                            char.stats[stat].toString(),
                             style: AppTextStyles.black40,
                           ),
                           const Spacer(),
@@ -75,9 +89,11 @@ class CharTab extends StatelessWidget {
                             width: 40,
                             color: AppColors.background,
                             child: Text(
-                              int.parse(char.stats[stat]) - 10 > 0
+                              int.parse(char.stats[stat].toString()) - 10 > 0
                                   ? '+${((int.parse(char.stats[stat]) - 10) / 2).floor()}'
-                                  : ((int.parse(char.stats[stat]) - 10) / 2)
+                                  : ((int.parse(char.stats[stat].toString()) -
+                                              10) /
+                                          2)
                                       .round()
                                       .toString(),
                               style: AppTextStyles.black14,
