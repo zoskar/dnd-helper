@@ -80,8 +80,10 @@ class Rule {
   const Rule({required this.name, required this.desc});
 
   factory Rule.fromJson(Map<String, dynamic> json) => _$RuleFromJson(json);
+
   final String name;
   final String desc;
-
   Map<String, dynamic> toJson() => _$RuleToJson(this);
+
+  
 }

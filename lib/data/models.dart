@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+part 'models.g.dart';
+
 @JsonSerializable()
 class Character extends Equatable {
   const Character({
@@ -17,18 +19,9 @@ class Character extends Equatable {
     required this.ac,
   });
 
-  Character.fromJson(Map<String, dynamic> map)
-      : name = map['name'],
-        characterClass = map['character_class'],
-        race = map['race'],
-        level = (map['level']).toInt(),
-        subclass = map['subclass'],
-        stats = map['stats'],
-        savingThrows = map['saving_throws'],
-        skills = map['skills'],
-        resources = [],
-        hp = (map['hp']).toInt(),
-        ac = (map['ac']).toInt();
+  factory Character.fromJson(Map<String, dynamic> json) =>
+      _$CharacterFromJson(json);
+
   final String name;
   final String characterClass;
   final String race;
@@ -37,23 +30,11 @@ class Character extends Equatable {
   final dynamic stats;
   final List savingThrows;
   final List skills;
-  final List resources;
   final int hp;
   final int ac;
+  final List<Resource> resources;
 
-  Map<String, dynamic> toJson() => {
-      'name': name,
-      'character_class': characterClass,
-      'race': race,
-      'level': level,
-      'subclass': subclass,
-      'stats': stats,
-      'saving_throws': savingThrows,
-      'skills': skills,
-      'resources': resources,
-      'hp': hp,
-      'ac': ac,
-    };
+  Map<String, dynamic> toJson() => _$CharacterToJson(this);
 
   @override
   List<Object?> get props => [
@@ -69,4 +50,25 @@ class Character extends Equatable {
         hp,
         ac,
       ];
+}
+
+@JsonSerializable()
+class Resource {
+  Resource({
+    required this.name,
+    required this.maxUses,
+    required this.remainingUses,
+    required this.onShortRest,
+  });
+
+  factory Resource.fromJson(Map<String, dynamic> json) =>
+      _$ResourceFromJson(json);
+
+  final String name;
+  final int maxUses;
+  final int remainingUses;
+  final bool onShortRest;
+
+  Map<String, dynamic> toJson() => _$ResourceToJson(this);
+
 }

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dnd_helper/data/models.dart';
 
@@ -32,20 +31,24 @@ class FileHandler {
   final Set<Character> _charSet = {};
 
   Future<void> writeChar(Character character) async {
+    _charSet.clear();
+
     List<Character> chars = await readChars();
+
     final File fl = await file;
     for (int i = 0; i < chars.length; i++) {
       Character char = chars[i];
       _charSet.add(char);
     }
     _charSet.add(character);
+
     final charListMap = _charSet.map((e) => e.toJson()).toList();
 
     await fl.writeAsString(jsonEncode(charListMap));
   }
 
   Future<List<Character>> readChars() async {
-
+    _charSet.clear();
     final File fl = await file;
     if (!fl.existsSync()) return [];
     final content = await fl.readAsString();
@@ -53,7 +56,7 @@ class FileHandler {
     final List<dynamic> jsonData = jsonDecode(content);
     final List<Character> chars = jsonData
         .map(
-          (e) => Character.fromJson(e as Map<String, dynamic>),
+          (e) => Character.fromJson(e),
         )
         .toList();
     for (int i = 0; i < chars.length; i++) {
@@ -65,11 +68,17 @@ class FileHandler {
 
   Future<void> deleteChar(Character char) async {
     List<Character> chars = await readChars();
+    _charSet.clear();
+
     final File fl = await file;
-    for (Character char in chars) {
-      _charSet.add(char);
+    for (int i = 0; i < chars.length; i++) {
+      Character c = chars[i];
+      if (c.name == char.name) {
+        continue;
+      }
+
+      _charSet.add(c);
     }
-    _charSet.remove(char);
 
     final charListMap = _charSet.map((e) => e.toJson()).toList();
 
