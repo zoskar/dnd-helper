@@ -28,7 +28,10 @@ class CharTab extends StatelessWidget {
                 onTap: () {
                   context.read<CharacterCubit>().switchCharacter(fileHandler);
                 },
-                child: const Icon(Icons.arrow_back_ios, size: 30,),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  size: 30,
+                ),
               ),
             ),
             Text(
@@ -41,13 +44,21 @@ class CharTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
-                      child: Text(char.race, style: AppTextStyles.black18)),
+                    child: Text(
+                      char.race,
+                      style: AppTextStyles.black18,
+                    ),
+                  ),
                   SizedBox(
-                      child: Text(char.characterClass,
-                          style: AppTextStyles.black18)),
+                    child:
+                        Text(char.characterClass, style: AppTextStyles.black18),
+                  ),
                   SizedBox(
-                      child: Text('Level ${char.level}',
-                          style: AppTextStyles.black18)),
+                    child: Text(
+                      'Level ${char.level}',
+                      style: AppTextStyles.black18,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -60,7 +71,7 @@ class CharTab extends StatelessWidget {
             ),
             GridView.count(
               physics: const NeverScrollableScrollPhysics(),
-              childAspectRatio: 1.0,
+              //childAspectRatio: 1.0,
               crossAxisCount: 3,
               shrinkWrap: true,
               children: stats
@@ -68,7 +79,6 @@ class CharTab extends StatelessWidget {
                     (stat) => Card(
                       shadowColor: AppColors.secondary,
                       elevation: 10,
-                      //surfaceTintColor: AppColors.primary,
                       child: Column(
                         children: [
                           Padding(

@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 class SkillsTab extends StatelessWidget {
   const SkillsTab({
-    Key? key,
     required this.char,
+    Key? key,
   }) : super(key: key);
 
   final Character char;
@@ -23,9 +23,12 @@ class SkillsTab extends StatelessWidget {
                 elevation: 10,
                 child: Column(
                   children: [
-                    const Text(
-                      'Saving Throws',
-                      style: AppTextStyles.black18,
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Saving Throws',
+                        style: AppTextStyles.black18,
+                      ),
                     ),
                     SizedBox(
                       //width: 200,
@@ -35,7 +38,8 @@ class SkillsTab extends StatelessWidget {
                         children: stats.map((s) {
                           final bool prof = char.savingThrows.contains(s);
                           int value =
-                              ((int.parse(char.stats[s].toString()) - 10) / 2).floor();
+                              ((int.parse(char.stats[s].toString()) - 10) / 2)
+                                  .floor();
                           if (prof) {
                             value += proficiency[char.level] as int;
                           }
@@ -52,9 +56,9 @@ class SkillsTab extends StatelessWidget {
                                   child: Icon(Icons.circle_outlined),
                                 ),
                               SizedBox(
-                                width: 20,
+                                width: 40,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     if (value > 0)
                                       const Text(
@@ -88,9 +92,12 @@ class SkillsTab extends StatelessWidget {
                 elevation: 15,
                 child: Column(
                   children: [
-                    const Text(
-                      'Skills',
-                      style: AppTextStyles.black18,
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Skills',
+                        style: AppTextStyles.black18,
+                      ),
                     ),
                     GridView.count(
                       physics: const NeverScrollableScrollPhysics(),
@@ -99,9 +106,10 @@ class SkillsTab extends StatelessWidget {
                       shrinkWrap: true,
                       children: skills.map((s) {
                         final bool prof = char.skills.contains(s);
-                        String stat = bonuses[s] as String;
+                        String? stat = bonuses[s];
                         int value =
-                            ((int.parse(char.stats[stat].toString()) - 10) / 2).floor();
+                            ((int.parse(char.stats[stat].toString()) - 10) / 2)
+                                .floor();
 
                         if (prof) value += proficiency[char.level] as int;
 

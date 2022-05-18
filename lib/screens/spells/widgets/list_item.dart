@@ -15,6 +15,7 @@ class SpellItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) => InkWell(
         onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
           Navigator.push(
             context,
             MaterialPageRoute(

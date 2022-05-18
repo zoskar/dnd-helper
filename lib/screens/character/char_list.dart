@@ -37,18 +37,26 @@ class CharacterPageState extends State<CharacterPage> {
               children: [
                 TextButton(
                   onPressed: () async {
+                    if (names.contains('New character')) return;
                     await fileHandler.writeChar(
-                      const Character(
-                        characterClass: 'Barbarian',
+                      Character(
+                        characterClass: 'Druid',
                         hp: 10,
                         ac: 10,
                         level: 1,
                         name: 'New character',
                         race: '',
-                        resources: [],
-                        savingThrows: [],
-                        skills: [],
-                        stats: {
+                        resources: [
+                          Resource(
+                            name: 'Action Surge',
+                            maxUses: 8,
+                            remainingUses: 3,
+                            onShortRest: false,
+                          ),
+                        ],
+                        savingThrows: const [],
+                        skills: const [],
+                        stats: const {
                           'STR': 10,
                           'DEX': 10,
                           'CON': 10,

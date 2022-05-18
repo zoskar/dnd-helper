@@ -15,7 +15,7 @@ class StatusTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var i = 1;
+    var i = 0;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -34,11 +34,47 @@ class StatusTab extends StatelessWidget {
                   style: AppTextStyles.black24,
                 ),
               ),
-              
             ],
+          ),
+          Flexible(
+            child: ListView.builder(
+              itemCount: char.resources.length,
+              itemBuilder: (context, index) => ListTile(
+                title: Row(
+                  children: _getResources(char.resources[index]),
+                ),
+                subtitle: Text(
+                  char.resources[index].name,
+                  style: AppTextStyles.black14,
+                ),
+              ),
+            ),
           )
         ],
       ),
     );
+  }
+
+  List<Widget> _getResources(Resource resource) {
+    List<Widget> list = [];
+    for (int i = 0; i < resource.maxUses - resource.remainingUses; i++) {
+      list.add(Icon(
+        Icons.square,
+        color: Colors.black,
+        size: 40,
+      ));
+    }
+    for (int i = 0; i < resource.remainingUses; i++) {
+      list.add(InkWell(
+        onTap: null,
+        child: Icon(
+          Icons.square_outlined,
+          color: Colors.black,
+          size: 40,
+        ),
+      ));
+    }
+
+    return list;
   }
 }

@@ -206,6 +206,8 @@ class ConfirmButton extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
           onPressed: () async {
+            await fileHandler.deleteChar(character);
+
             if (_formKey.currentState!.saveAndValidate()) {
               Map<String, dynamic>? data = _formKey.currentState?.value;
               await fileHandler.writeChar(
@@ -232,7 +234,6 @@ class ConfirmButton extends StatelessWidget {
                   ac: int.parse(data?['acPicker'] ?? character.ac.toString()),
                 ),
               );
-              await fileHandler.deleteChar(character);
               Navigator.pop(context);
               //_formKey.currentState!.reset();
             }
