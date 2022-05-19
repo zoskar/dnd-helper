@@ -119,6 +119,7 @@ class EditChar extends StatelessWidget {
                       (stat) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: FormBuilderTextField(
+                          keyboardType: TextInputType.number,
                           maxLength: 2,
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(
@@ -231,6 +232,8 @@ class ConfirmButton extends StatelessWidget {
                   skills: data?['skillPicker'] ?? character.skills,
                   resources: character.resources,
                   hp: int.parse(data?['hpPicker'] ?? character.hp.toString()),
+                  currentHp:
+                      int.parse(data?['hpPicker'] ?? character.hp.toString()),
                   ac: int.parse(data?['acPicker'] ?? character.ac.toString()),
                 ),
               );
