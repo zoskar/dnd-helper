@@ -53,6 +53,12 @@ class CharacterPageState extends State<CharacterPage> {
                             remainingUses: 3,
                             onShortRest: false,
                           ),
+                          Resource(
+                            name: 'Wild shape',
+                            maxUses: 2,
+                            remainingUses: 1,
+                            onShortRest: true,
+                          ),
                         ],
                         savingThrows: const [],
                         skills: const [],
