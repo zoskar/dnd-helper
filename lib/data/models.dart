@@ -16,6 +16,7 @@ class Character extends Equatable {
     required this.skills,
     required this.resources,
     required this.hp,
+    required this.currentHp,
     required this.ac,
   });
 
@@ -31,6 +32,7 @@ class Character extends Equatable {
   final List savingThrows;
   final List skills;
   final int hp;
+  int currentHp;
   final int ac;
   List<Resource> resources;
 
@@ -70,5 +72,4 @@ class Resource {
   final bool onShortRest;
 
   Map<String, dynamic> toJson() => _$ResourceToJson(this);
-
 }

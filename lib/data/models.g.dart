@@ -19,6 +19,7 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
           .map((e) => Resource.fromJson(e as Map<String, dynamic>))
           .toList(),
       hp: json['hp'] as int,
+      currentHp: json['currentHp'] as int,
       ac: json['ac'] as int,
     );
 
@@ -32,6 +33,7 @@ Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
       'savingThrows': instance.savingThrows,
       'skills': instance.skills,
       'hp': instance.hp,
+      'currentHp': instance.currentHp,
       'ac': instance.ac,
       'resources': instance.resources,
     };

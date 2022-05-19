@@ -111,6 +111,7 @@ class CharacterPageState extends State<CharacterPage> {
                       Character(
                         characterClass: 'Druid',
                         hp: 10,
+                        currentHp: 5,
                         ac: 10,
                         level: 1,
                         name: 'New character',
