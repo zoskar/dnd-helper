@@ -5,7 +5,7 @@ part 'models.g.dart';
 
 @JsonSerializable()
 class Character extends Equatable {
-  const Character({
+  Character({
     required this.name,
     required this.characterClass,
     required this.race,
@@ -32,7 +32,7 @@ class Character extends Equatable {
   final List skills;
   final int hp;
   final int ac;
-  final List<Resource> resources;
+  List<Resource> resources;
 
   Map<String, dynamic> toJson() => _$CharacterToJson(this);
 
@@ -66,7 +66,7 @@ class Resource {
 
   final String name;
   final int maxUses;
-  final int remainingUses;
+  int remainingUses;
   final bool onShortRest;
 
   Map<String, dynamic> toJson() => _$ResourceToJson(this);
