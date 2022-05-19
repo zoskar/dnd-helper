@@ -14,10 +14,8 @@ List<int> levels = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 class SpellsPage extends StatefulWidget {
   const SpellsPage({
-    required this.params,
     Key? key,
   }) : super(key: key);
-  final String params;
 
   @override
   State<SpellsPage> createState() => _SpellsPageState();

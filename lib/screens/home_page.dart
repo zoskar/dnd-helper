@@ -20,9 +20,7 @@ class _HomePageState extends State<HomePage> {
   var screens = const [
     CharacterPage(),
     CombatPage(),
-    SpellsPage(
-      params: '',
-    ),
+    SpellsPage(),
     RulesPage(),
   ];
 

@@ -68,7 +68,7 @@ class EditChar extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FormBuilderTextField(
-                  maxLength: 30,
+                  maxLength: 20,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(errorText: 'Enter name'),
                     (newName) {
