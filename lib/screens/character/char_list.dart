@@ -1,4 +1,5 @@
 import 'package:dnd_helper/screens/character/char_view.dart';
+import 'package:dnd_helper/widgets/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,12 +30,80 @@ class CharacterPageState extends State<CharacterPage> {
           List<String> names = [];
 
           List<Character> charList = context.read<CharacterCubit>().charList;
+          double width = MediaQuery.of(context).size.width;
           for (final c in charList) {
             names.add(c.name);
           }
           return Scaffold(
             body: Column(
               children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 12.0),
+                  child: Text(
+                    'Pick character',
+                    style: AppTextStyles.black24,
+                  ),
+                ),
+                const MyDivider(),
+                Flexible(
+                  child: ListView.builder(
+                    itemCount: charList.length,
+                    itemBuilder: (context, index) => ListTile(
+                      trailing: SizedBox(
+                        height: 40,
+                        child: InkWell(
+                          child: const Icon(
+                            Icons.edit,
+                            size: 30,
+                            color: AppColors.secondary,
+                          ),
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditChar(
+                                  character: charList[index],
+                                  fileHandler: fileHandler,
+                                  names: names,
+                                ),
+                              ),
+                            );
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                      title: SizedBox(
+                        height: 60,
+                        child: InkWell(
+                          onTap: () {
+                            context
+                                .read<CharacterCubit>()
+                                .pickCharacter(charList[index], fileHandler);
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: width / 1.8,
+                                child: Text(
+                                  overflow: TextOverflow.ellipsis,
+                                  charList[index].name,
+                                  style: AppTextStyles.black24,
+                                ),
+                              ),
+                              Text(
+                                overflow: TextOverflow.ellipsis,
+                                '${charList[index].characterClass} lvl '
+                                '${charList[index].level}',
+                                style: AppTextStyles.black14,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 TextButton(
                   onPressed: () async {
                     if (names.contains('New character')) return;
@@ -77,59 +146,6 @@ class CharacterPageState extends State<CharacterPage> {
                     setState(() {});
                   },
                   child: const Text('New character'),
-                ),
-                const Text(
-                  'Pick character',
-                  style: AppTextStyles.black18,
-                ),
-                Flexible(
-                  child: ListView.builder(
-                    itemCount: charList.length,
-                    itemBuilder: (context, index) => ListTile(
-                      trailing: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                          child: const Icon(
-                            Icons.edit,
-                            size: 30,
-                            color: AppColors.secondary,
-                          ),
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EditChar(
-                                  character: charList[index],
-                                  fileHandler: fileHandler,
-                                  names: names,
-                                ),
-                              ),
-                            );
-                            setState(() {});
-                          },
-                        ),
-                      ),
-                      title: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                          onTap: () {
-                            context
-                                .read<CharacterCubit>()
-                                .pickCharacter(charList[index], fileHandler);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                charList[index].name,
-                                style: const TextStyle(fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),

@@ -103,7 +103,7 @@ class StatusTab extends StatelessWidget {
                   style: AppTextStyles.black24,
                 ),
                 Text(
-                  'Max HP: ${char.hp}',
+                  'HP: 1/${char.hp}',
                   style: AppTextStyles.black24,
                 ),
               ],
