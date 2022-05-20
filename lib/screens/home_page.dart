@@ -1,5 +1,4 @@
-import 'package:dnd_helper/screens/character/char_list.dart';
-import 'package:dnd_helper/screens/combat/combat.dart';
+import 'package:dnd_helper/screens/character/not_picked/char_list.dart';
 import 'package:dnd_helper/screens/rules/rule_sections.dart';
 import 'package:dnd_helper/screens/spells/spell_list.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
@@ -15,12 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
+  int currentIndex = 1;
 
   var screens = const [
-    CharacterPage(),
-    CombatPage(),
     SpellsPage(),
+    CharacterPage(),
     RulesPage(),
   ];
 
@@ -41,24 +39,20 @@ class _HomePageState extends State<HomePage> {
         ),
         body: screens[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white38,
           currentIndex: currentIndex,
           onTap: (index) => setState(() => currentIndex = index),
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(CustomIcons.person),
-              label: 'Character',
-              backgroundColor: AppColors.primary,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CustomIcons.broadsword),
-              label: 'Combat',
-              backgroundColor: AppColors.primary,
-            ),
-            BottomNavigationBarItem(
               icon: Icon(CustomIcons.magic),
               label: 'Spells',
+              backgroundColor: AppColors.primary,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CustomIcons.person),
+              label: 'Character',
               backgroundColor: AppColors.primary,
             ),
             BottomNavigationBarItem(

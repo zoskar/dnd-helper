@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
+
+
 class AppTextStyles {
+
+  static const black12 = TextStyle(
+    fontFamily: 'Montserrat',
+    color: Colors.black,
+    fontSize: 12,
+  );
+
   static const black14 = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.black,

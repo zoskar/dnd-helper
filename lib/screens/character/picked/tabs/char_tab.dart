@@ -93,8 +93,10 @@ class CharTab extends StatelessWidget {
             children: stats
                 .map(
                   (stat) => Card(
+                    color: AppColors.n,
                     shadowColor: AppColors.secondary,
-                    elevation: 10,
+                    elevation: 3
+                    ,
                     child: Column(
                       children: [
                         Padding(

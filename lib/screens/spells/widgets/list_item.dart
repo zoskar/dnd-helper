@@ -1,5 +1,5 @@
+import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
-
 import 'package:dnd_helper/api/models.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/screens/spells/spell.dart';
@@ -35,7 +35,7 @@ class SpellItem extends StatelessWidget {
               ),
               title: Text(
                 singleSpell.name,
-                style: const TextStyle(fontSize: 20),
+                style: AppTextStyles.black18,
               ),
             ),
             const Divider(),
