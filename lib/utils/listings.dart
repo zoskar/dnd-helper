@@ -109,3 +109,5 @@ final Map<String, String> bonuses = {
   'Performance': 'CHA',
   'Persuasion': 'CHA',
 };
+
+final List<int> uses = [1, 2, 3, 4, 5, 6, 7, 8];

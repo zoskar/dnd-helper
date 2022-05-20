@@ -19,21 +19,22 @@ class SkillsTab extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Card(
-              shadowColor: AppColors.secondary,
-              elevation: 10,
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Saving Throws',
-                      style: AppTextStyles.black18,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Card(
+                color: AppColors.n,
+                shadowColor: AppColors.secondary,
+                elevation: 3,
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Saving Throws',
+                        style: AppTextStyles.black18,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    //width: 200,
-                    child: ListView(
+                    ListView(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       children: stats.map((s) {
@@ -84,13 +85,14 @@ class SkillsTab extends StatelessWidget {
                         );
                       }).toList(),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Card(
+              color: AppColors.n,
               shadowColor: AppColors.secondary,
-              elevation: 15,
+              elevation: 3,
               child: Column(
                 children: [
                   const Padding(
@@ -131,17 +133,17 @@ class SkillsTab extends StatelessWidget {
                               if (value > 0)
                                 const Text(
                                   '+',
-                                  style: AppTextStyles.black14,
+                                  style: AppTextStyles.black12,
                                 ),
                               Text(
                                 value.toString(),
-                                style: AppTextStyles.black14,
+                                style: AppTextStyles.black12,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 4),
                                 child: Text(
                                   s,
-                                  style: AppTextStyles.black14,
+                                  style: AppTextStyles.black12,
                                 ),
                               )
                             ],

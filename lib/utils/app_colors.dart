@@ -28,6 +28,7 @@ class AppColors {
   //static const secondary = Color.fromARGB(255, 171, 97, 115);
   static const secondary = Color(0xFF2F4858);
   static const background = Color.fromARGB(111, 129, 37, 45);
+  static const n = Color.fromARGB(255, 221, 207, 218);
 
   // static const secondary = Color(0xFF782A4A);
 
