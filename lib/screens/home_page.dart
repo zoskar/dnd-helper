@@ -38,29 +38,41 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: screens[currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.shifting,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white38,
-          currentIndex: currentIndex,
-          onTap: (index) => setState(() => currentIndex = index),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(CustomIcons.magic),
-              label: 'Spells',
-              backgroundColor: AppColors.primary,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CustomIcons.person),
-              label: 'Character',
-              backgroundColor: AppColors.primary,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CustomIcons.book_1),
-              label: 'Rules',
-              backgroundColor: AppColors.primary,
-            ),
-          ],
+        bottomNavigationBar: SizedBox(
+          height: 72,
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.shifting,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white38,
+            currentIndex: currentIndex,
+            onTap: (index) => setState(() => currentIndex = index),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  CustomIcons.magic,
+                  size: 28,
+                ),
+                label: 'Spells',
+                backgroundColor: AppColors.primary,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  CustomIcons.person,
+                  size: 28,
+                ),
+                label: 'Character',
+                backgroundColor: AppColors.primary,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  CustomIcons.book_1,
+                  size: 28,
+                ),
+                label: 'Rules',
+                backgroundColor: AppColors.primary,
+              ),
+            ],
+          ),
         ),
       );
 }

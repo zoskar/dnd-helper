@@ -1,12 +1,9 @@
-import 'package:dnd_helper/cubits/character_cubit.dart';
 import 'package:dnd_helper/data/file_handler.dart';
-import 'package:dnd_helper/data/models.dart';
 import 'package:dnd_helper/screens/character/picked/tabs/char_tab.dart';
 import 'package:dnd_helper/screens/character/picked/tabs/skills_tab.dart';
 import 'package:dnd_helper/screens/character/picked/tabs/status_tab.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CharView extends StatefulWidget {
   const CharView({
@@ -22,10 +19,7 @@ class CharView extends StatefulWidget {
 
 class _CharViewState extends State<CharView> {
   @override
-  Widget build(BuildContext context) {
-    Character char = context.read<CharacterCubit>().pickedChar;
-
-    return DefaultTabController(
+  Widget build(BuildContext context) => DefaultTabController(
       length: 3,
       child: Scaffold(
         body: DefaultTabController(
@@ -61,5 +55,4 @@ class _CharViewState extends State<CharView> {
         ),
       ),
     );
-  }
 }

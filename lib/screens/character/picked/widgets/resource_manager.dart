@@ -20,7 +20,7 @@ class ResoureManager extends StatelessWidget {
   Widget build(BuildContext context) {
     final Character char = context.read<CharacterCubit>().pickedChar;
 
-    final _formKey = GlobalKey<FormBuilderState>();
+    final formKey = GlobalKey<FormBuilderState>();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -50,13 +50,22 @@ class ResoureManager extends StatelessWidget {
                             color: AppColors.secondary,
                           ),
                           onTap: () async {
-                            char.resources.remove(resource);
                             await fileHandler.deleteChar(char);
+
+                            char.resources.remove(resource);
                             await fileHandler.writeChar(char);
                             context
                                 .read<CharacterCubit>()
                                 .pickCharacter(char, fileHandler);
                             Navigator.pop(context);
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ResoureManager(
+                                  fileHandler: fileHandler,
+                                ),
+                              ),
+                            );
                           },
                         ),
                         title: Text(
@@ -79,7 +88,10 @@ class ResoureManager extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResourceForm(formKey: _formKey),
+                  builder: (context) => ResourceForm(
+                    formKey: formKey,
+                    fileHandler: fileHandler,
+                  ),
                 ),
               );
             },

@@ -21,7 +21,7 @@ class CurrentHpButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormBuilderState>();
+    final formKey = GlobalKey<FormBuilderState>();
     return Padding(
       padding: const EdgeInsets.only(bottom: 32.0, top: 8.0),
       child: Row(
@@ -33,18 +33,18 @@ class CurrentHpButtons extends StatelessWidget {
             ),
             onPressed: () async {
               FocusManager.instance.primaryFocus?.unfocus();
-              if (_formKey.currentState!.saveAndValidate()) {
-                await fileHandler.deleteChar(char);
-                var value = _formKey.currentState?.value['currentHpPicker'];
+              if (formKey.currentState!.saveAndValidate()) {
+                var value = formKey.currentState?.value['currentHpPicker'];
                 if (value == null || value == '') {
                   value = 1;
                 } else {
                   value = int.parse(
-                    _formKey.currentState?.value['currentHpPicker'],
+                    formKey.currentState?.value['currentHpPicker'],
                   );
                 }
                 value = max(0, char.currentHp - value);
                 char.currentHp = value;
+                await fileHandler.deleteChar(char);
                 await fileHandler.writeChar(char);
                 context.read<CharacterCubit>().pickCharacter(char, fileHandler);
               }
@@ -55,7 +55,7 @@ class CurrentHpButtons extends StatelessWidget {
             ),
           ),
           FormBuilder(
-            key: _formKey,
+            key: formKey,
             child: SizedBox(
               height: 50,
               width: 68,
@@ -87,14 +87,14 @@ class CurrentHpButtons extends StatelessWidget {
             ),
             onPressed: () async {
               FocusManager.instance.primaryFocus?.unfocus();
-              if (_formKey.currentState!.saveAndValidate()) {
+              if (formKey.currentState!.saveAndValidate()) {
                 await fileHandler.deleteChar(char);
-                var value = _formKey.currentState?.value['currentHpPicker'];
+                var value = formKey.currentState?.value['currentHpPicker'];
                 if (value == null || value == '') {
                   value = 1;
                 } else {
                   value = int.parse(
-                    _formKey.currentState?.value['currentHpPicker'],
+                    formKey.currentState?.value['currentHpPicker'],
                   );
                 }
                 value = min(char.hp, char.currentHp + value);

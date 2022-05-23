@@ -32,155 +32,160 @@ class EditChar extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          // ignore: use_decorated_box
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: AppColors.myGradient,
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            // ignore: use_decorated_box
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: AppColors.myGradient,
+              ),
+            ),
+            backgroundColor: AppColors.primary,
+            title: Text(
+              character.name,
+              style: AppTextStyles.appbar,
             ),
           ),
-          backgroundColor: AppColors.primary,
-          title: Text(
-            character.name,
-            style: AppTextStyles.appbar,
-          ),
-        ),
-        body: FormBuilder(
-          key: _formKey,
-          child: ListView(
-            //addAutomaticKeepAlives: true,
-            padding: const EdgeInsets.all(8.0),
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ClassForm(character: character),
-                  LevelForm(character: character),
-                ],
-              ),
-              const MyDivider(),
-              const Text(
-                'Character Name',
-                style: AppTextStyles.black18,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FormBuilderTextField(
-                  maxLength: 20,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(errorText: 'Enter name'),
-                    (newName) {
-                      if (names.contains(newName) &&
-                          newName != character.name) {
-                        return 'Name taken';
-                      }
-                      return null;
-                    }
-                  ]),
-                  initialValue: character.name,
-                  name: 'namePicker',
-                  decoration: const InputDecoration(
-                    counterText: '',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    labelText: 'Name',
-                  ),
-                ),
-              ),
-              const MyDivider(),
-              const Text(
-                'Character Subclass',
-                style: AppTextStyles.black18,
-              ),
-              SubclassForm(character: character),
-              const MyDivider(),
-              const Text(
-                'Character Race',
-                style: AppTextStyles.black18,
-              ),
-              RaceForm(character: character),
-              const MyDivider(),
-              const Text(
-                'Character Stats',
-                style: AppTextStyles.black18,
-              ),
-              GridView.count(
-                physics: const NeverScrollableScrollPhysics(),
-                childAspectRatio: 2,
-                crossAxisCount: 3,
-                shrinkWrap: true,
-                children: stats
-                    .map(
-                      (stat) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: FormBuilderTextField(
-                          keyboardType: TextInputType.number,
-                          maxLength: 2,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                              errorText: 'Enter value',
-                            ),
-                            FormBuilderValidators.integer(
-                              errorText: 'Enter a number',
-                            ),
-                          ]),
-                          initialValue: character.stats[stat].toString(),
-                          name: '${stat.toLowerCase()}Picker',
-                          decoration: InputDecoration(
-                            counterText: '',
-                            border: const OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                            ),
-                            labelText: stat,
-                          ),
-                        ),
-                      ),
-                    )
-                    .toList(),
-              ),
-              const MyDivider(),
-              const Text(
-                'Saving throw proficiency',
-                style: AppTextStyles.black18,
-              ),
-              SavesForm(character: character),
-              const Padding(
-                padding: EdgeInsets.only(top: 8),
-                child: Text(
-                  'Skills',
-                  style: AppTextStyles.black18,
-                ),
-              ),
-              SkillsForm(character: character),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Row(
+          body: FormBuilder(
+            key: _formKey,
+            child: ListView(
+              //addAutomaticKeepAlives: true,
+              padding: const EdgeInsets.all(8.0),
+              children: [
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    HpForm(character: character),
-                    AcForm(character: character),
+                    ClassForm(character: character),
+                    LevelForm(character: character),
                   ],
                 ),
-              ),
-              const MyDivider(),
-              DeleteButton(fileHandler: fileHandler, character: character),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 100),
-              ),
-            ],
+                const MyDivider(),
+                const Text(
+                  'Character Name',
+                  style: AppTextStyles.black18,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FormBuilderTextField(
+                    maxLength: 20,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(errorText: 'Enter name'),
+                      (newName) {
+                        if (names.contains(newName) &&
+                            newName != character.name) {
+                          return 'Name taken';
+                        }
+                        return null;
+                      }
+                    ]),
+                    initialValue: character.name,
+                    name: 'namePicker',
+                    decoration: const InputDecoration(
+                      counterText: '',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      labelText: 'Name',
+                    ),
+                  ),
+                ),
+                const MyDivider(),
+                const Text(
+                  'Character Subclass',
+                  style: AppTextStyles.black18,
+                ),
+                SubclassForm(character: character),
+                const MyDivider(),
+                const Text(
+                  'Character Race',
+                  style: AppTextStyles.black18,
+                ),
+                RaceForm(character: character),
+                const MyDivider(),
+                const Text(
+                  'Character Stats',
+                  style: AppTextStyles.black18,
+                ),
+                GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
+                  childAspectRatio: 2,
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  children: stats
+                      .map(
+                        (stat) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: FormBuilderTextField(
+                            keyboardType: TextInputType.number,
+                            maxLength: 2,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(
+                                errorText: 'Enter value',
+                              ),
+                              FormBuilderValidators.integer(
+                                errorText: 'Enter a number',
+                              ),
+                            ]),
+                            initialValue: character.stats[stat].toString(),
+                            name: '${stat.toLowerCase()}Picker',
+                            decoration: InputDecoration(
+                              counterText: '',
+                              border: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              labelText: stat,
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+                const MyDivider(),
+                const Text(
+                  'Saving throw proficiency',
+                  style: AppTextStyles.black18,
+                ),
+                SavesForm(character: character),
+                const Padding(
+                  padding: EdgeInsets.only(top: 8),
+                  child: Text(
+                    'Skills',
+                    style: AppTextStyles.black18,
+                  ),
+                ),
+                SkillsForm(character: character),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      HpForm(character: character),
+                      AcForm(character: character),
+                    ],
+                  ),
+                ),
+                const MyDivider(),
+                DeleteButton(fileHandler: fileHandler, character: character),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 100),
+                ),
+              ],
+            ),
           ),
-        ),
-        floatingActionButton: ConfirmButton(
-          formKey: _formKey,
-          fileHandler: fileHandler,
-          character: character,
+          floatingActionButton: ConfirmButton(
+            formKey: _formKey,
+            fileHandler: fileHandler,
+            character: character,
+          ),
         ),
       );
 }
@@ -207,9 +212,9 @@ class ConfirmButton extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
           onPressed: () async {
-            await fileHandler.deleteChar(character);
-
+            FocusManager.instance.primaryFocus?.unfocus();
             if (_formKey.currentState!.saveAndValidate()) {
+              await fileHandler.deleteChar(character);
               Map<String, dynamic>? data = _formKey.currentState?.value;
               await fileHandler.writeChar(
                 Character(
@@ -238,7 +243,6 @@ class ConfirmButton extends StatelessWidget {
                 ),
               );
               Navigator.pop(context);
-              //_formKey.currentState!.reset();
             }
             _formKey.currentState!.validate();
           },
