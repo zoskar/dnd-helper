@@ -95,8 +95,7 @@ class CharTab extends StatelessWidget {
                   (stat) => Card(
                     color: AppColors.n,
                     shadowColor: AppColors.secondary,
-                    elevation: 3
-                    ,
+                    elevation: 3,
                     child: Column(
                       children: [
                         Padding(
@@ -118,7 +117,8 @@ class CharTab extends StatelessWidget {
                           color: AppColors.background,
                           child: Text(
                             int.parse(char.stats[stat].toString()) - 10 > 0
-                                ? '+${((int.parse(char.stats[stat]) - 10) / 2).floor()}'
+                                ? '+${((int.parse(char.stats[stat]) - 10) / 2)
+                                .floor()}'
                                 : ((int.parse(char.stats[stat].toString()) -
                                             10) /
                                         2)

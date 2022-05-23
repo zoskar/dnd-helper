@@ -19,62 +19,67 @@ class StatusTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Character char = context.read<CharacterCubit>().pickedChar;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'AC: ${char.ac}',
-                  style: AppTextStyles.black24,
-                ),
-                Text(
-                  'HP: ${char.currentHp}/${char.hp}',
-                  style: AppTextStyles.black24,
-                ),
-              ],
-            ),
-          ),
-          CurrentHpButtons(
-            fileHandler: fileHandler,
-            char: char,
-          ),
-          Flexible(
-            child: ListView.builder(
-              itemCount: char.resources.length,
-              itemBuilder: (context, index) => ListTile(
-                title: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Row(
-                    children: _getResources(index, char, context),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'AC: ${char.ac}',
+                    style: AppTextStyles.black24,
                   ),
-                ),
-                subtitle: Text(
-                  char.resources[index].name,
-                  style: AppTextStyles.black14,
+                  Text(
+                    'HP: ${char.currentHp}/${char.hp}',
+                    style: AppTextStyles.black24,
+                  ),
+                ],
+              ),
+            ),
+            CurrentHpButtons(
+              fileHandler: fileHandler,
+              char: char,
+            ),
+            Flexible(
+              child: ListView.builder(
+                itemCount: char.resources.length,
+                itemBuilder: (context, index) => ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Row(
+                      children: _getResources(index, char, context),
+                    ),
+                  ),
+                  subtitle: Text(
+                    char.resources[index].name,
+                    style: AppTextStyles.black14,
+                  ),
                 ),
               ),
             ),
-          ),
-          RestButtons(fileHandler: fileHandler, char: char),
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ResoureManager(
-                    fileHandler: fileHandler,
+            RestButtons(fileHandler: fileHandler, char: char),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResoureManager(
+                      fileHandler: fileHandler,
+                    ),
                   ),
-                ),
-              );
-            },
-            child: const Text('Manage resources'),
-          )
-        ],
+                );
+              },
+              child: const Text('Manage resources'),
+            )
+          ],
+        ),
       ),
     );
   }
