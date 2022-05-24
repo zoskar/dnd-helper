@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-
-
 class AppTextStyles {
-
   static const black12 = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.black,
@@ -39,11 +36,23 @@ class AppTextStyles {
     color: Colors.black,
     fontSize: 24,
   );
- 
-  static const black40 = TextStyle(
+
+  static const black28 = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.black,
-    fontSize: 40,
+    fontSize: 28,
+  );
+
+  static const black44 = TextStyle(
+    fontFamily: 'Montserrat',
+    color: Colors.black,
+    fontSize: 44,
+  );
+
+    static const white44 = TextStyle(
+    fontFamily: 'Montserrat',
+    color: Colors.white,
+    fontSize: 44,
   );
   static const appbar = TextStyle(
     fontFamily: 'Montserrat',

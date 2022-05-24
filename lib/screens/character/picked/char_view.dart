@@ -20,39 +20,39 @@ class CharView extends StatefulWidget {
 class _CharViewState extends State<CharView> {
   @override
   Widget build(BuildContext context) => DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        body: DefaultTabController(
-          length: 3,
-          child: Column(
-            children: [
-              const TabBar(
-                tabs: [
-                  Tab(
-                    text: 'Character',
-                  ),
-                  Tab(
-                    text: 'Skills',
-                  ),
-                  Tab(
-                    text: 'Status',
-                  ),
-                ],
-                labelColor: Colors.black,
-                indicatorColor: AppColors.primary,
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    CharTab(fileHandler: widget.fileHandler),
-                    const SkillsTab(),
-                    StatusTab(fileHandler: widget.fileHandler),
+        length: 3,
+        child: Scaffold(
+          body: DefaultTabController(
+            length: 3,
+            child: Column(
+              children: [
+                const TabBar(
+                  tabs: [
+                    Tab(
+                      text: 'Character',
+                    ),
+                    Tab(
+                      text: 'Skills',
+                    ),
+                    Tab(
+                      text: 'Status',
+                    ),
                   ],
+                  labelColor: Colors.black,
+                  indicatorColor: AppColors.primary,
                 ),
-              ),
-            ],
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      CharTab(fileHandler: widget.fileHandler),
+                      const SkillsTab(),
+                      StatusTab(fileHandler: widget.fileHandler),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
 }

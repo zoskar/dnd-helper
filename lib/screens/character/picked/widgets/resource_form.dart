@@ -154,6 +154,9 @@ class ResourceForm extends StatelessWidget {
                               onShortRest: data?['resCooldownPicker'],
                             ),
                           );
+                          char.resources.sort(
+                            (a, b) => a.name.compareTo(b.name),
+                          );
                           await fileHandler.deleteChar(char);
                           await fileHandler.writeChar(char);
                           context

@@ -32,9 +32,13 @@ class EditChar extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
+  Widget build(BuildContext context) => WillPopScope(
+        onWillPop: () async {
+          if (MediaQuery.of(context).viewInsets.bottom != 0) {
+            FocusManager.instance.primaryFocus?.unfocus();
+            return false;
+          }
+          return true;
         },
         child: Scaffold(
           appBar: AppBar(

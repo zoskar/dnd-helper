@@ -33,47 +33,51 @@ class RulesPage extends StatelessWidget {
               return Text(state.failure.message);
             } else if (state is RuleSectionLoaded) {
               final rules = state.rules;
-              return ListView.builder(
-                itemCount: rules.length,
-                itemBuilder: (context, index) {
-                  final RuleSection rule = rules[index]!;
+              return rules.where((e) => e != null).isEmpty
+                  ? const Text(
+                      'No rules found - check your internet connection',
+                    )
+                  : ListView.builder(
+                      itemCount: rules.length,
+                      itemBuilder: (context, index) {
+                        final RuleSection rule = rules[index]!;
 
-                  return ExpansionTile(
-                    collapsedBackgroundColor: Colors.white,
-                    collapsedIconColor: AppColors.secondary,
-                    //collapsedTextColor: Colors.amber,
-                    iconColor: AppColors.primary,
-                    textColor: AppColors.primary,
-                    backgroundColor: Colors.grey.shade100,
-                    title: Text(
-                      rule.name,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    children: rule.subsections
-                        .map(
-                          (r) => InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SingleRulePage(
-                                    ruleURL: r['url']!,
+                        return ExpansionTile(
+                          collapsedBackgroundColor: Colors.white,
+                          collapsedIconColor: AppColors.secondary,
+                          //collapsedTextColor: Colors.amber,
+                          iconColor: AppColors.primary,
+                          textColor: AppColors.primary,
+                          backgroundColor: Colors.grey.shade100,
+                          title: Text(
+                            rule.name,
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                          children: rule.subsections
+                              .map(
+                                (r) => InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SingleRulePage(
+                                          ruleURL: r['url']!,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: ListTile(
+                                    title: Text(
+                                      r['name']!,
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
                                   ),
                                 ),
-                              );
-                            },
-                            child: ListTile(
-                              title: Text(
-                                r['name']!,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  );
-                },
-              );
+                              )
+                              .toList(),
+                        );
+                      },
+                    );
             }
             return const SizedBox.shrink();
           },

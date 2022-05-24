@@ -14,9 +14,12 @@ class CharTab extends StatelessWidget {
   }) : super(key: key);
 
   final FileHandler fileHandler;
+  final double _buttonHeight = 4;
+  final double _buttonWidth = 8;
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
     final Character char = context.read<CharacterCubit>().pickedChar;
     return Padding(
       padding: const EdgeInsets.all(12.0),
@@ -34,29 +37,79 @@ class CharTab extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            char.name,
-            style: AppTextStyles.black40,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: AppColors.n,
+              ),
+              width: width,
+              height: 80,
+              alignment: Alignment.center,
+              child: Text(
+                char.name,
+                style: AppTextStyles.black44,
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  child: Text(
-                    char.race,
-                    style: AppTextStyles.black18,
+                DecoratedBox(
+                  decoration: const BoxDecoration(
+                    color: AppColors.background,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: _buttonHeight,
+                      bottom: _buttonHeight,
+                      left: _buttonWidth,
+                      right: _buttonWidth,
+                    ),
+                    child: Text(
+                      char.race,
+                      style: AppTextStyles.black18,
+                    ),
                   ),
                 ),
-                SizedBox(
-                  child:
-                      Text(char.characterClass, style: AppTextStyles.black18),
+                DecoratedBox(
+                  decoration: const BoxDecoration(
+                    color: AppColors.background,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: _buttonHeight,
+                      bottom: _buttonHeight,
+                      left: _buttonWidth,
+                      right: _buttonWidth,
+                    ),
+                    child: Text(
+                      char.characterClass,
+                      style: AppTextStyles.black18,
+                    ),
+                  ),
                 ),
-                SizedBox(
-                  child: Text(
-                    'Level ${char.level}',
-                    style: AppTextStyles.black18,
+                DecoratedBox(
+                  decoration: const BoxDecoration(
+                    color: AppColors.background,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: _buttonHeight,
+                      bottom: _buttonHeight,
+                      left: _buttonWidth,
+                      right: _buttonWidth,
+                    ),
+                    child: Text(
+                      'Level ${char.level}',
+                      style: AppTextStyles.black18,
+                    ),
                   ),
                 ),
               ],
@@ -64,9 +117,23 @@ class CharTab extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(
-              char.subclass,
-              style: AppTextStyles.black18,
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                    color: AppColors.background,
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: _buttonHeight,
+                  bottom: _buttonHeight,
+                  left: _buttonWidth,
+                  right: _buttonWidth,
+                ),
+                child: Text(
+                  char.subclass,
+                      style: AppTextStyles.black18,
+                ),
+              ),
             ),
           ),
           Padding(
@@ -76,11 +143,11 @@ class CharTab extends StatelessWidget {
               children: [
                 Text(
                   'Max HP: ${char.hp}',
-                  style: AppTextStyles.black24,
+                  style: AppTextStyles.black28,
                 ),
                 Text(
                   'AC: ${char.ac}',
-                  style: AppTextStyles.black24,
+                  style: AppTextStyles.black28,
                 ),
               ],
             ),
@@ -107,14 +174,17 @@ class CharTab extends StatelessWidget {
                         ),
                         Text(
                           char.stats[stat].toString(),
-                          style: AppTextStyles.black40,
+                          style: AppTextStyles.black44,
                         ),
                         const Spacer(),
                         Container(
+                          decoration: const BoxDecoration(
+                            color: AppColors.background,
+                            borderRadius: BorderRadius.all(Radius.circular(4)),
+                          ),
                           alignment: Alignment.center,
                           height: 16,
                           width: 40,
-                          color: AppColors.background,
                           child: Text(
                             int.parse(char.stats[stat].toString()) - 10 > 0
                                 ? '+${((int.parse(char.stats[stat]) - 10) / 2)
