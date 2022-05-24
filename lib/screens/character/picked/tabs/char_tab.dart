@@ -21,189 +21,213 @@ class CharTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final Character char = context.read<CharacterCubit>().pickedChar;
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: InkWell(
-              onTap: () {
-                context.read<CharacterCubit>().switchCharacter(fileHandler);
-              },
-              child: const Icon(
-                Icons.arrow_back_ios,
-                size: 30,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: AppColors.n,
-              ),
-              width: width,
-              height: 80,
-              alignment: Alignment.center,
-              child: Text(
-                char.name,
-                style: AppTextStyles.black44,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: AppColors.background,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+    return WillPopScope(
+      onWillPop: () async {
+        context.read<CharacterCubit>().switchCharacter(fileHandler);
+        return false;
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: InkWell(
+                  onTap: () {
+                    context.read<CharacterCubit>().switchCharacter(fileHandler);
+                  },
+                  child: const Icon(
+                    Icons.arrow_back_ios,
+                    size: 30,
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: width,
+                  alignment: Alignment.center,
                   child: Padding(
-                    padding: EdgeInsets.only(
-                      top: _buttonHeight,
-                      bottom: _buttonHeight,
-                      left: _buttonWidth,
-                      right: _buttonWidth,
-                    ),
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      char.race,
-                      style: AppTextStyles.black18,
+                      char.name,
+                      style: AppTextStyles.primary44,
                     ),
                   ),
-                ),
-                DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: AppColors.background,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: _buttonHeight,
-                      bottom: _buttonHeight,
-                      left: _buttonWidth,
-                      right: _buttonWidth,
-                    ),
-                    child: Text(
-                      char.characterClass,
-                      style: AppTextStyles.black18,
-                    ),
-                  ),
-                ),
-                DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: AppColors.background,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: _buttonHeight,
-                      bottom: _buttonHeight,
-                      left: _buttonWidth,
-                      right: _buttonWidth,
-                    ),
-                    child: Text(
-                      'Level ${char.level}',
-                      style: AppTextStyles.black18,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                    color: AppColors.background,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: _buttonHeight,
-                  bottom: _buttonHeight,
-                  left: _buttonWidth,
-                  right: _buttonWidth,
-                ),
-                child: Text(
-                  char.subclass,
-                      style: AppTextStyles.black18,
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Max HP: ${char.hp}',
-                  style: AppTextStyles.black28,
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    DecoratedBox(
+                      decoration: const BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: _buttonHeight,
+                          bottom: _buttonHeight,
+                          left: _buttonWidth,
+                          right: _buttonWidth,
+                        ),
+                        child: Text(
+                          char.race,
+                          style: AppTextStyles.white18,
+                        ),
+                      ),
+                    ),
+                    DecoratedBox(
+                      decoration: const BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: _buttonHeight,
+                          bottom: _buttonHeight,
+                          left: _buttonWidth,
+                          right: _buttonWidth,
+                        ),
+                        child: Text(
+                          char.characterClass,
+                          style: AppTextStyles.white18,
+                        ),
+                      ),
+                    ),
+                    DecoratedBox(
+                      decoration: const BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: _buttonHeight,
+                          bottom: _buttonHeight,
+                          left: _buttonWidth,
+                          right: _buttonWidth,
+                        ),
+                        child: Text(
+                          'Level ${char.level}',
+                          style: AppTextStyles.white18,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  'AC: ${char.ac}',
-                  style: AppTextStyles.black28,
+              ),
+              if (char.subclass != '')
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: DecoratedBox(
+                    decoration: const BoxDecoration(
+                      color: AppColors.background,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: _buttonHeight,
+                        bottom: _buttonHeight,
+                        left: _buttonWidth,
+                        right: _buttonWidth,
+                      ),
+                      child: Text(
+                        char.subclass,
+                        style: AppTextStyles.black18,
+                      ),
+                    ),
+                  ),
                 ),
-              ],
-            ),
-          ),
-          GridView.count(
-            physics: const NeverScrollableScrollPhysics(),
-            //childAspectRatio: 1.0,
-            crossAxisCount: 3,
-            shrinkWrap: true,
-            children: stats
-                .map(
-                  (stat) => Card(
-                    color: AppColors.n,
-                    shadowColor: AppColors.secondary,
-                    elevation: 3,
-                    child: Column(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8, top: 4),
-                          child: Text(
-                            stat,
-                            style: AppTextStyles.black16,
-                          ),
+                        const Text(
+                          'Max HP',
+                          style: AppTextStyles.black28,
                         ),
                         Text(
-                          char.stats[stat].toString(),
+                          '${char.hp}',
                           style: AppTextStyles.black44,
-                        ),
-                        const Spacer(),
-                        Container(
-                          decoration: const BoxDecoration(
-                            color: AppColors.background,
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                          ),
-                          alignment: Alignment.center,
-                          height: 16,
-                          width: 40,
-                          child: Text(
-                            int.parse(char.stats[stat].toString()) - 10 > 0
-                                ? '+${((int.parse(char.stats[stat]) - 10) / 2)
-                                .floor()}'
-                                : ((int.parse(char.stats[stat].toString()) -
-                                            10) /
-                                        2)
-                                    .round()
-                                    .toString(),
-                            style: AppTextStyles.black14,
-                          ),
                         ),
                       ],
                     ),
-                  ),
-                )
-                .toList(),
-          )
-        ],
+                    Column(
+                      children: [
+                        const Text(
+                          'AC',
+                          style: AppTextStyles.black28,
+                        ),
+                        Text(
+                          '${char.ac}',
+                          style: AppTextStyles.black44,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              GridView.count(
+                physics: const NeverScrollableScrollPhysics(),
+                //childAspectRatio: 1.0,
+                crossAxisCount: 3,
+                shrinkWrap: true,
+                children: stats
+                    .map(
+                      (stat) => Card(
+                        color: AppColors.light,
+                        shadowColor: AppColors.secondary,
+                        elevation: 3,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8, top: 4),
+                              child: Text(
+                                stat,
+                                style: AppTextStyles.black16,
+                              ),
+                            ),
+                            Text(
+                              char.stats[stat].toString(),
+                              style: AppTextStyles.black44,
+                            ),
+                            const Spacer(),
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: AppColors.secondary,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4)),
+                              ),
+                              alignment: Alignment.center,
+                              height: 16,
+                              width: 40,
+                              child: Text(
+                                int.parse(char.stats[stat].toString()) - 10 > 0
+                                    ? '+${((int.parse(char.stats[stat]) - 10)
+                                     / 2).floor()}'
+                                    : ((int.parse(char.stats[stat].toString()) -
+                                                10) /
+                                            2)
+                                        .round()
+                                        .toString(),
+                                style: AppTextStyles.white14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                    .toList(),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

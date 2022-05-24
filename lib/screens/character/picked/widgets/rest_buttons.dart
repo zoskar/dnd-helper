@@ -18,25 +18,21 @@ class RestButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(bottom: 16.0),
+        padding: const EdgeInsets.only(bottom: 8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             InkWell(
               child: Column(
                 children: [
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 3,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                      shape: BoxShape.circle,
-                      color: AppColors.background,
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(AppColors.n),
+                      shape: MaterialStateProperty.all<CircleBorder>(
+                        const CircleBorder(
+                            //side: BorderSide(color: Colors.red),
+                            ),
+                      ),
                     ),
                     child: const Padding(
                       padding: EdgeInsets.all(16.0),
@@ -45,78 +41,92 @@ class RestButtons extends StatelessWidget {
                         size: 32,
                       ),
                     ),
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Hold to short rest'),
+                          duration: Duration(milliseconds: 500),
+                        ),
+                      );
+                    },
+                    onLongPress: () async {
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Rested'),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                      await fileHandler.deleteChar(char);
+                      for (var i = 0; i < char.resources.length; i++) {
+                        if (char.resources[i].onShortRest) {
+                          char.resources[i].remainingUses =
+                              char.resources[i].maxUses;
+                        }
+                      }
+                      await fileHandler.writeChar(char);
+                      context
+                          .read<CharacterCubit>()
+                          .pickCharacter(char, fileHandler);
+                    },
                   ),
                   const Text('Short rest')
                 ],
               ),
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Hold to short rest'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              },
-              onLongPress: () async {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                await fileHandler.deleteChar(char);
-                for (var i = 0; i < char.resources.length; i++) {
-                  if (char.resources[i].onShortRest) {
-                    char.resources[i].remainingUses = char.resources[i].maxUses;
-                  }
-                }
-                await fileHandler.writeChar(char);
-                context.read<CharacterCubit>().pickCharacter(char, fileHandler);
-              },
             ),
             InkWell(
               child: Column(
                 children: [
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 3,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                      shape: BoxShape.circle,
-                      color: AppColors.background,
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(AppColors.n),
+                      shape: MaterialStateProperty.all<CircleBorder>(
+                        const CircleBorder(
+                            //side: BorderSide(color: AppColors.primary),
+                            ),
+                      ),
                     ),
                     child: const Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16),
                       child: Padding(
-                        padding: EdgeInsets.only(right: 6.0),
+                        padding: EdgeInsets.only(right: 8.0),
                         child: Icon(
                           CustomIcons.campground,
                           size: 32,
                         ),
                       ),
                     ),
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Hold to long rest'),
+                          duration: Duration(milliseconds: 500),
+                        ),
+                      );
+                    },
+                    onLongPress: () async {
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Rested'),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                      await fileHandler.deleteChar(char);
+                      for (var i = 0; i < char.resources.length; i++) {
+                        char.resources[i].remainingUses =
+                            char.resources[i].maxUses;
+                      }
+                      char.currentHp = char.hp;
+                      await fileHandler.writeChar(char);
+                      context
+                          .read<CharacterCubit>()
+                          .pickCharacter(char, fileHandler);
+                    },
                   ),
                   const Text('Long rest')
                 ],
               ),
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Hold to long rest'),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              },
-              onLongPress: () async {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                await fileHandler.deleteChar(char);
-                for (var i = 0; i < char.resources.length; i++) {
-                  char.resources[i].remainingUses = char.resources[i].maxUses;
-                }
-                char.currentHp = char.hp;
-                await fileHandler.writeChar(char);
-                context.read<CharacterCubit>().pickCharacter(char, fileHandler);
-              },
             )
           ],
         ),

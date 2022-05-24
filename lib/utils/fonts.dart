@@ -1,3 +1,4 @@
+import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
@@ -10,6 +11,11 @@ class AppTextStyles {
   static const black14 = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.black,
+    fontSize: 14,
+  );
+  static const white14 = TextStyle(
+    fontFamily: 'Montserrat',
+    color: Colors.white,
     fontSize: 14,
   );
 
@@ -49,11 +55,19 @@ class AppTextStyles {
     fontSize: 44,
   );
 
-    static const white44 = TextStyle(
+  static const white44 = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.white,
     fontSize: 44,
   );
+
+  static const primary44 = TextStyle(
+    fontFamily: 'Montserrat',
+    color: AppColors.primary,
+    fontSize: 44,
+    fontWeight: FontWeight.bold,
+  );
+
   static const appbar = TextStyle(
     fontFamily: 'Montserrat',
     color: Colors.white,

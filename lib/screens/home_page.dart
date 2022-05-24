@@ -25,8 +25,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) => WillPopScope(
         onWillPop: () async {
-          currentIndex = 1;
-          setState(() {});
+          if (currentIndex == 1) {
+            return true;
+          }
+          setState(() {
+            currentIndex = 1;
+          });
           return false;
         },
         child: Scaffold(
