@@ -23,24 +23,28 @@ class _HomePageState extends State<HomePage> {
   ];
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          // ignore: use_decorated_box
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: AppColors.myGradient,
+  Widget build(BuildContext context) => WillPopScope(
+        onWillPop: () async {
+          currentIndex = 1;
+          setState(() {});
+          return false;
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            // ignore: use_decorated_box
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: AppColors.myGradient,
+              ),
+            ),
+            title: const Text(
+              'Dnd Helper',
+              style: AppTextStyles.appbar,
             ),
           ),
-          title: const Text(
-            'Dnd Helper',
-            style: AppTextStyles.appbar,
-          ),
-        ),
-        body: screens[currentIndex],
-        bottomNavigationBar: SizedBox(
-          height: 72,
-          child: BottomNavigationBar(
+          body: screens[currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.shifting,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.white38,

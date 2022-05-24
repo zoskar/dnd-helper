@@ -51,7 +51,7 @@ class CurrentHpButtons extends StatelessWidget {
             },
             child: const Text(
               '-',
-              style: AppTextStyles.black40,
+              style: AppTextStyles.black44,
             ),
           ),
           FormBuilder(
@@ -105,7 +105,7 @@ class CurrentHpButtons extends StatelessWidget {
             },
             child: const Text(
               '+',
-              style: AppTextStyles.black40,
+              style: AppTextStyles.black44,
             ),
           ),
         ],

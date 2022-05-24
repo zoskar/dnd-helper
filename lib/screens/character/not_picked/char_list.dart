@@ -44,7 +44,6 @@ class CharacterPageState extends State<CharacterPage> {
               ),
               child: Column(
                 children: [
-                  
                   const Padding(
                     padding: EdgeInsets.only(top: 12.0),
                     child: Text(
@@ -113,31 +112,19 @@ class CharacterPageState extends State<CharacterPage> {
                     ),
                   ),
                   TextButton(
+                    style: TextButton.styleFrom(primary: Colors.blue),
                     onPressed: () async {
                       if (names.contains('New character')) return;
                       await fileHandler.writeChar(
                         Character(
                           characterClass: 'Druid',
                           hp: 10,
-                          currentHp: 5,
+                          currentHp: 10,
                           ac: 10,
                           level: 1,
                           name: 'New character',
-                          race: '',
-                          resources: [
-                            Resource(
-                              name: 'Action Surge',
-                              maxUses: 8,
-                              remainingUses: 3,
-                              onShortRest: false,
-                            ),
-                            Resource(
-                              name: 'Wild shape',
-                              maxUses: 2,
-                              remainingUses: 1,
-                              onShortRest: true,
-                            ),
-                          ],
+                          race: 'Human',
+                          resources: const [],
                           savingThrows: const [],
                           skills: const [],
                           stats: const {

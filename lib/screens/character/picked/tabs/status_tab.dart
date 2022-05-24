@@ -19,12 +19,16 @@ class StatusTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Character char = context.read<CharacterCubit>().pickedChar;
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
+    return WillPopScope(
+      onWillPop: () async {
+        if (MediaQuery.of(context).viewInsets.bottom != 0) {
+          FocusManager.instance.primaryFocus?.unfocus();
+          return false;
+        }
+        return true;
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Padding(
@@ -32,13 +36,55 @@ class StatusTab extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    'AC: ${char.ac}',
-                    style: AppTextStyles.black24,
+                  Container(
+                    height: 100,
+                    decoration: const BoxDecoration(
+                      //color: AppColors.background,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'AC',
+                          style: AppTextStyles.black24,
+                        ),
+                        Text(
+                          char.ac.toString(),
+                          style: AppTextStyles.black44,
+                        ),
+                      ],
+                    ),
                   ),
-                  Text(
-                    'HP: ${char.currentHp}/${char.hp}',
-                    style: AppTextStyles.black24,
+                  Container(
+                    height: 100,
+                    decoration: const BoxDecoration(
+                      //color: AppColors.background,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'HP',
+                          style: AppTextStyles.black24,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              '${char.currentHp}',
+                              style: AppTextStyles.black44,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: Text(
+                                '/${char.hp}',
+                                style: AppTextStyles.black16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
