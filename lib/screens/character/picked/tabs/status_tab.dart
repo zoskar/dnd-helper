@@ -21,110 +21,113 @@ class StatusTab extends StatelessWidget {
     final Character char = context.read<CharacterCubit>().pickedChar;
     return WillPopScope(
       onWillPop: () async {
-        if (MediaQuery.of(context).viewInsets.bottom != 0) {
-          FocusManager.instance.primaryFocus?.unfocus();
-          return false;
-        }
-        return true;
+        DefaultTabController.of(context)?.animateTo(0);
+        return false;
       },
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    height: 100,
-                    decoration: const BoxDecoration(
-                      //color: AppColors.background,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+      child: GestureDetector(
+        onTap: () {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          context.read<CharacterCubit>().pickCharacter(char, fileHandler);
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: 100,
+                      decoration: const BoxDecoration(
+                        //color: AppColors.background,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Column(
+                        children: [
+                          const Text(
+                            'AC',
+                            style: AppTextStyles.black24,
+                          ),
+                          Text(
+                            char.ac.toString(),
+                            style: AppTextStyles.black44,
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      children: [
-                        const Text(
-                          'AC',
-                          style: AppTextStyles.black24,
-                        ),
-                        Text(
-                          char.ac.toString(),
-                          style: AppTextStyles.black44,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 100,
-                    decoration: const BoxDecoration(
-                      //color: AppColors.background,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: Column(
-                      children: [
-                        const Text(
-                          'HP',
-                          style: AppTextStyles.black24,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              '${char.currentHp}',
-                              style: AppTextStyles.black44,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: Text(
-                                '/${char.hp}',
-                                style: AppTextStyles.black16,
+                    Container(
+                      height: 100,
+                      decoration: const BoxDecoration(
+                        //color: AppColors.background,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Column(
+                        children: [
+                          const Text(
+                            'HP',
+                            style: AppTextStyles.black24,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                '${char.currentHp}',
+                                style: AppTextStyles.black44,
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  '/${char.hp}',
+                                  style: AppTextStyles.black16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            CurrentHpButtons(
-              fileHandler: fileHandler,
-              char: char,
-            ),
-            Flexible(
-              child: ListView.builder(
-                itemCount: char.resources.length,
-                itemBuilder: (context, index) => ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Row(
-                      children: _getResources(index, char, context),
+              CurrentHpButtons(
+                fileHandler: fileHandler,
+                char: char,
+              ),
+              Flexible(
+                child: ListView.builder(
+                  itemCount: char.resources.length,
+                  itemBuilder: (context, index) => ListTile(
+                    title: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Row(
+                        children: _getResources(index, char, context),
+                      ),
                     ),
-                  ),
-                  subtitle: Text(
-                    char.resources[index].name,
-                    style: AppTextStyles.black14,
+                    subtitle: Text(
+                      char.resources[index].name,
+                      style: AppTextStyles.black14,
+                    ),
                   ),
                 ),
               ),
-            ),
-            RestButtons(fileHandler: fileHandler, char: char),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ResoureManager(
-                      fileHandler: fileHandler,
+              RestButtons(fileHandler: fileHandler, char: char),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResoureManager(
+                        fileHandler: fileHandler,
+                      ),
                     ),
-                  ),
-                );
-              },
-              child: const Text('Manage resources'),
-            )
-          ],
+                  );
+                },
+                child: const Text('Manage resources'),
+              )
+            ],
+          ),
         ),
       ),
     );

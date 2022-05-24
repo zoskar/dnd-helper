@@ -16,13 +16,86 @@ class SkillsTab extends StatelessWidget {
     final Character char = context.read<CharacterCubit>().pickedChar;
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Card(
-                color: AppColors.n,
+      child: WillPopScope(
+        onWillPop: () async {
+          DefaultTabController.of(context)?.animateTo(0);
+          return false;
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Card(
+                  color: AppColors.light,
+                  shadowColor: AppColors.secondary,
+                  elevation: 3,
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'Saving Throws',
+                          style: AppTextStyles.black18,
+                        ),
+                      ),
+                      ListView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        children: stats.map((s) {
+                          final bool prof = char.savingThrows.contains(s);
+                          int value =
+                              ((int.parse(char.stats[s].toString()) - 10) / 2)
+                                  .floor();
+                          if (prof) {
+                            value += proficiency[char.level] as int;
+                          }
+                          return Row(
+                            children: [
+                              if (prof)
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(Icons.circle),
+                                )
+                              else
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(Icons.circle_outlined),
+                                ),
+                              SizedBox(
+                                width: 40,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    if (value > 0)
+                                      const Text(
+                                        '+',
+                                        style: AppTextStyles.black16,
+                                      ),
+                                    Text(
+                                      value.toString(),
+                                      style: AppTextStyles.black16,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  statistics[s].toString(),
+                                  style: AppTextStyles.black16,
+                                ),
+                              )
+                            ],
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                color: AppColors.light,
                 shadowColor: AppColors.secondary,
                 elevation: 3,
                 child: Column(
@@ -30,21 +103,24 @@ class SkillsTab extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        'Saving Throws',
+                        'Skills',
                         style: AppTextStyles.black18,
                       ),
                     ),
-                    ListView(
+                    GridView.count(
                       physics: const NeverScrollableScrollPhysics(),
+                      childAspectRatio: 3,
+                      crossAxisCount: 2,
                       shrinkWrap: true,
-                      children: stats.map((s) {
-                        final bool prof = char.savingThrows.contains(s);
+                      children: skills.map((s) {
+                        final bool prof = char.skills.contains(s);
+                        String? stat = bonuses[s];
                         int value =
-                            ((int.parse(char.stats[s].toString()) - 10) / 2)
+                            ((int.parse(char.stats[stat].toString()) - 10) / 2)
                                 .floor();
-                        if (prof) {
-                          value += proficiency[char.level] as int;
-                        }
+
+                        if (prof) value += proficiency[char.level] as int;
+
                         return Row(
                           children: [
                             if (prof)
@@ -57,105 +133,35 @@ class SkillsTab extends StatelessWidget {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(Icons.circle_outlined),
                               ),
-                            SizedBox(
-                              width: 40,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  if (value > 0)
-                                    const Text(
-                                      '+',
-                                      style: AppTextStyles.black16,
-                                    ),
-                                  Text(
-                                    value.toString(),
-                                    style: AppTextStyles.black16,
-                                  )
-                                ],
-                              ),
+                            Row(
+                              children: [
+                                if (value > 0)
+                                  const Text(
+                                    '+',
+                                    style: AppTextStyles.black12,
+                                  ),
+                                Text(
+                                  value.toString(),
+                                  style: AppTextStyles.black12,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 4),
+                                  child: Text(
+                                    s,
+                                    style: AppTextStyles.black12,
+                                  ),
+                                )
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                statistics[s].toString(),
-                                style: AppTextStyles.black16,
-                              ),
-                            )
                           ],
                         );
                       }).toList(),
-                    ),
+                    )
                   ],
                 ),
               ),
-            ),
-            Card(
-              color: AppColors.n,
-              shadowColor: AppColors.secondary,
-              elevation: 3,
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Skills',
-                      style: AppTextStyles.black18,
-                    ),
-                  ),
-                  GridView.count(
-                    physics: const NeverScrollableScrollPhysics(),
-                    childAspectRatio: 3,
-                    crossAxisCount: 2,
-                    shrinkWrap: true,
-                    children: skills.map((s) {
-                      final bool prof = char.skills.contains(s);
-                      String? stat = bonuses[s];
-                      int value =
-                          ((int.parse(char.stats[stat].toString()) - 10) / 2)
-                              .floor();
-
-                      if (prof) value += proficiency[char.level] as int;
-
-                      return Row(
-                        children: [
-                          if (prof)
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(Icons.circle),
-                            )
-                          else
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(Icons.circle_outlined),
-                            ),
-                          Row(
-                            children: [
-                              if (value > 0)
-                                const Text(
-                                  '+',
-                                  style: AppTextStyles.black12,
-                                ),
-                              Text(
-                                value.toString(),
-                                style: AppTextStyles.black12,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 4),
-                                child: Text(
-                                  s,
-                                  style: AppTextStyles.black12,
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      );
-                    }).toList(),
-                  )
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

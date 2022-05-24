@@ -14,9 +14,11 @@ class SubclassForm extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.all(8.0),
         child: FormBuilderTextField(
+          maxLength: 48,
           initialValue: character.subclass,
           name: 'subclassPicker',
           decoration: const InputDecoration(
+            counterText: '',
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(10),

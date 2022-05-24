@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dnd_helper/cubits/character_cubit.dart';
 import 'package:dnd_helper/data/file_handler.dart';
 import 'package:dnd_helper/data/models.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,8 @@ class CurrentHpButtons extends StatelessWidget {
         children: [
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.red.shade700,
+              // primary: Colors.red.shade700,
+              primary: AppColors.primary,
             ),
             onPressed: () async {
               FocusManager.instance.primaryFocus?.unfocus();
@@ -51,7 +53,7 @@ class CurrentHpButtons extends StatelessWidget {
             },
             child: const Text(
               '-',
-              style: AppTextStyles.black44,
+              style: AppTextStyles.white44,
             ),
           ),
           FormBuilder(
@@ -83,7 +85,7 @@ class CurrentHpButtons extends StatelessWidget {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.greenAccent.shade400,
+              primary: AppColors.secondary,
             ),
             onPressed: () async {
               FocusManager.instance.primaryFocus?.unfocus();
@@ -105,7 +107,7 @@ class CurrentHpButtons extends StatelessWidget {
             },
             child: const Text(
               '+',
-              style: AppTextStyles.black44,
+              style: AppTextStyles.white44,
             ),
           ),
         ],
