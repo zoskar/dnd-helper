@@ -4,6 +4,7 @@ import 'package:dnd_helper/data/models.dart';
 import 'package:dnd_helper/screens/character/picked/widgets/current_hp_form.dart';
 import 'package:dnd_helper/screens/character/picked/widgets/resource_manager.dart';
 import 'package:dnd_helper/screens/character/picked/widgets/rest_buttons.dart';
+import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ class StatusTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = ScrollController();
     final Character char = context.read<CharacterCubit>().pickedChar;
     return WillPopScope(
       onWillPop: () async {
@@ -30,11 +32,11 @@ class StatusTab extends StatelessWidget {
           context.read<CharacterCubit>().pickCharacter(char, fileHandler);
         },
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -96,18 +98,23 @@ class StatusTab extends StatelessWidget {
                 char: char,
               ),
               Flexible(
-                child: ListView.builder(
-                  itemCount: char.resources.length,
-                  itemBuilder: (context, index) => ListTile(
-                    title: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Row(
-                        children: _getResources(index, char, context),
+                child: Scrollbar(
+                  controller: scrollController,
+                  thumbVisibility: true,
+                  child: ListView.builder(
+                    controller: scrollController,
+                    itemCount: char.resources.length,
+                    itemBuilder: (context, index) => ListTile(
+                      title: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Row(
+                          children: _getResources(index, char, context),
+                        ),
                       ),
-                    ),
-                    subtitle: Text(
-                      char.resources[index].name,
-                      style: AppTextStyles.black14,
+                      subtitle: Text(
+                        char.resources[index].name,
+                        style: AppTextStyles.black14,
+                      ),
                     ),
                   ),
                 ),

@@ -114,9 +114,15 @@ class CharacterPageState extends State<CharacterPage> {
                   TextButton(
                     style: TextButton.styleFrom(primary: Colors.blue),
                     onPressed: () async {
-                      if (names.contains('New character')) return;
-                      await fileHandler.writeChar(
-                        Character(
+                      if (names.contains('New character')) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('New character already exists'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      } else {
+                        Character char = Character(
                           characterClass: 'Druid',
                           hp: 10,
                           currentHp: 10,
@@ -136,9 +142,18 @@ class CharacterPageState extends State<CharacterPage> {
                             'CHA': 10
                           },
                           subclass: '',
-                        ),
-                      );
-
+                        );
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditChar(
+                              character: char,
+                              fileHandler: fileHandler,
+                              names: names,
+                            ),
+                          ),
+                        );
+                      }
                       setState(() {});
                     },
                     child: const Text('New character'),
