@@ -5,6 +5,7 @@ import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/utils/custom_icons_icons.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,64 +24,69 @@ class _HomePageState extends State<HomePage> {
   ];
 
   @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: () async {
-          if (currentIndex == 1) {
-            return true;
-          }
-          setState(() {
-            currentIndex = 1;
-          });
-          return false;
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            // ignore: use_decorated_box
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: AppColors.myGradient,
-              ),
-            ),
-            title: const Text(
-              'Dnd Helper',
-              style: AppTextStyles.appbar,
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    return WillPopScope(
+      onWillPop: () async {
+        if (currentIndex == 1) {
+          return true;
+        }
+        setState(() {
+          currentIndex = 1;
+        });
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          // ignore: use_decorated_box
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: AppColors.myGradient,
             ),
           ),
-          body: screens[currentIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.shifting,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white38,
-            currentIndex: currentIndex,
-            onTap: (index) => setState(() => currentIndex = index),
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  CustomIcons.magic,
-                  size: 28,
-                ),
-                label: 'Spells',
-                backgroundColor: AppColors.primary,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  CustomIcons.person,
-                  size: 28,
-                ),
-                label: 'Character',
-                backgroundColor: AppColors.primary,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  CustomIcons.book_1,
-                  size: 28,
-                ),
-                label: 'Rules',
-                backgroundColor: AppColors.primary,
-              ),
-            ],
+          title: const Text(
+            'Dnd Helper',
+            style: AppTextStyles.appbar,
           ),
         ),
-      );
+        body: screens[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white38,
+          currentIndex: currentIndex,
+          onTap: (index) => setState(() => currentIndex = index),
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(
+                CustomIcons.magic,
+                size: 28,
+              ),
+              label: 'Spells',
+              backgroundColor: AppColors.primary,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                CustomIcons.person,
+                size: 28,
+              ),
+              label: 'Character',
+              backgroundColor: AppColors.primary,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                CustomIcons.book_1,
+                size: 28,
+              ),
+              label: 'Rules',
+              backgroundColor: AppColors.primary,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

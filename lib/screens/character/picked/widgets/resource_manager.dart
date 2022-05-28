@@ -51,7 +51,7 @@ class ResoureManager extends StatelessWidget {
                           ),
                           onTap: () async {
                             await fileHandler.deleteChar(char);
-
+    
                             char.resources.remove(resource);
                             char.resources.sort(
                               (a, b) => a.name.compareTo(b.name),

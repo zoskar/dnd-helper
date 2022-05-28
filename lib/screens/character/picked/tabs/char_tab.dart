@@ -44,21 +44,18 @@ class CharTab extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(bottom: 8.0),
                 child: Container(
                   width: width,
                   alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      char.name,
-                      style: AppTextStyles.primary44,
-                    ),
+                  child: Text(
+                    char.name,
+                    style: AppTextStyles.primary44,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -121,10 +118,10 @@ class CharTab extends StatelessWidget {
               ),
               if (char.subclass != '')
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: DecoratedBox(
                     decoration: const BoxDecoration(
-                      color: AppColors.background,
+                      color: AppColors.primary,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                     child: Padding(
@@ -136,7 +133,7 @@ class CharTab extends StatelessWidget {
                       ),
                       child: Text(
                         char.subclass,
-                        style: AppTextStyles.black18,
+                        style: AppTextStyles.white18,
                       ),
                     ),
                   ),
