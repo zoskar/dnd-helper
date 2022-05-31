@@ -2,7 +2,7 @@ import 'package:dnd_helper/cubits/character_cubit.dart';
 import 'package:dnd_helper/data/file_handler.dart';
 import 'package:dnd_helper/data/models.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
-import 'package:dnd_helper/utils/custom_icons_icons.dart';
+import 'package:dnd_helper/utils/custom_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
