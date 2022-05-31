@@ -2,7 +2,7 @@ import 'package:dnd_helper/screens/character/not_picked/char_list.dart';
 import 'package:dnd_helper/screens/rules/rule_sections.dart';
 import 'package:dnd_helper/screens/spells/spell_list.dart';
 import 'package:dnd_helper/utils/app_colors.dart';
-import 'package:dnd_helper/utils/custom_icons_icons.dart';
+import 'package:dnd_helper/utils/custom_icons.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

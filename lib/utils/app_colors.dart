@@ -23,7 +23,7 @@ class AppColors {
   );
 
   //wisnia
-  static const primary = Color.fromARGB(255, 129, 37, 45);
+  static const primary = Color(0xFF81252D);
 
   //static const secondary = Color.fromARGB(255, 171, 97, 115);
   static const secondary = Color(0xFF2F4858);

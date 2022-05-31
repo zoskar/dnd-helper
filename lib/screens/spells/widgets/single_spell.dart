@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:dnd_helper/utils/custom_icons_icons.dart';
+import 'package:dnd_helper/utils/custom_icons.dart';
 import 'package:dnd_helper/api/models.dart';
 import 'package:dnd_helper/utils/fonts.dart';
 import 'package:dnd_helper/widgets/divider.dart';
