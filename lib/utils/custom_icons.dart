@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/CustomIcons.ttf
 ///
-/// 
+///
 /// * Font Awesome 4, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL ()
@@ -39,13 +39,22 @@ class CustomIcons {
   static const _kFontFam = 'CustomIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData book_1 = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData broadsword = IconData(0xe946, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData campfire = IconData(0xe954, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData magic = IconData(0xf0d0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData copyright = IconData(0xf1f9, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hourglass_end = IconData(0xf253, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData registered = IconData(0xf25d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData person = IconData(0xf3c8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData campground = IconData(0xf6bb, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData book_1 =
+      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData broadsword =
+      IconData(0xe946, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData campfire =
+      IconData(0xe954, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData magic =
+      IconData(0xf0d0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData copyright =
+      IconData(0xf1f9, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData hourglass_end =
+      IconData(0xf253, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData registered =
+      IconData(0xf25d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData person =
+      IconData(0xf3c8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData campground =
+      IconData(0xf6bb, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

@@ -8,7 +8,6 @@ class RuleCubit extends Cubit<RuleState> {
 
   final ApiRepository apiRepository;
 
-
   Future<void> fetch(String ruleURL) async {
     emit(RuleLoading());
     try {

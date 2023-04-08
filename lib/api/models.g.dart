@@ -21,7 +21,7 @@ Map<String, dynamic> _$SpellListItemToJson(SpellListItem instance) =>
     };
 
 Spell _$SpellFromJson(Map<String, dynamic> json) => Spell(
-      id: json['_id'] as String,
+      id: json['index'] as String,
       desc: (json['desc'] as List<dynamic>).map((e) => e as String).toList(),
       higher_level: json['higher_level'] as List<dynamic>,
       range: json['range'] as String,

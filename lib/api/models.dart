@@ -84,6 +84,4 @@ class Rule {
   final String name;
   final String desc;
   Map<String, dynamic> toJson() => _$RuleToJson(this);
-
-  
 }

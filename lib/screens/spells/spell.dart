@@ -18,7 +18,6 @@ class SpellView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        // ignore: use_decorated_box
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppColors.myGradient,

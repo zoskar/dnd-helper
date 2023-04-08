@@ -22,7 +22,7 @@ class StatusTab extends StatelessWidget {
     final Character char = context.read<CharacterCubit>().pickedChar;
     return WillPopScope(
       onWillPop: () async {
-        DefaultTabController.of(context)?.animateTo(0);
+        DefaultTabController.of(context).animateTo(0);
         return false;
       },
       child: GestureDetector(

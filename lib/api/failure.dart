@@ -1,5 +1,4 @@
 class Failure {
-
   const Failure({
     this.message = '',
     this.code = '',

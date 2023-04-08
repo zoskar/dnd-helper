@@ -18,7 +18,7 @@ class SkillsTab extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: WillPopScope(
         onWillPop: () async {
-          DefaultTabController.of(context)?.animateTo(0);
+          DefaultTabController.of(context).animateTo(0);
           return false;
         },
         child: SingleChildScrollView(

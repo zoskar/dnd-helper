@@ -206,8 +206,7 @@ class CharTab extends StatelessWidget {
                               width: 40,
                               child: Text(
                                 int.parse(char.stats[stat].toString()) - 10 > 0
-                                    ? '+${((int.parse(char.stats[stat]) - 10)
-                                     / 2).floor()}'
+                                    ? '+${((int.parse(char.stats[stat]) - 10) / 2).floor()}'
                                     : ((int.parse(char.stats[stat].toString()) -
                                                 10) /
                                             2)
