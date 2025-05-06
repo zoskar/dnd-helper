@@ -10,8 +10,8 @@ class RestButtons extends StatelessWidget {
   const RestButtons({
     required this.fileHandler,
     required this.char,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
   final Character char;
@@ -27,8 +27,8 @@ class RestButtons extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(AppColors.n),
-                      shape: MaterialStateProperty.all<CircleBorder>(
+                      backgroundColor: WidgetStateProperty.all(AppColors.n),
+                      shape: WidgetStateProperty.all<CircleBorder>(
                         const CircleBorder(
                             //side: BorderSide(color: Colors.red),
                             ),
@@ -70,7 +70,7 @@ class RestButtons extends StatelessWidget {
                           .pickCharacter(char, fileHandler);
                     },
                   ),
-                  const Text('Short rest')
+                  const Text('Short rest'),
                 ],
               ),
             ),
@@ -79,8 +79,8 @@ class RestButtons extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(AppColors.n),
-                      shape: MaterialStateProperty.all<CircleBorder>(
+                      backgroundColor: WidgetStateProperty.all(AppColors.n),
+                      shape: WidgetStateProperty.all<CircleBorder>(
                         const CircleBorder(
                             //side: BorderSide(color: AppColors.primary),
                             ),
@@ -124,10 +124,10 @@ class RestButtons extends StatelessWidget {
                           .pickCharacter(char, fileHandler);
                     },
                   ),
-                  const Text('Long rest')
+                  const Text('Long rest'),
                 ],
               ),
-            )
+            ),
           ],
         ),
       );

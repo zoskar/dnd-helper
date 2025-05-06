@@ -11,8 +11,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class ResoureManager extends StatelessWidget {
   const ResoureManager({
     required this.fileHandler,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
 
@@ -24,7 +24,6 @@ class ResoureManager extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        // ignore: use_decorated_box
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppColors.myGradient,
@@ -76,7 +75,7 @@ class ResoureManager extends StatelessWidget {
                           style: AppTextStyles.black18,
                         ),
                       ),
-                      const Divider()
+                      const Divider(),
                     ],
                   ),
                 )
@@ -98,7 +97,7 @@ class ResoureManager extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
         ],
       ),
     );

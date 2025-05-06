@@ -14,8 +14,8 @@ List<int> levels = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 class SpellsPage extends StatefulWidget {
   const SpellsPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SpellsPage> createState() => _SpellsPageState();
@@ -36,7 +36,7 @@ class _SpellsPageState extends State<SpellsPage> {
                 const SearchField(),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: AppColors.secondary,
+                    backgroundColor: AppColors.secondary,
                     fixedSize: const Size(100, 52),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -138,7 +138,7 @@ class _SpellsPageState extends State<SpellsPage> {
                                       },
                                     );
                                   },
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -150,7 +150,7 @@ class _SpellsPageState extends State<SpellsPage> {
                   width: 120,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: AppColors.secondary,
+                      backgroundColor: AppColors.secondary,
                       fixedSize: const Size(100, 52),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -165,7 +165,7 @@ class _SpellsPageState extends State<SpellsPage> {
                       setState(() {});
                     },
                   ),
-                )
+                ),
               ],
             ),
           ),

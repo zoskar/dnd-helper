@@ -14,8 +14,8 @@ class CurrentHpButtons extends StatelessWidget {
   const CurrentHpButtons({
     required this.fileHandler,
     required this.char,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
   final Character char;
@@ -31,7 +31,7 @@ class CurrentHpButtons extends StatelessWidget {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               // primary: Colors.red.shade700,
-              primary: AppColors.primary,
+              backgroundColor: AppColors.primary,
             ),
             onPressed: () async {
               FocusManager.instance.primaryFocus?.unfocus();
@@ -85,7 +85,7 @@ class CurrentHpButtons extends StatelessWidget {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: AppColors.secondary,
+              backgroundColor: AppColors.secondary,
             ),
             onPressed: () async {
               FocusManager.instance.primaryFocus?.unfocus();

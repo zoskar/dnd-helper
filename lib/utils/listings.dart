@@ -22,7 +22,7 @@ final List<String> classes = [
   'Blood Hunter',
   'Artificer',
   'Monk',
-  'Fighter'
+  'Fighter',
 ];
 final List<String> skills = [
   'Athletics',
@@ -64,7 +64,7 @@ final List<int> levels = [
   17,
   18,
   19,
-  20
+  20,
 ];
 final Map<int, int> proficiency = {
   1: 2,

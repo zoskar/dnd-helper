@@ -23,8 +23,8 @@ class EditChar extends StatelessWidget {
     required this.names,
     required this.character,
     required this.fileHandler,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
   final Character character;
@@ -43,7 +43,6 @@ class EditChar extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            // ignore: use_decorated_box
             flexibleSpace: Container(
               decoration: const BoxDecoration(
                 gradient: AppColors.myGradient,
@@ -199,9 +198,8 @@ class ConfirmButton extends StatelessWidget {
     required GlobalKey<FormBuilderState> formKey,
     required this.fileHandler,
     required this.character,
-    Key? key,
-  })  : _formKey = formKey,
-        super(key: key);
+    super.key,
+  }) : _formKey = formKey;
 
   final GlobalKey<FormBuilderState> _formKey;
   final FileHandler fileHandler;
@@ -234,7 +232,7 @@ class ConfirmButton extends StatelessWidget {
                     'CON': data?['conPicker'],
                     'WIS': data?['wisPicker'],
                     'INT': data?['intPicker'],
-                    'CHA': data?['chaPicker']
+                    'CHA': data?['chaPicker'],
                   },
                   savingThrows:
                       data?['savingThrowPicker'] ?? character.savingThrows,

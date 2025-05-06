@@ -6,8 +6,8 @@ class DeleteButton extends StatelessWidget {
   const DeleteButton({
     required this.fileHandler,
     required this.character,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
   final Character character;
@@ -15,7 +15,7 @@ class DeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => TextButton(
         style: TextButton.styleFrom(
-          primary: Colors.red,
+          foregroundColor: Colors.red,
         ),
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(

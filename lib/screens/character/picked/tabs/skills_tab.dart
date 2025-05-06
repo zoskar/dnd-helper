@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SkillsTab extends StatelessWidget {
   const SkillsTab({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class SkillsTab extends StatelessWidget {
                                     Text(
                                       value.toString(),
                                       style: AppTextStyles.black16,
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -85,7 +85,7 @@ class SkillsTab extends StatelessWidget {
                                   statistics[s].toString(),
                                   style: AppTextStyles.black16,
                                 ),
-                              )
+                              ),
                             ],
                           );
                         }).toList(),
@@ -150,13 +150,13 @@ class SkillsTab extends StatelessWidget {
                                     s,
                                     style: AppTextStyles.black12,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ],
                         );
                       }).toList(),
-                    )
+                    ),
                   ],
                 ),
               ),

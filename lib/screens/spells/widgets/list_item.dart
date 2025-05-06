@@ -7,8 +7,8 @@ import 'package:dnd_helper/screens/spells/spell.dart';
 class SpellItem extends StatelessWidget {
   const SpellItem({
     required this.singleSpell,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final SpellListItem singleSpell;
 

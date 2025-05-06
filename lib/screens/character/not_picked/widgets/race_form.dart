@@ -6,8 +6,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class RaceForm extends StatelessWidget {
   const RaceForm({
     required this.character,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Character character;
 

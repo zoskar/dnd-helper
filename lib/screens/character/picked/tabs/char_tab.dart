@@ -10,8 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CharTab extends StatelessWidget {
   const CharTab({
     required this.fileHandler,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
   final double _buttonHeight = 4;
@@ -220,7 +220,7 @@ class CharTab extends StatelessWidget {
                       ),
                     )
                     .toList(),
-              )
+              ),
             ],
           ),
         ),

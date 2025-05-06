@@ -11,8 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class StatusTab extends StatelessWidget {
   const StatusTab({
     required this.fileHandler,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
 
@@ -131,7 +131,7 @@ class StatusTab extends StatelessWidget {
                   );
                 },
                 child: const Text('Manage resources'),
-              )
+              ),
             ],
           ),
         ),

@@ -6,7 +6,7 @@ import 'package:dnd_helper/utils/app_colors.dart';
 import 'package:dnd_helper/screens/rules/rule_view.dart';
 
 class RulesPage extends StatelessWidget {
-  const RulesPage({Key? key}) : super(key: key);
+  const RulesPage({super.key});
 
   static const List<String> rulesList = [
     'adventuring',
@@ -14,7 +14,7 @@ class RulesPage extends StatelessWidget {
     'combat',
     'equipment',
     'spellcasting',
-    'using-ability-scores'
+    'using-ability-scores',
   ];
 
   @override

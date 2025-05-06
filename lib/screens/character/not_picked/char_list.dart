@@ -10,7 +10,7 @@ import 'package:dnd_helper/data/file_handler.dart';
 import 'package:dnd_helper/data/models.dart';
 
 class CharacterPage extends StatefulWidget {
-  const CharacterPage({Key? key}) : super(key: key);
+  const CharacterPage({super.key});
 
   @override
   CharacterPageState createState() => CharacterPageState();
@@ -103,7 +103,7 @@ class CharacterPageState extends State<CharacterPage> {
                                   '${charList[index].characterClass} lvl '
                                   '${charList[index].level}',
                                   style: AppTextStyles.black14,
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -112,7 +112,7 @@ class CharacterPageState extends State<CharacterPage> {
                     ),
                   ),
                   TextButton(
-                    style: TextButton.styleFrom(primary: Colors.blue),
+                    style: TextButton.styleFrom(foregroundColor: Colors.blue),
                     onPressed: () async {
                       if (names.contains('New character')) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -139,7 +139,7 @@ class CharacterPageState extends State<CharacterPage> {
                             'CON': 10,
                             'WIS': 10,
                             'INT': 10,
-                            'CHA': 10
+                            'CHA': 10,
                           },
                           subclass: '',
                         );
