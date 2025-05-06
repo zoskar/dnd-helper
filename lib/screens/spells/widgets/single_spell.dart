@@ -68,7 +68,7 @@ class SpellContent extends StatelessWidget {
             const MyDivider(),
             Text(
               '${spell.desc.join(", ").toString()}\n\n'
-              '${spell.higherLevel.isEmpty ? '' : spell.higherLevel[0].toString()}',
+              '${spell.higherLevel.isEmpty ? '' : '${spell.higherLevel[0]}'}',
               style: AppTextStyles.black16,
             ),
           ],

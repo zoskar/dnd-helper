@@ -28,15 +28,14 @@ class _HomePageState extends State<HomePage> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    return WillPopScope(
-      onWillPop: () async {
-        if (currentIndex == 1) {
-          return true;
+    return PopScope(
+      canPop: currentIndex == 1,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) {
+          setState(() {
+            currentIndex = 1;
+          });
         }
-        setState(() {
-          currentIndex = 1;
-        });
-        return false;
       },
       child: Scaffold(
         appBar: AppBar(

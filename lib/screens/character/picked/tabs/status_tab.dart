@@ -20,10 +20,12 @@ class StatusTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final scrollController = ScrollController();
     final Character char = context.read<CharacterCubit>().pickedChar;
-    return WillPopScope(
-      onWillPop: () async {
-        DefaultTabController.of(context).animateTo(0);
-        return false;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, _) {
+        if (!didPop) {
+          DefaultTabController.of(context).animateTo(0);
+        }
       },
       child: GestureDetector(
         onTap: () {

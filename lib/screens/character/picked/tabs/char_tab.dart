@@ -21,10 +21,12 @@ class CharTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final Character char = context.read<CharacterCubit>().pickedChar;
-    return WillPopScope(
-      onWillPop: () async {
-        context.read<CharacterCubit>().switchCharacter(fileHandler);
-        return false;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, _) {
+        if (!didPop) {
+          context.read<CharacterCubit>().switchCharacter(fileHandler);
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(12.0),

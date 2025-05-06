@@ -16,10 +16,12 @@ class SkillsTab extends StatelessWidget {
     final Character char = context.read<CharacterCubit>().pickedChar;
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: WillPopScope(
-        onWillPop: () async {
-          DefaultTabController.of(context).animateTo(0);
-          return false;
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (bool didPop, _) {
+          if (!didPop) {
+            DefaultTabController.of(context).animateTo(0);
+          }
         },
         child: SingleChildScrollView(
           child: Column(
