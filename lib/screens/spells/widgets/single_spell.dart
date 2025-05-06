@@ -8,8 +8,8 @@ import 'package:dnd_helper/widgets/divider.dart';
 class SpellContent extends StatelessWidget {
   const SpellContent({
     required this.spell,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Spell spell;
 
@@ -24,7 +24,7 @@ class SpellContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Casting time: ${spell.casting_time}',
+                      'Casting time: ${spell.castingTime}',
                       style: AppTextStyles.black16,
                     ),
                     Text(
@@ -49,10 +49,10 @@ class SpellContent extends StatelessWidget {
                         const Icon(
                           CustomIcons.copyright,
                           size: 28,
-                        )
+                        ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
             const MyDivider(),
@@ -68,7 +68,7 @@ class SpellContent extends StatelessWidget {
             const MyDivider(),
             Text(
               '${spell.desc.join(", ").toString()}\n\n'
-              '${spell.higher_level.isEmpty ? '' : spell.higher_level[0].toString()}',
+              '${spell.higherLevel.isEmpty ? '' : '${spell.higherLevel[0]}'}',
               style: AppTextStyles.black16,
             ),
           ],

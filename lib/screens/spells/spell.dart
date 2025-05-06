@@ -8,8 +8,8 @@ import 'package:dnd_helper/cubits/spell_cubit.dart';
 class SpellView extends StatelessWidget {
   const SpellView({
     required this.spellName,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String spellName;
 
   @override

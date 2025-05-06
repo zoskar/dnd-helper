@@ -18,7 +18,7 @@ class AppColors {
       AppColors.c,
       AppColors.d,
       AppColors.e,
-      AppColors.f
+      AppColors.f,
     ],
   );
 

@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 class CharView extends StatefulWidget {
   const CharView({
     required this.fileHandler,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
 

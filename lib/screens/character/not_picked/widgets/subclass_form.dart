@@ -5,8 +5,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class SubclassForm extends StatelessWidget {
   const SubclassForm({
     required this.character,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Character character;
 

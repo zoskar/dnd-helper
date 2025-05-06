@@ -7,8 +7,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class SkillsForm extends StatelessWidget {
   const SkillsForm({
     required this.character,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Character character;
 

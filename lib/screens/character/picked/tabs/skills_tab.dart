@@ -8,18 +8,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SkillsTab extends StatelessWidget {
   const SkillsTab({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     final Character char = context.read<CharacterCubit>().pickedChar;
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: WillPopScope(
-        onWillPop: () async {
-          DefaultTabController.of(context).animateTo(0);
-          return false;
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (bool didPop, _) {
+          if (!didPop) {
+            DefaultTabController.of(context).animateTo(0);
+          }
         },
         child: SingleChildScrollView(
           child: Column(
@@ -75,7 +77,7 @@ class SkillsTab extends StatelessWidget {
                                     Text(
                                       value.toString(),
                                       style: AppTextStyles.black16,
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -85,7 +87,7 @@ class SkillsTab extends StatelessWidget {
                                   statistics[s].toString(),
                                   style: AppTextStyles.black16,
                                 ),
-                              )
+                              ),
                             ],
                           );
                         }).toList(),
@@ -150,13 +152,13 @@ class SkillsTab extends StatelessWidget {
                                     s,
                                     style: AppTextStyles.black12,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ],
                         );
                       }).toList(),
-                    )
+                    ),
                   ],
                 ),
               ),

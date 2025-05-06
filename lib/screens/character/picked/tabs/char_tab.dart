@@ -10,8 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CharTab extends StatelessWidget {
   const CharTab({
     required this.fileHandler,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
   final double _buttonHeight = 4;
@@ -21,10 +21,12 @@ class CharTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final Character char = context.read<CharacterCubit>().pickedChar;
-    return WillPopScope(
-      onWillPop: () async {
-        context.read<CharacterCubit>().switchCharacter(fileHandler);
-        return false;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, _) {
+        if (!didPop) {
+          context.read<CharacterCubit>().switchCharacter(fileHandler);
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -220,7 +222,7 @@ class CharTab extends StatelessWidget {
                       ),
                     )
                     .toList(),
-              )
+              ),
             ],
           ),
         ),

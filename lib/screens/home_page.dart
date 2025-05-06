@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -28,20 +28,18 @@ class _HomePageState extends State<HomePage> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    return WillPopScope(
-      onWillPop: () async {
-        if (currentIndex == 1) {
-          return true;
+    return PopScope(
+      canPop: currentIndex == 1,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) {
+          setState(() {
+            currentIndex = 1;
+          });
         }
-        setState(() {
-          currentIndex = 1;
-        });
-        return false;
       },
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          // ignore: use_decorated_box
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: AppColors.myGradient,

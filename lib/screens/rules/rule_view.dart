@@ -8,8 +8,8 @@ import 'package:dnd_helper/utils/fonts.dart';
 class SingleRulePage extends StatelessWidget {
   const SingleRulePage({
     required this.ruleURL,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String ruleURL;
 
@@ -20,7 +20,6 @@ class SingleRulePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        // ignore: use_decorated_box
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppColors.myGradient,

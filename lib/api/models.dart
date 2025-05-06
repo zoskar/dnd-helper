@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'models.g.dart';
@@ -25,13 +23,13 @@ class Spell {
   const Spell({
     required this.id,
     required this.desc,
-    required this.higher_level,
+    required this.higherLevel,
     required this.range,
     required this.components,
     required this.ritual,
     required this.duration,
     required this.concentration,
-    required this.casting_time,
+    required this.castingTime,
     required this.level,
     required this.school,
     required this.classes,
@@ -44,13 +42,15 @@ class Spell {
   final String id;
   final String name;
   final List<String> desc;
-  final List higher_level;
+  @JsonKey(name: 'higher_level')
+  final List higherLevel;
   final String range;
   final List components;
   final bool ritual;
   final String duration;
   final bool concentration;
-  final String casting_time;
+  @JsonKey(name: 'casting_time')
+  final String castingTime;
   final int level;
   final Map school;
   final List classes;

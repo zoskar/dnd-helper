@@ -7,8 +7,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class AcForm extends StatelessWidget {
   const AcForm({
     required this.character,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Character character;
 
@@ -32,7 +32,7 @@ class AcForm extends StatelessWidget {
                   ),
                   FormBuilderValidators.required(
                     errorText: 'Enter HP',
-                  )
+                  ),
                 ]),
                 initialValue: character.ac.toString(),
                 name: 'acPicker',

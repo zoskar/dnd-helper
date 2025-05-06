@@ -7,8 +7,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class HpForm extends StatelessWidget {
   const HpForm({
     required this.character,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Character character;
 

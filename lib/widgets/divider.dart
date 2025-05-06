@@ -4,8 +4,8 @@ import 'package:dnd_helper/utils/app_colors.dart';
 
 class MyDivider extends StatelessWidget {
   const MyDivider({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   static const _dividerThickness = 2.0;
   static const _paddingTB = 8.0;

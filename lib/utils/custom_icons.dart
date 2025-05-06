@@ -29,6 +29,7 @@
 ///         License:   MIT (http://opensource.org/licenses/mit-license.php)
 ///         Homepage:  https://primer.style/octicons/
 ///
+library custom_icons;
 // ignore_for_file: lines_longer_than_80_chars, avoid_redundant_argument_values, constant_identifier_names
 
 import 'package:flutter/widgets.dart';

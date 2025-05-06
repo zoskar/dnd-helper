@@ -14,9 +14,8 @@ class ResourceForm extends StatelessWidget {
   const ResourceForm({
     required GlobalKey<FormBuilderState> formKey,
     required this.fileHandler,
-    Key? key,
-  })  : _formKey = formKey,
-        super(key: key);
+    super.key,
+  }) : _formKey = formKey;
 
   final GlobalKey<FormBuilderState> _formKey;
   final FileHandler fileHandler;
@@ -29,7 +28,6 @@ class ResourceForm extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            // ignore: use_decorated_box
             flexibleSpace: Container(
               decoration: const BoxDecoration(
                 gradient: AppColors.myGradient,
@@ -123,7 +121,7 @@ class ResourceForm extends StatelessWidget {
                       FormBuilderFieldOption(
                         value: false,
                         child: Text('Long rest'),
-                      )
+                      ),
                     ],
                   ),
                   Padding(
@@ -131,7 +129,7 @@ class ResourceForm extends StatelessWidget {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         fixedSize: const Size(120, 60),
-                        primary: AppColors.secondary,
+                        backgroundColor: AppColors.secondary,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                         ),
@@ -168,7 +166,7 @@ class ResourceForm extends StatelessWidget {
                         _formKey.currentState!.validate();
                       },
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

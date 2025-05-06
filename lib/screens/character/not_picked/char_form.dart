@@ -23,8 +23,8 @@ class EditChar extends StatelessWidget {
     required this.names,
     required this.character,
     required this.fileHandler,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FileHandler fileHandler;
   final Character character;
@@ -32,18 +32,16 @@ class EditChar extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
-  Widget build(BuildContext context) => WillPopScope(
-        onWillPop: () async {
-          if (MediaQuery.of(context).viewInsets.bottom != 0) {
+  Widget build(BuildContext context) => PopScope(
+        canPop: MediaQuery.of(context).viewInsets.bottom == 0,
+        onPopInvokedWithResult: (bool didPop, _) {
+          if (!didPop) {
             FocusManager.instance.primaryFocus?.unfocus();
-            return false;
           }
-          return true;
         },
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            // ignore: use_decorated_box
             flexibleSpace: Container(
               decoration: const BoxDecoration(
                 gradient: AppColors.myGradient,
@@ -199,9 +197,8 @@ class ConfirmButton extends StatelessWidget {
     required GlobalKey<FormBuilderState> formKey,
     required this.fileHandler,
     required this.character,
-    Key? key,
-  })  : _formKey = formKey,
-        super(key: key);
+    super.key,
+  }) : _formKey = formKey;
 
   final GlobalKey<FormBuilderState> _formKey;
   final FileHandler fileHandler;
@@ -234,7 +231,7 @@ class ConfirmButton extends StatelessWidget {
                     'CON': data?['conPicker'],
                     'WIS': data?['wisPicker'],
                     'INT': data?['intPicker'],
-                    'CHA': data?['chaPicker']
+                    'CHA': data?['chaPicker'],
                   },
                   savingThrows:
                       data?['savingThrowPicker'] ?? character.savingThrows,
