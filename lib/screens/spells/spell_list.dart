@@ -47,7 +47,7 @@ class _SpellsPageState extends State<SpellsPage> {
                   },
                   child: const Text(
                     'Filters',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ],

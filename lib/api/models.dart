@@ -42,12 +42,14 @@ class Spell {
   final String id;
   final String name;
   final List<String> desc;
+  @JsonKey(name: 'higher_level')
   final List higherLevel;
   final String range;
   final List components;
   final bool ritual;
   final String duration;
   final bool concentration;
+  @JsonKey(name: 'casting_time')
   final String castingTime;
   final int level;
   final Map school;

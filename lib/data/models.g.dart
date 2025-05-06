@@ -10,7 +10,7 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       name: json['name'] as String,
       characterClass: json['characterClass'] as String,
       race: json['race'] as String,
-      level: json['level'] as int,
+      level: (json['level'] as num).toInt(),
       subclass: json['subclass'] as String,
       stats: json['stats'],
       savingThrows: json['savingThrows'] as List<dynamic>,
@@ -18,9 +18,9 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       resources: (json['resources'] as List<dynamic>)
           .map((e) => Resource.fromJson(e as Map<String, dynamic>))
           .toList(),
-      hp: json['hp'] as int,
-      currentHp: json['currentHp'] as int,
-      ac: json['ac'] as int,
+      hp: (json['hp'] as num).toInt(),
+      currentHp: (json['currentHp'] as num).toInt(),
+      ac: (json['ac'] as num).toInt(),
     );
 
 Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
@@ -40,8 +40,8 @@ Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
 
 Resource _$ResourceFromJson(Map<String, dynamic> json) => Resource(
       name: json['name'] as String,
-      maxUses: json['maxUses'] as int,
-      remainingUses: json['remainingUses'] as int,
+      maxUses: (json['maxUses'] as num).toInt(),
+      remainingUses: (json['remainingUses'] as num).toInt(),
       onShortRest: json['onShortRest'] as bool,
     );
 

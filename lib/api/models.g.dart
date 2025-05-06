@@ -21,16 +21,21 @@ Map<String, dynamic> _$SpellListItemToJson(SpellListItem instance) =>
     };
 
 Spell _$SpellFromJson(Map<String, dynamic> json) => Spell(
-      id: json['index'] as String,
+      id: json['_id'] as String,
       desc: (json['desc'] as List<dynamic>).map((e) => e as String).toList(),
-      higher_level: json['higher_level'] as List<dynamic>,
+      higherLevel: (json['higher_level'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       range: json['range'] as String,
-      components: json['components'] as List<dynamic>,
+      components: (json['components'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       ritual: json['ritual'] as bool,
       duration: json['duration'] as String,
       concentration: json['concentration'] as bool,
-      casting_time: json['casting_time'] as String,
-      level: json['level'] as int,
+      castingTime: json['casting_time'] as String,
+      level: (json['level'] as num).toInt(),
       school: json['school'] as Map<String, dynamic>,
       classes: json['classes'] as List<dynamic>,
       subclasses: json['subclasses'] as List<dynamic>,
@@ -41,13 +46,13 @@ Map<String, dynamic> _$SpellToJson(Spell instance) => <String, dynamic>{
       '_id': instance.id,
       'name': instance.name,
       'desc': instance.desc,
-      'higher_level': instance.higher_level,
+      'higher_level': instance.higherLevel,
       'range': instance.range,
       'components': instance.components,
       'ritual': instance.ritual,
       'duration': instance.duration,
       'concentration': instance.concentration,
-      'casting_time': instance.casting_time,
+      'casting_time': instance.castingTime,
       'level': instance.level,
       'school': instance.school,
       'classes': instance.classes,
